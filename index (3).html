@@ -1,0 +1,2174 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>黎明の刃 — Lâmina da Aurora | Guia do RPG</title>
+<meta name="description" content="Compêndio do RPG de mesa Lâmina da Aurora: história, respirações, pilares e o mapa do território em um Japão antigo de demônios e glicínias." />
+<meta property="og:title" content="黎明の刃 — Lâmina da Aurora | Guia do RPG" />
+<meta property="og:description" content="Compêndio do RPG de mesa Lâmina da Aurora: história, respirações, pilares e o mapa do território." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Yuji+Syuku&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   黎明の刃 — Lâmina da Aurora · arquivo único
+   Design: sumi-e, laca negra, sangue e ouro velho (Japão antigo)
+   ============================================================ */
+:root{
+  --void:#0a0808; --ink:#120f0f; --sumi:#1b1717;
+  --blood:#7d1c1c; --crimson:#c0392b; --bone:#f2ece1;
+  --gold:#c8a04a; --fuji:#8b6bc0;
+  --border:color-mix(in srgb,var(--bone) 12%,transparent);
+  --jp:"Shippori Mincho",serif; --brush:"Yuji Syuku",serif;
+  --sans:"Zen Kaku Gothic New",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scrollbar-color:var(--blood) var(--ink);scrollbar-width:thin}
+body{
+  background:var(--void);color:var(--bone);font-family:var(--sans);
+  overflow-x:hidden;line-height:1.6;
+}
+/* barra de rolagem temática (webkit) */
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--ink);box-shadow:inset 0 0 0 1px var(--border)}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--gold),var(--blood) 40%,var(--crimson));
+  border:2px solid var(--ink);
+  clip-path:polygon(50% 0,100% 8px,100% calc(100% - 8px),50% 100%,0 calc(100% - 8px),0 8px);
+}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--crimson),var(--gold))}
+
+.jp{font-family:var(--jp)}
+.brush{font-family:var(--brush)}
+.glow{text-shadow:none}
+.emboss{text-shadow:none}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* grão washi */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:70;opacity:.09;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.5'/></svg>");
+}
+
+/* ---------- padrões tradicionais ---------- */
+.seigaiha{background-image:radial-gradient(circle at 50% 100%,transparent 8px,color-mix(in srgb,var(--bone) 9%,transparent) 9px,transparent 10px,transparent 14px,color-mix(in srgb,var(--bone) 7%,transparent) 15px,transparent 16px);background-size:44px 22px}
+.asanoha{background-image:linear-gradient(60deg,color-mix(in srgb,var(--crimson) 13%,transparent) 1px,transparent 1px),linear-gradient(-60deg,color-mix(in srgb,var(--crimson) 13%,transparent) 1px,transparent 1px),linear-gradient(0deg,color-mix(in srgb,var(--crimson) 10%,transparent) 1px,transparent 1px);background-size:38px 66px}
+.kikko{background-image:linear-gradient(30deg,color-mix(in srgb,var(--gold) 10%,transparent) 1px,transparent 1px),linear-gradient(150deg,color-mix(in srgb,var(--gold) 10%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--gold) 8%,transparent) 1px,transparent 1px);background-size:34px 58px}
+.lanterns{
+  background-image:
+   radial-gradient(8px 12px at 12% 18%,color-mix(in srgb,var(--gold) 45%,transparent),transparent 70%),
+   radial-gradient(7px 11px at 34% 62%,color-mix(in srgb,var(--crimson) 40%,transparent),transparent 70%),
+   radial-gradient(9px 13px at 71% 28%,color-mix(in srgb,var(--gold) 35%,transparent),transparent 70%),
+   radial-gradient(6px 10px at 88% 72%,color-mix(in srgb,var(--crimson) 35%,transparent),transparent 70%);
+  animation:lanternFloat 12s ease-in-out infinite alternate;
+}
+@keyframes lanternFloat{to{background-position:0 -22px,0 14px,0 -16px,0 10px}}
+
+/* ---------- utilidades ---------- */
+.wrap{position:relative;margin:0 auto;max-width:80rem;padding:7rem 1.5rem}
+.slab{position:relative;overflow:hidden;isolation:isolate}
+.abs{position:absolute;inset:0}
+.ink-rule{height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold) 55%,transparent),color-mix(in srgb,var(--crimson) 60%,transparent),transparent)}
+.kana{font-family:var(--brush);font-size:.72rem;letter-spacing:.45em;color:var(--crimson)}
+.lead{max-width:38rem;font-size:.92rem;color:color-mix(in srgb,var(--bone) 60%,transparent)}
+.tag{display:inline-block;border:1px solid var(--border);background:color-mix(in srgb,var(--sumi) 70%,transparent);
+  padding:.35rem .6rem;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 68%,transparent)}
+.myth{border-left:1px solid color-mix(in srgb,var(--gold) 45%,transparent);padding-left:1rem;font-size:.8rem;font-style:italic;color:color-mix(in srgb,var(--gold) 75%,transparent)}
+.dropcap::first-letter{float:left;margin:.1em .6rem 0 0;font-family:var(--brush);font-size:4em;line-height:.78;color:#d9553f}
+.art-frame{position:relative;overflow:hidden;clip-path:polygon(0 22px,22px 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%)}
+.art-frame::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--crimson) 35%,transparent)}
+.clip-slant-a{clip-path:polygon(0 0,100% 3.5vw,100% 100%,0 calc(100% - 3.5vw))}
+.clip-slant-b{clip-path:polygon(0 3.5vw,100% 0,100% calc(100% - 3.5vw),0 100%)}
+.clip-fan{clip-path:polygon(0 4vw,50% 0,100% 4vw,100% 100%,50% calc(100% - 2.5vw),0 100%)}
+.clip-blade{clip-path:polygon(0 0,100% 0,100% calc(100% - 5vw),55% 100%,0 calc(100% - 1.5vw))}
+.clip-torn{clip-path:polygon(0 2.2vw,12% .4vw,26% 2.6vw,41% .2vw,58% 2.4vw,74% .5vw,88% 2.8vw,100% .6vw,100% calc(100% - 1.4vw),86% 100%,70% calc(100% - 1.8vw),52% calc(100% - .3vw),34% calc(100% - 2vw),16% calc(100% - .4vw),0 calc(100% - 2.2vw))}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.9,.2,1)}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ---------- introdução (cortina que a lâmina parte ao meio) ---------- */
+#intro{position:fixed;inset:0;z-index:90;cursor:pointer}
+.intro-half{position:absolute;left:-4%;right:-4%;height:52%;overflow:hidden;
+  background:radial-gradient(120% 180% at 50% 60%,#1d0407,var(--void) 70%);
+  transition:transform 1.15s cubic-bezier(.75,0,.15,1),opacity 1.15s ease .1s}
+.intro-half.top{top:0;box-shadow:0 1px 0 color-mix(in srgb,var(--crimson) 55%,transparent),0 6px 40px -10px color-mix(in srgb,var(--crimson) 55%,transparent)}
+.intro-half.bot{bottom:0;box-shadow:0 -1px 0 color-mix(in srgb,var(--crimson) 55%,transparent),0 -6px 40px -10px color-mix(in srgb,var(--crimson) 55%,transparent)}
+.intro-half .inner{position:absolute;left:0;right:0;height:100vh;display:grid;place-items:center;text-align:center}
+.intro-half.top .inner{top:0}
+.intro-half.bot .inner{bottom:0}
+#intro.cut .intro-half.top{transform:translateY(-102%) rotate(-1.4deg)}
+#intro.cut .intro-half.bot{transform:translateY(102%) rotate(-1.4deg)}
+#intro.cut{opacity:1}
+#intro.gone{pointer-events:none;opacity:0;transition:opacity .5s ease}
+#intro .in{padding:2rem;max-width:44rem}
+.intro-k{font-family:var(--jp);font-size:clamp(3rem,14vw,9rem);line-height:1;color:color-mix(in srgb,var(--bone) 6%,transparent);
+  position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;animation:kBreath 7s ease-in-out infinite}
+@keyframes kBreath{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.intro-line{opacity:0;animation:up 1.2s ease forwards}
+.intro-line.b{animation-delay:1.1s}.intro-line.c{animation-delay:2.2s}
+@keyframes up{from{opacity:0;transform:translateY(18px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+/* título marcante entre colchetes japoneses 【 】 */
+.intro-title{margin-top:1.6rem;font-size:clamp(1.9rem,6.4vw,3.4rem);line-height:1.15;letter-spacing:.06em;
+  color:var(--bone)}
+.intro-title .br{color:var(--gold);opacity:.9;display:inline-block;
+  animation:brDrift 3.6s ease-in-out infinite}
+.intro-title .br:last-of-type{animation-direction:alternate-reverse}
+@keyframes brDrift{0%,100%{transform:translateX(0);opacity:.6}50%{transform:translateX(-4px);opacity:1}}
+.intro-title-pt{display:block;margin-top:.6rem;font-family:var(--sans,inherit);
+  font-size:.62rem;letter-spacing:.44em;text-transform:uppercase;color:color-mix(in srgb,var(--gold) 85%,transparent)}
+.intro-cta{opacity:0;animation:up 1.2s 2.4s ease forwards;margin-top:2.6rem;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.55rem;
+  font-size:.78rem;letter-spacing:.28em;color:color-mix(in srgb,var(--bone) 60%,transparent)}
+.intro-cta .key{padding:.35rem .8rem;border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);border-radius:.2rem;
+  background:color-mix(in srgb,var(--gold) 7%,transparent);color:var(--gold);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase}
+.intro-cta .sep{font-size:.66rem;letter-spacing:.3em;opacity:.55;text-transform:uppercase}
+.intro-cta .draw{color:var(--gold);animation:pulse 2.2s 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+
+.intro-slash{position:absolute;left:-10%;width:120%;height:2px;top:50%;z-index:5;
+  background:linear-gradient(90deg,transparent,#fff,var(--crimson),transparent);
+  transform:rotate(-5deg) scaleX(0);transform-origin:left center;animation:slashIn 1.4s .6s cubic-bezier(.2,.9,.15,1) forwards}
+@keyframes slashIn{0%{transform:rotate(-5deg) scaleX(0)}70%{transform:rotate(-5deg) scaleX(1);opacity:1}100%{transform:rotate(-5deg) scaleX(1);opacity:.35}}
+.intro-flash{position:absolute;left:-10%;width:120%;height:3px;top:50%;z-index:6;opacity:0;
+  background:linear-gradient(90deg,transparent,#fff,#ffd9c9,#fff,transparent);
+  box-shadow:0 0 40px 10px rgba(255,255,255,.75),0 0 90px 30px color-mix(in srgb,var(--crimson) 60%,transparent);
+  transform:rotate(-5deg) scaleX(.2);transform-origin:left center}
+#intro.cut .intro-flash{animation:flashCut .5s cubic-bezier(.15,.9,.2,1) forwards}
+@keyframes flashCut{0%{opacity:0;transform:rotate(-5deg) scaleX(.2)}25%{opacity:1}60%{opacity:1;transform:rotate(-5deg) scaleX(1)}100%{opacity:0;transform:rotate(-5deg) scaleX(1) scaleY(3)}}
+
+/* ---------- sangue (manchas puramente em CSS) ---------- */
+#blood{position:fixed;inset:0;z-index:96;pointer-events:none;overflow:hidden}
+/* mancha base: massa irregular + satélites; o filtro "gooey" funde tudo
+   num contorno orgânico com bordas viscosas, como sangue de verdade */
+.splat{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:calc(var(--s)*var(--ar,1));
+  transform:translate(-50%,-50%) rotate(var(--r)) scale(.12);opacity:0;
+  /* pigmento chapado, sem brilho plástico: sangue absorve luz */
+  background:radial-gradient(120% 120% at 42% 38%,#8b0e0b,#6d0806 62%,#3d0403);
+  border-radius:var(--br);filter:drop-shadow(0 1px 2px rgba(0,0,0,.55));
+  animation:splatIn .24s var(--d) cubic-bezier(.2,1.4,.35,1) forwards,splatOut .85s calc(var(--d) + .95s) ease forwards}
+/* lóbulos irregulares que invadem o corpo da mancha e quebram o círculo */
+.splat::before,.splat::after{content:"";position:absolute;background:inherit;border-radius:var(--br)}
+.splat::before{width:62%;height:54%;left:-22%;top:10%;
+  border-radius:78% 22% 62% 38%/64% 48% 52% 36%;transform:rotate(-18deg)}
+.splat::after{width:44%;height:70%;right:-16%;bottom:-14%;
+  border-radius:34% 66% 28% 72%/72% 24% 76% 28%;transform:rotate(14deg)}
+/* gota alongada com cauda fina (sangue arremessado pela lâmina) */
+.splat.drop{border-radius:56% 44% 42% 58%/74% 70% 30% 26%}
+.splat.drop::before{width:130%;height:14%;left:60%;top:42%;
+  border-radius:0 100% 100% 0/0 60% 40% 0;transform:rotate(-4deg);
+  background:linear-gradient(90deg,#6d0806,rgba(109,8,6,0))}
+.splat.drop::after{width:16%;height:16%;left:auto;right:-58%;bottom:34%;border-radius:50%;transform:none}
+/* arco de sangue: fio curvo, fino nas pontas, que acompanha o corte */
+.splat.arc{background:none;filter:none;border-radius:0;
+  height:calc(var(--s)*.5);overflow:visible}
+.splat.arc::before{width:100%;height:100%;left:0;top:0;background:none;transform:none;
+  border-radius:50%;border-bottom:calc(var(--s)*.022) solid #7a0a08;
+  border-left:calc(var(--s)*.012) solid rgba(122,10,8,.35);
+  border-right:calc(var(--s)*.008) solid rgba(122,10,8,.2);border-top:0}
+.splat.arc::after{width:6%;height:15%;right:4%;bottom:-4%;border-radius:60% 40% 44% 56%/74% 66% 34% 26%;
+  background:#7a0a08;transform:rotate(18deg)}
+/* borrão/arrasto na tela, mais seco nas bordas */
+.splat.smear{height:calc(var(--s)*.09);border-radius:60% 40% 50% 50%/50% 60% 40% 50%;
+  background:linear-gradient(100deg,transparent,rgba(90,6,5,.75) 12%,#7a0a08 44%,rgba(60,4,3,.85) 80%,transparent)}
+.splat.smear::before{width:5%;height:220%;left:26%;top:-60%;border-radius:50%;opacity:.55;transform:none}
+.splat.smear::after{width:3%;height:170%;right:18%;bottom:-40%;border-radius:50%;opacity:.45;transform:none}
+/* névoa fina de sangue pulverizado */
+.splat.mist{background:radial-gradient(circle,rgba(109,8,6,.34),rgba(50,3,3,.16) 55%,transparent 72%);
+  filter:blur(10px);border-radius:50%}
+.splat.mist::before,.splat.mist::after{display:none}
+/* poeira de gotículas minúsculas em volta das manchas grandes */
+.speck{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:calc(var(--s)*var(--ar,1));
+  background:#6d0806;border-radius:var(--br);opacity:0;
+  transform:translate(-50%,-50%) rotate(var(--r)) scale(.2);
+  animation:splatIn .2s var(--d) ease forwards,splatOut .7s calc(var(--d) + 1s) ease forwards}
+.drip{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:0;
+  background:linear-gradient(180deg,#7a0a08,#5d0605 45%,#2e0202);
+  border-radius:40% 60% 55% 45%/0 0 100% 100%;
+  animation:dripDown 1.1s var(--d) cubic-bezier(.4,0,.7,1) forwards,splatOut .8s calc(var(--d) + 1.15s) ease forwards}
+.drip::after{content:"";position:absolute;left:50%;bottom:-.35em;width:210%;aspect-ratio:1;
+  transform:translateX(-50%);background:radial-gradient(circle at 45% 38%,#7a0a08,#4b0403);
+  border-radius:52% 48% 60% 40%/48% 44% 56% 52%}
+
+@keyframes splatIn{to{opacity:1;transform:translate(-50%,-50%) rotate(var(--r)) scale(1)}}
+@keyframes splatOut{to{opacity:0;filter:blur(7px)}}
+@keyframes dripDown{to{height:var(--h)}}
+
+
+/* ---------- cabeçalho ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;flex-direction:column;align-items:center;
+  gap:.45rem;padding:.55rem 1.4rem .7rem;backdrop-filter:blur(8px);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--void) 90%,transparent),color-mix(in srgb,var(--void) 0%,transparent));border-bottom:1px solid transparent;transition:.4s}
+header.solid{background:color-mix(in srgb,var(--void) 92%,transparent);border-bottom-color:var(--border)}
+/* espaço reservado para a logo, centralizado acima dos botões */
+.hd-logo{display:flex;align-items:center;justify-content:center;height:74px;max-width:min(320px,62vw);transition:height .4s ease}
+header.solid .hd-logo{height:46px}
+.hd-logo img{height:100%;max-height:100%;width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 0 22px color-mix(in srgb,var(--crimson) 55%,transparent))}
+.hd-logo .ph{display:grid;place-items:center;height:100%;aspect-ratio:3/1;font-family:var(--jp);
+  letter-spacing:.3em;font-size:.7rem;color:color-mix(in srgb,var(--bone) 45%,transparent);border:1px dashed color-mix(in srgb,var(--gold) 35%,transparent)}
+header nav{display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem;font-size:.72rem;letter-spacing:.28em;
+  text-transform:uppercase;color:color-mix(in srgb,var(--bone) 60%,transparent)}
+header nav a:hover{color:var(--bone)}
+@media(max-width:820px){header nav{display:none}.hd-logo{height:52px}}
+
+/* barra de progresso da leitura */
+#progress{position:fixed;top:0;left:0;height:2px;z-index:80;width:0;
+  background:linear-gradient(90deg,var(--gold),var(--crimson));box-shadow:0 0 18px var(--crimson)}
+
+/* ---------- hero ---------- */
+.scene{position:relative;overflow:hidden;min-height:100svh}
+.layer{position:absolute;inset:-10%;will-change:transform;background-repeat:no-repeat;background-size:cover}
+/* ---------- céu: estrelas e nuvens com parallax ---------- */
+#sky{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.star{position:absolute;width:var(--s);height:var(--s);border-radius:50%;will-change:transform;
+  background:radial-gradient(circle,#fff 0%,rgba(255,226,214,.75) 35%,color-mix(in srgb,var(--crimson) 25%,transparent) 60%,transparent 72%);
+  box-shadow:0 0 var(--g) rgba(255,230,220,.55);animation:twinkle var(--tw) ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:var(--o1)}to{opacity:var(--o2)}}
+.cloud{position:absolute;width:var(--w);height:var(--h);border-radius:50%;will-change:transform;filter:blur(30px);
+  background:radial-gradient(ellipse at 42% 45%,rgba(140,32,28,.5),rgba(38,12,12,.42) 52%,transparent 76%)}
+.cloud.dark{background:radial-gradient(ellipse at 55% 50%,rgba(20,14,14,.75),rgba(12,8,8,.45) 55%,transparent 78%)}
+.ridge{position:absolute;left:-5%;right:-5%;bottom:0;height:52%;
+  clip-path:polygon(0 100%,0 66%,9% 48%,17% 60%,27% 34%,37% 54%,48% 26%,58% 52%,68% 38%,79% 58%,89% 42%,100% 62%,100% 100%)}
+.sun{position:absolute;left:50%;top:40%;width:min(72vmin,560px);transform:translate(-50%,-50%);
+  filter:drop-shadow(0 0 70px color-mix(in srgb,var(--crimson) 55%,transparent));animation:breathe 8s ease-in-out infinite}
+@keyframes breathe{0%,100%{filter:drop-shadow(0 0 60px color-mix(in srgb,var(--crimson) 45%,transparent))}50%{filter:drop-shadow(0 0 110px color-mix(in srgb,var(--crimson) 70%,transparent))}}
+.vline{width:1px;height:70px;background:linear-gradient(var(--crimson),transparent);margin:1.2rem auto 0;animation:drop 2.6s infinite}
+@keyframes drop{0%{opacity:0;transform:scaleY(.2)}40%{opacity:1}100%{opacity:0;transform:scaleY(1)}}
+.btn-ink{position:relative;overflow:hidden;isolation:isolate;display:inline-block;
+  border:1px solid color-mix(in srgb,var(--bone) 25%,transparent);padding:.85rem 1.6rem;letter-spacing:.25em;font-family:var(--jp);
+  clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);transition:.45s}
+.btn-ink::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,var(--blood),var(--crimson));
+  transform:translateY(101%);transition:transform .55s cubic-bezier(.6,0,.2,1)}
+.btn-ink:hover{border-color:var(--crimson);box-shadow:0 0 44px -14px var(--crimson)}
+.btn-ink:hover::before{transform:translateY(0)}
+
+/* faixa marquee (sem clip-path) */
+.band{position:relative;z-index:10;border-block:1px solid var(--border);background:var(--ink);padding:.85rem 0;overflow:hidden}
+.marquee{display:flex;gap:3rem;white-space:nowrap;animation:mv 38s linear infinite}
+.marquee-rev{display:flex;gap:3rem;white-space:nowrap;animation:mv 46s linear infinite reverse}
+@keyframes mv{to{transform:translateX(-50%)}}
+/* fita inclinada — sem clip-path, sem corte: só rotação e largura extra */
+.war-band{position:relative;z-index:60;width:108%;left:-4%;overflow:hidden;padding:1.05rem 0;margin:2.5rem 0;isolation:isolate;
+  transform:rotate(-1.4deg);
+  border-top:1px solid color-mix(in srgb,var(--gold) 45%,transparent);border-bottom:1px solid color-mix(in srgb,var(--crimson) 60%,transparent);
+  background:linear-gradient(90deg,color-mix(in srgb,var(--void) 96%,transparent),rgba(140,30,30,.5),color-mix(in srgb,var(--void) 96%,transparent));
+  box-shadow:0 0 70px -18px var(--crimson)}
+
+/* ---------- linha do tempo (história) ---------- */
+.rope{background-image:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 40%,transparent) 8%,color-mix(in srgb,var(--crimson) 45%,transparent) 92%,transparent)}
+.stamp{display:grid;place-items:center;width:2.5rem;height:2.5rem;font-family:var(--jp);font-size:1.1rem;color:color-mix(in srgb,var(--gold) 85%,transparent);
+  border:1px solid color-mix(in srgb,var(--crimson) 70%,transparent);background:rgba(30,8,8,.9);box-shadow:0 0 34px -12px var(--crimson);
+  clip-path:polygon(14% 0,100% 0,100% 86%,86% 100%,0 100%,0 14%)}
+.tl-item{position:relative;margin-bottom:3.5rem;padding-left:4rem}
+@media(min-width:860px){
+  .tl-item{width:50%;padding-left:0;margin-bottom:5.5rem}
+  .tl-item.l{padding-right:4rem;text-align:right}
+  .tl-item.r{margin-left:auto;padding-left:4rem}
+}
+
+/* ---------- grimório das respirações ---------- */
+.tech-row{position:relative;display:grid;grid-template-columns:3.2rem minmax(0,1fr) auto;align-items:center;gap:1rem;
+  width:100%;padding:.9rem 1.2rem;text-align:left;border-top:1px solid color-mix(in srgb,var(--bone) 10%,transparent);
+  clip-path:polygon(0 0,100% 0,calc(100% - 18px) 100%,0 100%);transition:background .45s,padding-left .45s}
+.tech-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--gold),var(--crimson));transform:scaleY(0);transform-origin:top;transition:transform .45s}
+.tech-row:hover{background:color-mix(in srgb,var(--blood) 14%,transparent);padding-left:1.7rem}
+.tech-row:hover::before,.tech-row[aria-selected="true"]::before{transform:scaleY(1)}
+.tech-row[aria-selected="true"]{background:color-mix(in srgb,var(--blood) 22%,transparent);padding-left:1.7rem}
+/* painel com rolagem vertical automática */
+.pane-scroll{max-height:26rem;overflow-y:auto;padding-right:.9rem;
+  scrollbar-color:var(--blood) transparent;scrollbar-width:thin;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 14px,#000 calc(100% - 14px),transparent);
+          mask-image:linear-gradient(180deg,transparent,#000 14px,#000 calc(100% - 14px),transparent)}
+.pane-scroll::-webkit-scrollbar{width:8px}
+.pane-scroll::-webkit-scrollbar-track{background:color-mix(in srgb,var(--bone) 5%,transparent)}
+.pane-scroll::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gold),var(--crimson));border:0}
+
+/* ---------- kakejiku / juramento ---------- */
+.kake{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015)),color-mix(in srgb,var(--sumi) 70%,transparent);
+  clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 22px),0 100%)}
+.kake::before,.kake::after{content:"";position:absolute;left:-6px;right:-6px;height:10px;
+  background:linear-gradient(180deg,var(--blood),#2a0c0c);box-shadow:0 0 24px -6px var(--crimson)}
+.kake::before{top:0}.kake::after{bottom:22px}
+
+/* ---------- seletor de cards (pilares) ---------- */
+.pick{position:relative;width:100%;min-height:13rem;text-align:left;overflow:hidden;background:color-mix(in srgb,var(--sumi) 85%,transparent);
+  clip-path:polygon(0 14px,14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%);
+  transition:transform .4s cubic-bezier(.2,.9,.2,1),background .4s}
+.pick::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--bone) 16%,transparent);transition:box-shadow .4s}
+.pick:hover{transform:translateY(-4px)}
+.pick:hover::after{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 55%,transparent)}
+.pick[aria-selected="true"]{background:#33110f}
+.pick[aria-selected="true"]::after{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--crimson) 85%,transparent),0 0 40px -10px color-mix(in srgb,var(--crimson) 70%,transparent)}
+.pick-art{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.32;filter:grayscale(.35);transition:.5s}
+.pick:hover .pick-art{transform:scale(1.06)}
+.pick[aria-selected="true"] .pick-art{opacity:.45;filter:grayscale(.1)}
+.pick-veil{position:absolute;inset:0;background:linear-gradient(180deg,color-mix(in srgb,var(--void) 42%,transparent),color-mix(in srgb,var(--void) 90%,transparent))}
+.pick-kanji{position:absolute;right:6px;top:-8px;font-family:var(--jp);font-size:3.4rem;line-height:1;color:color-mix(in srgb,var(--bone) 9%,transparent)}
+.pick[aria-selected="true"] .pick-kanji{color:color-mix(in srgb,var(--crimson) 35%,transparent)}
+.divider-shime{background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 45%,transparent),color-mix(in srgb,var(--crimson) 55%,transparent),transparent)}
+
+/* ---------- mapa do território (lista acessível) ---------- */
+.map-tab{display:grid;grid-template-columns:2.6rem minmax(0,1fr);gap:.9rem;align-items:center;width:100%;
+  padding:.9rem 1rem;text-align:left;border:1px solid var(--border);background:color-mix(in srgb,var(--sumi) 60%,transparent);transition:.35s}
+.map-tab:hover{border-color:color-mix(in srgb,var(--gold) 50%,transparent);background:color-mix(in srgb,var(--blood) 16%,transparent)}
+.map-tab[aria-selected="true"]{border-color:color-mix(in srgb,var(--crimson) 80%,transparent);background:color-mix(in srgb,var(--blood) 26%,transparent);box-shadow:0 0 34px -14px var(--crimson)}
+.map-tab .k{font-family:var(--jp);font-size:1.5rem;color:color-mix(in srgb,var(--gold) 85%,transparent);text-align:center}
+
+footer{position:relative;z-index:10;border-top:1px solid var(--border);background:var(--void);text-align:center;padding:3.5rem 1.5rem}
+
+/* grades */
+.grid2{display:grid;gap:1rem;grid-template-columns:repeat(2,minmax(0,1fr))}
+.cols{display:grid;gap:2.5rem}
+@media(min-width:1024px){.cols{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+  .cols.rev>.pane{order:-1}}
+
+/* ---------- esfera de sangue (lua/sol 3D) ---------- */
+.blood-orb{position:absolute;left:50%;top:30%;width:min(52vmin,430px);aspect-ratio:1;transform:translate(-50%,-50%);
+  border-radius:50%;isolation:isolate;
+  background:
+    radial-gradient(circle at 36% 30%,rgba(255,150,120,.42),rgba(196,48,30,.28) 22%,transparent 46%),
+    radial-gradient(circle at 72% 78%,rgba(255,90,55,.16),transparent 44%),
+    radial-gradient(circle at 46% 42%,#8f1a10 0%,#65100c 42%,#380605 72%,#150202 100%);
+  box-shadow:
+    inset -30px -42px 90px rgba(0,0,0,.95),
+    inset 22px 26px 70px rgba(255,110,80,.14),
+    0 0 70px color-mix(in srgb,var(--crimson) 40%,transparent),0 0 220px color-mix(in srgb,var(--blood) 35%,transparent);
+  animation:orbBreathe 9s ease-in-out infinite}
+.blood-orb::before{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  mix-blend-mode:overlay;opacity:.5;animation:orbTurn 60s linear infinite;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='v'><feTurbulence type='fractalNoise' baseFrequency='.014 .06' numOctaves='4' seed='7'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23v)' opacity='.9'/></svg>");
+  background-size:cover}
+.blood-orb::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,transparent 60%,rgba(255,80,50,.2) 74%,transparent 80%),
+             radial-gradient(circle at 34% 26%,rgba(255,220,200,.14),transparent 22%)}
+.orb-halo{position:absolute;left:50%;top:30%;width:min(96vmin,760px);aspect-ratio:1;transform:translate(-50%,-50%);
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,color-mix(in srgb,var(--crimson) 26%,transparent),color-mix(in srgb,var(--blood) 12%,transparent) 44%,transparent 68%);
+  filter:blur(12px);animation:orbHalo 7s ease-in-out infinite alternate}
+@keyframes orbBreathe{0%,100%{filter:brightness(.9) saturate(1)}50%{filter:brightness(1.06) saturate(1.12)}}
+@keyframes orbHalo{to{opacity:.55;transform:translate(-50%,-50%) scale(1.08)}}
+@keyframes orbTurn{to{transform:rotate(360deg)}}
+
+/* ---------- divisória vertical (respirações) ---------- */
+.vdiv{width:2px;flex:none;align-self:stretch;
+  background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 50%,transparent),color-mix(in srgb,var(--crimson) 60%,transparent),transparent);
+  box-shadow:0 0 22px -6px var(--crimson)}
+.vdiv-wrap{display:flex;gap:1.5rem;align-items:stretch}
+@media(max-width:1023px){.vdiv{display:none}.vdiv-wrap{gap:0}}
+
+/* ---------- galeria (álbum de fotos coladas) ---------- */
+.album{display:grid;gap:2rem 1.6rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.photo{position:relative;display:block;background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 9%,transparent),color-mix(in srgb,var(--sumi) 90%,transparent));
+  padding:.7rem .7rem 2.2rem;box-shadow:0 22px 46px -20px #000;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 30px),calc(100% - 30px) 100%,0 100%);
+  transition:transform .55s cubic-bezier(.2,.9,.2,1),box-shadow .45s,filter .45s}
+.photo:nth-child(odd){rotate:-1.7deg}.photo:nth-child(even){rotate:1.4deg}
+.photo:hover{rotate:0deg;transform:translateY(-10px) scale(1.03);z-index:5;box-shadow:0 30px 60px -18px color-mix(in srgb,var(--crimson) 55%,transparent)}
+.photo img{width:100%;height:13rem;object-fit:cover;filter:grayscale(.35) contrast(1.05) sepia(.12);transition:filter .5s}
+.photo:hover img{filter:grayscale(0) contrast(1.1)}
+.photo .cap{padding:.8rem .2rem 0}
+.photo .fold{position:absolute;right:0;bottom:0;width:30px;height:30px;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--bone) 18%,transparent),color-mix(in srgb,var(--void) 90%,transparent));
+  clip-path:polygon(100% 0,100% 100%,0 100%)}
+
+/* ---------- ranking ---------- */
+.rank{display:grid;gap:.5rem}
+.rank-row{display:grid;grid-template-columns:3rem minmax(0,1fr) auto;align-items:center;gap:1rem;
+  padding:.75rem 1rem;background:color-mix(in srgb,var(--sumi) 70%,transparent);border:1px solid var(--border);
+  clip-path:polygon(0 10px,10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%);
+  transition:.4s}
+.rank-row:hover{background:color-mix(in srgb,var(--blood) 20%,transparent);border-color:color-mix(in srgb,var(--gold) 50%,transparent);transform:translateX(6px)}
+.rank-row .pos{display:grid;place-items:center;width:2.4rem;height:2.4rem;font-family:var(--jp);font-size:1rem;
+  border:1px solid var(--border);color:color-mix(in srgb,var(--bone) 60%,transparent);
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.rank-row.top1 .pos{border-color:var(--gold);color:var(--void);background:linear-gradient(160deg,#e7c778,#a37e2c);box-shadow:0 0 30px -8px var(--gold)}
+.rank-row.top2 .pos{border-color:rgba(220,220,225,.7);color:var(--void);background:linear-gradient(160deg,#e7e7ea,#9a9aa2)}
+.rank-row.top3 .pos{border-color:rgba(198,124,78,.8);color:var(--void);background:linear-gradient(160deg,#dda06a,#8d5227)}
+.rank-row.top1{background:linear-gradient(90deg,color-mix(in srgb,var(--blood) 34%,transparent),color-mix(in srgb,var(--sumi) 70%,transparent));box-shadow:0 0 44px -20px var(--crimson)}
+.bar{height:3px;background:color-mix(in srgb,var(--bone) 10%,transparent);margin-top:.4rem;overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--crimson))}
+
+/* ---------- missões diárias (ofuda) ---------- */
+.mission{position:relative;text-align:left;padding:1.6rem 1.2rem 1.6rem;background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 7%,transparent),color-mix(in srgb,var(--sumi) 90%,transparent));
+  clip-path:polygon(0 16px,50% 0,100% 16px,100% 100%,50% calc(100% - 12px),0 100%);
+  border-top:1px solid color-mix(in srgb,var(--gold) 25%,transparent);transition:.45s}
+.mission:hover{transform:translateY(-6px);box-shadow:0 24px 50px -24px color-mix(in srgb,var(--crimson) 60%,transparent)}
+.mission[data-done="true"]{background:linear-gradient(180deg,color-mix(in srgb,var(--blood) 32%,transparent),color-mix(in srgb,var(--sumi) 90%,transparent))}
+.mission[data-done="true"] .m-title{text-decoration:line-through;opacity:.6}
+.m-seal{position:absolute;top:.9rem;right:.9rem;width:1.6rem;height:1.6rem;display:grid;place-items:center;
+  font-size:.8rem;border:1px solid color-mix(in srgb,var(--crimson) 60%,transparent);color:color-mix(in srgb,var(--crimson) 90%,transparent);
+  clip-path:polygon(14% 0,100% 0,100% 86%,86% 100%,0 100%,0 14%)}
+.mission[data-done="true"] .m-seal{background:var(--crimson);color:var(--bone)}
+.missions-grid{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+
+/* ---------- ícones do rodapé ---------- */
+.ficons{display:flex;justify-content:center;gap:1rem;margin-top:1.8rem}
+.ficon{position:relative;display:grid;place-items:center;width:3rem;height:3rem;
+  border:1px solid var(--border);background:color-mix(in srgb,var(--sumi) 80%,transparent);color:color-mix(in srgb,var(--bone) 70%,transparent);
+  clip-path:polygon(12% 0,100% 0,100% 88%,88% 100%,0 100%,0 12%);transition:.4s}
+.ficon:hover{color:var(--bone);border-color:var(--crimson);background:color-mix(in srgb,var(--blood) 30%,transparent);
+  box-shadow:0 0 34px -10px var(--crimson);transform:translateY(-3px)}
+.ficon svg{width:1.4rem;height:1.4rem;fill:currentColor}
+.ficon .tip{position:absolute;bottom:calc(100% + .6rem);left:50%;translate:-50% 0;white-space:nowrap;
+  padding:.4rem .7rem;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  background:color-mix(in srgb,var(--void) 96%,transparent);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);color:var(--gold);
+  opacity:0;pointer-events:none;transition:.35s;transform:translateY(6px)}
+.ficon:hover .tip,.ficon:focus-visible .tip{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ---------- carrossel do território (roda infinita) ---------- */
+.carousel{max-width:60rem;margin-inline:auto}
+.car-stage{display:flex;align-items:center;gap:.8rem}
+.car-view{flex:1;min-width:0;overflow:hidden}
+.car-pane{width:100%}
+.car-pane.in-r{animation:carInR .5s cubic-bezier(.2,.8,.25,1)}
+.car-pane.in-l{animation:carInL .5s cubic-bezier(.2,.8,.25,1)}
+@keyframes carInR{from{opacity:0;transform:translateX(7%)}to{opacity:1;transform:none}}
+@keyframes carInL{from{opacity:0;transform:translateX(-7%)}to{opacity:1;transform:none}}
+.car-arrow{position:relative;flex:0 0 auto;width:3rem;height:5.6rem;display:grid;place-items:center;
+  color:color-mix(in srgb,var(--bone) 70%,transparent);background:color-mix(in srgb,var(--void) 60%,transparent);overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);cursor:pointer;transition:.35s;
+  clip-path:polygon(0 12%,50% 0,100% 12%,100% 88%,50% 100%,0 88%)}
+.car-arrow::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(0deg,var(--blood),var(--crimson));
+  transform:translateY(100%);transition:transform .45s cubic-bezier(.2,.8,.25,1)}
+.car-arrow:hover{color:var(--bone);border-color:var(--crimson);
+  box-shadow:0 0 26px -6px var(--crimson)}
+.car-arrow:hover::before{transform:translateY(0)}
+
+.car-arrow span{font-size:1rem;position:relative}
+.car-dots{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-top:1.6rem}
+.car-dot{position:relative;display:flex;align-items:center;gap:.45rem;padding:.45rem .8rem;overflow:hidden;
+  background:color-mix(in srgb,var(--void) 55%,transparent);border:1px solid var(--border);color:color-mix(in srgb,var(--bone) 60%,transparent);
+  cursor:pointer;transition:.35s;clip-path:polygon(8% 0,100% 0,92% 100%,0 100%)}
+.car-dot::before{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(0deg,var(--blood),var(--crimson));
+  transform:translateY(100%);transition:transform .45s cubic-bezier(.2,.8,.25,1)}
+.car-dot:hover::before,.car-dot[aria-selected="true"]::before{transform:translateY(0)}
+.car-dot:hover,.car-dot[aria-selected="true"]{color:var(--bone);border-color:var(--crimson);
+  box-shadow:0 0 22px -8px var(--crimson)}
+.car-dot .k{position:relative;z-index:1;font-size:1rem;color:color-mix(in srgb,var(--gold) 90%,transparent)}
+.car-dot[aria-selected="true"] .k{color:var(--bone)}
+.car-dot .lb{position:relative;z-index:1;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
+@media (max-width:640px){
+  .car-arrow{width:2.4rem;height:4.4rem}
+  .car-dot .lb{display:none}
+  .car-dot{padding:.45rem .7rem}
+}
+
+/* ============ botões: sangue preenchendo dos dois lados ============ */
+.btn-ink::before,.btn-ink::after{content:"";position:absolute;top:0;bottom:0;width:52%;z-index:-1;
+  background:linear-gradient(115deg,#2b0202,#5d0605 22%,#8d0f0c 48%,#c0392b 76%,#ff6a3d 100%);
+  box-shadow:inset 0 0 30px rgba(0,0,0,.55);
+  transform:scaleX(0);transition:transform .62s cubic-bezier(.65,0,.2,1)}
+.btn-ink::before{left:0;transform-origin:left center}
+.btn-ink::after{right:0;transform-origin:right center;transition-delay:.09s;
+  background:linear-gradient(245deg,#2b0202,#5d0605 22%,#8d0f0c 48%,#c0392b 76%,#ff6a3d 100%)}
+.btn-ink:hover::before,.btn-ink:hover::after,.btn-ink:focus-visible::before,.btn-ink:focus-visible::after{transform:scaleX(1)}
+.btn-ink:hover,.btn-ink:focus-visible{color:#fff5f0;border-color:#ff6a3d;
+  box-shadow:0 0 48px -12px #c0392b}
+.car-arrow::before,.car-arrow::after{content:"";position:absolute;top:0;bottom:0;width:52%;z-index:0;
+  background:linear-gradient(115deg,#2b0202,#8d0f0c 50%,#ff6a3d);transform:scaleY(0);
+  transition:transform .5s cubic-bezier(.65,0,.2,1)}
+.car-arrow::before{left:0;transform-origin:top}
+.car-arrow::after{right:0;transform-origin:bottom;transition-delay:.08s}
+.car-arrow:hover::before,.car-arrow:hover::after{transform:scaleY(1)}
+
+/* ============ linha do tempo: trilho vertical visível ============ */
+#tl .rope{width:3px!important;border-radius:3px;
+  background-image:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 75%,transparent) 6%,color-mix(in srgb,var(--crimson) 90%,transparent) 55%,color-mix(in srgb,var(--gold) 70%,transparent) 94%,transparent);
+  box-shadow:0 0 22px color-mix(in srgb,var(--crimson) 55%,transparent),0 0 60px color-mix(in srgb,var(--crimson) 25%,transparent)}
+#tl .rope::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.85),transparent 30%);opacity:.35}
+#tl .rope::after{content:"";position:absolute;left:50%;top:0;width:9px;height:9px;translate:-50% 0;border-radius:50%;
+  background:#ffb08a;box-shadow:0 0 18px 4px color-mix(in srgb,var(--crimson) 90%,transparent);animation:ropeRun 6s linear infinite}
+@keyframes ropeRun{from{top:0;opacity:0}10%{opacity:1}90%{opacity:1}to{top:100%;opacity:0}}
+.tl-item .stamp{transition:transform .45s,box-shadow .45s,color .45s}
+.tl-item:hover .stamp{transform:scale(1.12) rotate(-4deg);color:#ffd9a8;box-shadow:0 0 40px -6px var(--crimson)}
+
+/* ============ nuvens do hero (mais densas e visíveis) ============ */
+#sky{z-index:3}
+.cloud{filter:blur(26px);mix-blend-mode:screen;animation:cloudBreath 14s ease-in-out infinite alternate}
+.cloud.dark{mix-blend-mode:normal;filter:blur(34px)}
+@keyframes cloudBreath{from{opacity:.55}to{opacity:1}}
+
+/* ============ guia dos sistemas ============ */
+.guide-grid{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))}
+.gcard{position:relative;overflow:hidden;padding:1.6rem 1.4rem 1.7rem;text-align:left;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 6%,transparent),color-mix(in srgb,var(--sumi) 92%,transparent));
+  clip-path:polygon(0 18px,18px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 18px),calc(100% - 18px) 100%,10px 100%,0 calc(100% - 10px));
+  border-top:1px solid color-mix(in srgb,var(--gold) 28%,transparent);transition:transform .5s cubic-bezier(.2,.9,.2,1),box-shadow .5s}
+.gcard::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .5s;
+  background:radial-gradient(70% 60% at 20% 0%,color-mix(in srgb,var(--crimson) 28%,transparent),transparent 70%)}
+.gcard:hover{transform:translateY(-8px);box-shadow:0 28px 60px -26px color-mix(in srgb,var(--crimson) 75%,transparent)}
+.gcard:hover::before{opacity:1}
+.gcard .num{position:absolute;right:.7rem;top:-.6rem;font-family:var(--jp);font-size:3.6rem;line-height:1;color:color-mix(in srgb,var(--bone) 7%,transparent)}
+.gcard .gk{font-family:var(--jp);font-size:1.9rem;color:var(--el,var(--crimson))}
+.gcard .dice{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;padding:.3rem .65rem;font-size:.62rem;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);
+  background:color-mix(in srgb,var(--gold) 7%,transparent)}
+
+/* ============ grade ampla de cards (bestiário) ============ */
+.grid-cards{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}
+
+/* ============ catálogo de armas ============ */
+.weapons{display:grid;gap:1.6rem;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr))}
+.wcard{position:relative;overflow:hidden;background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 5%,transparent),color-mix(in srgb,var(--ink) 95%,transparent));
+  clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));
+  transition:transform .5s cubic-bezier(.2,.9,.2,1),box-shadow .5s}
+.wcard::after{content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--bone) 14%,transparent);transition:box-shadow .5s}
+.wcard:hover{transform:translateY(-8px) rotate(-.4deg);box-shadow:0 30px 64px -26px color-mix(in srgb,var(--crimson) 80%,transparent)}
+.wcard:hover::after{box-shadow:inset 0 0 0 1px var(--el,color-mix(in srgb,var(--gold) 70%,transparent)),inset 0 0 70px -30px var(--el,#c0392b)}
+.wcard .wart{position:relative;height:11rem;overflow:hidden}
+.wcard .wart img{width:100%;height:100%;object-fit:cover;filter:grayscale(.45) contrast(1.08);transition:.6s}
+.wcard:hover .wart img{filter:grayscale(0) contrast(1.12);transform:scale(1.07)}
+.wcard .wveil{position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,10,10,.98),rgba(14,10,10,.15))}
+.wcard .wk{position:absolute;right:.6rem;bottom:-1rem;font-family:var(--jp);font-size:4.4rem;line-height:1;
+  color:color-mix(in srgb,var(--el,#c0392b) 40%,transparent)}
+.wcard .wbody{padding:1.2rem 1.3rem 1.5rem}
+.wcard .wname{font-family:var(--jp);font-size:1.35rem;color:var(--bone)}
+.wcard .wtitle{margin-top:.2rem;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--el,var(--gold))}
+.wcard .wglint{position:absolute;top:0;left:-60%;width:40%;height:100%;pointer-events:none;opacity:0;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg)}
+.wcard:hover .wglint{animation:glint .9s ease forwards}
+@keyframes glint{0%{opacity:.9;left:-60%}100%{opacity:0;left:120%}}
+/* ============ contorno orgânico do sangue (gooey) ============ */
+#blood{filter:url(#goo) drop-shadow(0 2px 3px rgba(0,0,0,.6))}
+
+/* ============ tela inicial: mais Kimetsu ============ */
+.intro-torii{position:absolute;left:50%;bottom:-2%;width:min(78vmin,660px);translate:-50% 0;opacity:.5;
+  filter:drop-shadow(0 0 40px color-mix(in srgb,var(--crimson) 50%,transparent))}
+.intro-sun{position:absolute;left:50%;top:44%;width:min(64vmin,520px);aspect-ratio:1;translate:-50% -50%;border-radius:50%;
+  background:radial-gradient(circle at 46% 42%,#a51a12,#5d0a07 55%,#1d0303 78%,transparent 80%);
+  box-shadow:0 0 90px color-mix(in srgb,var(--crimson) 45%,transparent),inset -20px -30px 70px rgba(0,0,0,.9);opacity:.55;
+  animation:orbBreathe 9s ease-in-out infinite}
+.intro-fog{position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:radial-gradient(60% 26% at 20% 78%,color-mix(in srgb,var(--gold) 10%,transparent),transparent 70%),
+             radial-gradient(70% 30% at 82% 66%,color-mix(in srgb,var(--crimson) 12%,transparent),transparent 72%);
+  animation:fogDrift 18s ease-in-out infinite alternate}
+@keyframes fogDrift{to{transform:translateX(4%) scale(1.06)}}
+.ember{position:absolute;bottom:-6vh;width:var(--s);height:var(--s);border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,#ffd6a5,#ff7a3d 45%,color-mix(in srgb,var(--crimson) 0%,transparent) 72%);
+  box-shadow:0 0 10px rgba(255,140,80,.8);animation:emberUp var(--t) linear var(--dl) infinite}
+@keyframes emberUp{0%{transform:translate3d(0,0,0);opacity:0}10%{opacity:1}
+  60%{transform:translate3d(var(--dx),-60vh,0)}100%{transform:translate3d(calc(var(--dx)*1.6),-118vh,0);opacity:0}}
+.petal{position:absolute;top:-6vh;width:var(--s);height:calc(var(--s)*.72);pointer-events:none;
+  background:linear-gradient(140deg,#ffd9e3,#f08ba6 55%,#b04a63);
+  border-radius:100% 0 100% 0;opacity:.85;animation:petalFall var(--t) linear var(--dl) infinite}
+@keyframes petalFall{0%{transform:translate3d(0,0,0) rotate(0)}
+  100%{transform:translate3d(var(--dx),112vh,0) rotate(720deg)}}
+.intro-sheath{position:absolute;left:50%;top:50%;width:min(70vmin,520px);height:10px;translate:-50% -50%;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold) 25%,transparent),color-mix(in srgb,var(--bone) 60%,transparent),color-mix(in srgb,var(--gold) 25%,transparent),transparent);
+  filter:blur(1px);opacity:.5;animation:sheathPulse 3.2s ease-in-out infinite}
+@keyframes sheathPulse{0%,100%{opacity:.25;transform:translate(-50%,-50%) scaleX(.85)}50%{opacity:.7;transform:translate(-50%,-50%) scaleX(1)}}
+.intro-hana{display:inline-flex;gap:.4rem;align-items:center;justify-content:center;margin-bottom:1rem}
+.intro-hana i{width:10px;height:14px;background:linear-gradient(180deg,#f2ece1 0 50%,#c0392b 50% 100%);
+  border-radius:2px;box-shadow:0 0 14px color-mix(in srgb,var(--crimson) 60%,transparent);animation:hanaSway 2.8s ease-in-out infinite}
+.intro-hana i:nth-child(2){animation-delay:.4s}
+
+@keyframes hanaSway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+
+/* ============ hero: montanhas e torii feitos em código ============ */
+.torii{position:absolute;bottom:var(--tb,20%);width:var(--tw,320px);aspect-ratio:1.25;opacity:var(--to,.55);
+  filter:drop-shadow(0 0 26px color-mix(in srgb,var(--crimson) 45%,transparent))}
+.torii svg{width:100%;height:100%}
+.tips-torii{left:50%;translate:-50% 0;bottom:auto;top:6%;width:min(70vmin,600px);opacity:.5;z-index:0;
+  filter:drop-shadow(0 0 34px color-mix(in srgb,var(--crimson) 45%,transparent))}
+.tips-torii svg g{fill:rgba(120,26,22,.55);stroke:color-mix(in srgb,var(--gold) 35%,transparent);stroke-width:1.5}
+.pine{position:absolute;bottom:0;width:var(--pw,120px);aspect-ratio:.7;opacity:.75;
+  background:var(--void);
+  clip-path:polygon(50% 0,64% 22%,56% 22%,72% 46%,60% 46%,80% 74%,54% 74%,54% 100%,46% 100%,46% 74%,20% 74%,40% 46%,28% 46%,44% 22%,36% 22%)}
+
+/* ============ modal / ficha expandida ============ */
+#modal{position:fixed;inset:0;z-index:95;display:none;place-items:center;padding:1.2rem}
+#modal.open{display:grid;animation:up .35s ease}
+#modal .veil{position:absolute;inset:0;background:rgba(4,3,3,.86);backdrop-filter:blur(7px)}
+.sheet{position:relative;width:min(58rem,100%);max-height:88svh;overflow:auto;background:linear-gradient(180deg,var(--sumi),var(--void));
+  box-shadow:0 40px 120px -40px #000,0 0 0 1px color-mix(in srgb,var(--gold) 35%,transparent);
+  clip-path:polygon(0 26px,26px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 26px),calc(100% - 26px) 100%,14px 100%,0 calc(100% - 14px));
+  scrollbar-color:var(--blood) transparent;scrollbar-width:thin;animation:sheetIn .45s cubic-bezier(.2,.9,.2,1)}
+@keyframes sheetIn{from{opacity:0;transform:translateY(22px) scale(.97);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.sheet .sart{position:relative;height:16rem;overflow:hidden}
+.sheet .sart img{width:100%;height:100%;object-fit:cover;filter:grayscale(.3) contrast(1.06)}
+.sheet .sart .abs{background:linear-gradient(0deg,var(--void),rgba(13,10,10,.15)),radial-gradient(60% 60% at 74% 16%,color-mix(in srgb,var(--crimson) 30%,transparent),transparent 70%)}
+.sheet .sk{position:absolute;right:1rem;bottom:-1.6rem;font-family:var(--jp);font-size:7rem;line-height:1;
+  color:color-mix(in srgb,var(--el,#c0392b) 34%,transparent)}
+.sheet .sbody{padding:1.8rem 2rem 2.4rem}
+.sheet-close{position:absolute;top:.9rem;right:.9rem;z-index:3;width:2.4rem;height:2.4rem;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--void) 85%,transparent);border:1px solid color-mix(in srgb,var(--gold) 50%,transparent);color:var(--gold);transition:.35s;
+  clip-path:polygon(16% 0,100% 0,100% 84%,84% 100%,0 100%,0 16%)}
+.sheet-close:hover{background:var(--crimson);color:#fff;transform:rotate(90deg)}
+.stat{margin-top:.7rem}
+.stat b{display:flex;justify-content:space-between;font-weight:400;font-size:.66rem;letter-spacing:.24em;
+  text-transform:uppercase;color:color-mix(in srgb,var(--bone) 60%,transparent)}
+.stat .bar{margin-top:.35rem;height:6px;background:color-mix(in srgb,var(--bone) 8%,transparent);
+  clip-path:polygon(0 0,100% 0,calc(100% - 5px) 100%,0 100%)}
+.stat .bar>i{background:linear-gradient(90deg,var(--el,#c0392b),#ffb08a);box-shadow:0 0 16px -2px var(--el,#c0392b);
+  transition:width 1s cubic-bezier(.2,.9,.2,1)}
+.clickable{cursor:pointer}
+.clickable::after{}
+.hint-open{position:absolute;top:.7rem;left:.7rem;z-index:4;padding:.25rem .55rem;font-size:.55rem;letter-spacing:.22em;
+  text-transform:uppercase;background:color-mix(in srgb,var(--void) 80%,transparent);border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);color:var(--gold);
+  opacity:0;transform:translateY(-6px);transition:.35s;pointer-events:none}
+.photo:hover .hint-open,.wcard:hover .hint-open,.gtopic:hover .hint-open{opacity:1;transform:none}
+
+/* ============ guia: códex em livro ============ */
+.codex{display:grid;gap:2rem;margin-top:3rem}
+@media(min-width:960px){.codex{grid-template-columns:15rem minmax(0,1fr)}}
+.codex-index{align-self:start;position:sticky;top:8.5rem;display:grid;gap:.3rem;
+  border-left:1px solid color-mix(in srgb,var(--gold) 28%,transparent);padding-left:1rem}
+@media(max-width:959px){.codex-index{position:static;grid-auto-flow:column;grid-auto-columns:max-content;overflow-x:auto;
+  border-left:0;border-top:1px solid color-mix(in srgb,var(--gold) 28%,transparent);padding:1rem 0 0}}
+.cx-link{text-align:left;padding:.5rem .6rem;font-size:.72rem;letter-spacing:.16em;color:color-mix(in srgb,var(--bone) 55%,transparent);
+  border-left:2px solid transparent;transition:.35s;white-space:nowrap}
+.cx-link .k{font-family:var(--jp);font-size:1rem;color:var(--el,var(--gold));margin-right:.5rem}
+.cx-link:hover,.cx-link[aria-current="true"]{color:var(--bone);border-left-color:var(--crimson);background:color-mix(in srgb,var(--blood) 14%,transparent)}
+.gchapter{border-top:1px solid color-mix(in srgb,var(--bone) 10%,transparent);padding-top:1.6rem;margin-top:1.6rem}
+.gchapter:first-child{border-top:0;margin-top:0;padding-top:0}
+.gchapter-h{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
+.gchapter-h .n{font-family:var(--jp);font-size:.7rem;letter-spacing:.3em;color:color-mix(in srgb,var(--gold) 70%,transparent)}
+.gtopic{position:relative;width:100%;text-align:left;margin-top:1rem;overflow:hidden;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 5%,transparent),color-mix(in srgb,var(--ink) 92%,transparent));
+  clip-path:polygon(0 14px,14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%);
+  border-top:1px solid color-mix(in srgb,var(--el,#c0392b) 45%,transparent);transition:.45s}
+.gtopic:hover{background:linear-gradient(180deg,color-mix(in srgb,var(--blood) 20%,transparent),color-mix(in srgb,var(--ink) 95%,transparent));
+  box-shadow:0 22px 50px -30px var(--el,#c0392b)}
+.gtopic-row{display:grid;grid-template-columns:3rem minmax(0,1fr) auto;gap:1rem;align-items:center;padding:1rem 1.2rem}
+.gtopic-row .gk{font-family:var(--jp);font-size:1.8rem;color:var(--el,var(--crimson));
+}
+.gtopic-row .chev{font-size:.9rem;color:color-mix(in srgb,var(--gold) 80%,transparent);transition:transform .4s}
+.gtopic[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.gtopic-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.9,.2,1)}
+.gtopic[aria-expanded="true"] .gtopic-body{grid-template-rows:1fr}
+.gtopic-body>div{overflow:hidden}
+.gtopic-inner{display:grid;gap:1.2rem;padding:0 1.2rem 1.4rem}
+@media(min-width:720px){.gtopic-inner{grid-template-columns:minmax(0,1fr) 12rem}}
+.gtopic-inner img{width:100%;height:9rem;object-fit:cover;filter:grayscale(.4) contrast(1.05)}
+.grule{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.7rem;align-items:baseline;margin-top:.6rem;
+  font-size:.8rem;color:color-mix(in srgb,var(--bone) 62%,transparent)}
+.grule .d{font-family:var(--jp);font-size:.6rem;letter-spacing:.2em;padding:.15rem .45rem;color:var(--gold);
+  border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);white-space:nowrap}
+.gtable{width:100%;border-collapse:collapse;margin-top:.9rem;font-size:.76rem}
+.gtable th,.gtable td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid color-mix(in srgb,var(--bone) 8%,transparent)}
+.gtable th{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:color-mix(in srgb,var(--gold) 80%,transparent)}
+.gtable td:first-child{font-family:var(--jp);color:var(--bone)}
+
+/* ============ caixa de dicas rotativas ============ */
+.tips{position:relative;max-width:52rem;margin-inline:auto;padding:2.4rem 2rem 2rem;text-align:center;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 5%,transparent),color-mix(in srgb,var(--ink) 90%,transparent));
+  clip-path:polygon(0 22px,22px 0,calc(100% - 22px) 0,100% 22px,100% calc(100% - 22px),calc(100% - 22px) 100%,22px 100%,0 calc(100% - 22px));
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 30%,transparent),0 30px 70px -40px #000}
+.tips::before,.tips::after{content:"";position:absolute;left:12%;right:12%;height:1px;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold) 60%,transparent),transparent)}
+.tips::before{top:14px}.tips::after{bottom:14px}
+.tip-k{font-family:var(--jp);font-size:clamp(1.4rem,4vw,2.3rem);color:var(--bone)}
+.tip-pt{margin-top:.9rem;font-size:.92rem;color:color-mix(in srgb,var(--bone) 70%,transparent);line-height:1.8}
+.tip-tag{display:inline-block;margin-bottom:.9rem;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.tip-fade{animation:tipIn .7s ease}
+@keyframes tipIn{from{opacity:0;transform:translateY(12px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.tip-nav{display:flex;justify-content:center;gap:.6rem;margin-top:1.6rem}
+.tip-btn{padding:.45rem .9rem;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;
+  border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);color:color-mix(in srgb,var(--bone) 65%,transparent);transition:.35s}
+.tip-btn:hover{background:color-mix(in srgb,var(--blood) 30%,transparent);border-color:var(--crimson);color:var(--bone)}
+
+/* ============ som / interações ============ */
+.snd{position:fixed;right:1rem;bottom:1rem;z-index:75;display:flex;align-items:center;gap:.5rem;padding:.5rem .8rem;
+  font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;background:color-mix(in srgb,var(--void) 85%,transparent);
+  border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);color:color-mix(in srgb,var(--bone) 70%,transparent);transition:.35s;
+  clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.snd:hover{border-color:var(--crimson);color:var(--bone);background:color-mix(in srgb,var(--blood) 35%,transparent)}
+.snd .dot{width:7px;height:7px;border-radius:50%;background:#5a5050;transition:.35s}
+.snd[aria-pressed="true"] .dot{background:#ff6a3d;box-shadow:0 0 12px #ff6a3d}
+.slash-fx{position:fixed;z-index:94;pointer-events:none;height:2px;transform-origin:left center;
+  background:linear-gradient(90deg,transparent,#fff,var(--crimson),transparent);
+  box-shadow:0 0 24px 4px color-mix(in srgb,var(--crimson) 70%,transparent);animation:slashFx .5s ease forwards}
+@keyframes slashFx{0%{opacity:0;transform:rotate(var(--a)) scaleX(0)}30%{opacity:1}
+  100%{opacity:0;transform:rotate(var(--a)) scaleX(1)}}
+.rain-petal{position:fixed;top:-5vh;z-index:73;pointer-events:none;width:var(--s);height:calc(var(--s)*.7);
+  background:linear-gradient(140deg,#ffd9e3,#e8788f 55%,#a33f56);border-radius:100% 0 100% 0;
+  animation:petalFall var(--t) linear forwards}
+/* ============ nuvens volumétricas em código ============ */
+.cloudx{position:absolute;pointer-events:none;animation:cloudBreathe 22s ease-in-out infinite alternate;
+  filter:drop-shadow(0 10px 26px rgba(0,0,0,.5))}
+.cloudx i{position:absolute;display:block;
+  background:radial-gradient(60% 70% at 42% 30%,rgba(255,226,214,.5),rgba(148,86,80,.34) 55%,rgba(38,20,20,.18) 80%,transparent 92%)}
+.cloudx.dark i{background:radial-gradient(60% 70% at 42% 30%,rgba(126,60,54,.5),rgba(46,22,22,.42) 55%,rgba(12,8,8,.3) 82%,transparent 94%)}
+.cloudx::after{content:"";position:absolute;left:2%;right:2%;bottom:-6%;height:44%;
+  background:radial-gradient(50% 100% at 50% 100%,color-mix(in srgb,var(--crimson) 22%,transparent),transparent 72%);filter:blur(14px)}
+@keyframes cloudBreathe{from{transform:scale(1)}to{transform:scale(1.06) translateY(-8px)}}
+/* ============ ajustes finais ============ */
+
+/* setas do carrossel: ícone sempre acima do feixe de sangue */
+.car-arrow{isolation:isolate}
+.car-arrow::before,.car-arrow::after{z-index:-1}
+.car-arrow span{position:relative;z-index:3;color:currentColor;mix-blend-mode:normal}
+.car-arrow:hover span,.car-arrow:focus-visible span{color:#fff6f2;text-shadow:0 1px 3px rgba(0,0,0,.55)}
+
+/* títulos do códex sem borrão */
+.gchapter-h h3,.cx-link,.cx-link .k{text-shadow:none;filter:none}
+
+/* portão da section de dicas: laca preta com contorno esbranquiçado */
+.tips-torii{filter:drop-shadow(0 12px 30px color-mix(in srgb,var(--void) 70%,transparent))}
+.tips-torii svg g{fill:color-mix(in srgb,var(--void) 92%,transparent);
+  stroke:color-mix(in srgb,var(--bone) 55%,transparent);stroke-width:1.2}
+
+/* colunas verticais de kanji decorativo */
+.kanji-col{position:absolute;top:8%;display:block;
+  font-family:var(--jp);writing-mode:vertical-rl;text-orientation:upright;
+  font-size:clamp(1.1rem,2.4vw,1.9rem);letter-spacing:.35em;line-height:1;pointer-events:none;
+  color:color-mix(in srgb,var(--bone) 22%,transparent);z-index:1}
+
+.kanji-col.l{left:2.2vw}
+.kanji-col.r{right:2.2vw;color:color-mix(in srgb,var(--crimson) 38%,transparent)}
+@media(max-width:900px){.kanji-col{display:none}}
+
+/* ============ acessibilidade: barra de tema e fonte ============ */
+.a11y{position:fixed;right:1rem;bottom:1rem;z-index:75;display:flex;align-items:center;gap:.4rem;
+  padding:.4rem .5rem;background:color-mix(in srgb,var(--void) 88%,transparent);
+  border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);
+  clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.a11y button{display:grid;place-items:center;min-width:2.6rem;min-height:2.6rem;font-family:var(--jp);
+  font-size:.78rem;letter-spacing:.1em;color:color-mix(in srgb,var(--bone) 72%,transparent);
+  border:1px solid color-mix(in srgb,var(--bone) 18%,transparent);transition:.3s}
+.a11y button:hover,.a11y button:focus-visible{color:var(--bone);border-color:var(--crimson);
+  background:color-mix(in srgb,var(--blood) 30%,transparent)}
+@media(max-width:520px){.a11y{gap:.3rem;padding:.3rem}.a11y button{min-width:2.4rem;min-height:2.4rem;font-size:.7rem}}
+
+/* tema claro (washi ao sol) */
+html[data-theme="light"]{
+  --void:#efe6d6; --ink:#e4d9c5; --sumi:#d9ccb5;
+  --bone:#1d1616; --blood:#8c2020; --crimson:#af3025; --gold:#7d5c16; --fuji:#5b3f93;
+  --border:color-mix(in srgb,var(--bone) 18%,transparent);
+}
+html[data-theme="light"] body{background:var(--void);color:var(--bone)}
+html[data-theme="light"] .abs img,html[data-theme="light"] .sart img{filter:contrast(1.05) brightness(1.05)}
+html[data-theme="light"] #blood{opacity:.85}
+html[data-theme="light"] .star{background:radial-gradient(circle,color-mix(in srgb,var(--gold) 90%,transparent),transparent 72%)}
+
+/* escala de fonte acessível */
+html{font-size:calc(100% * var(--fs,1))}
+
+/* ============ desempenho ============ */
+.cloudx i{filter:blur(8px)!important}
+.cloudx{filter:none}
+.cloudx::after{filter:blur(10px)}
+#sky,.layer,.cloudx,.star{backface-visibility:hidden}
+main>section{contain:paint}
+img{content-visibility:auto}
+#blood:empty{display:none}
+.war-band,.band,.tips,.photo,.mission{contain:paint}
+.layer{will-change:auto}
+</style>
+
+</head>
+<body>
+
+<!-- ============ introdução interativa ============ -->
+<div id="intro" role="button" tabindex="0" aria-label="Clique para entrar no compêndio">
+  <!-- duas metades idênticas: a lâmina parte a tela ao meio e elas se afastam -->
+  <div class="intro-half top" aria-hidden="true">
+    <div class="inner">
+      <span class="intro-k">黎明</span>
+      <span class="intro-sun" aria-hidden="true"></span>
+      <span class="intro-fog" aria-hidden="true"></span>
+      <span class="intro-sheath" aria-hidden="true"></span>
+      <svg class="intro-torii" viewBox="0 0 300 200" aria-hidden="true"><g fill="#0a0808">
+        <path d="M18 34h264l-14 16H32z"/><path d="M10 22h280l-8 12H18z"/>
+        <rect x="60" y="50" width="18" height="150"/><rect x="222" y="50" width="18" height="150"/>
+        <rect x="52" y="84" width="196" height="12"/><rect x="140" y="50" width="20" height="46"/>
+      </g></svg>
+      <div class="in">
+        <span class="intro-hana" aria-hidden="true"><i></i><i></i></span>
+        <p class="intro-line kana" style="letter-spacing:.6em">たいしょうじだい</p>
+        <h1 class="intro-line b intro-title jp">
+          <span class="br">【</span>心を燃やせ<span class="br">】</span>
+          <span class="intro-title-pt">Ponha o coração em chamas</span>
+        </h1>
+        <p class="intro-line b jp" style="margin-top:1.4rem;font-size:clamp(1.1rem,3.4vw,2rem);line-height:1.7">
+          「A noite é longa, e os demônios não dormem.<br />
+          Mas o sol sempre volta — e a lâmina desperta com ele.」
+        </p>
+        <p class="intro-line c" style="margin-top:1.4rem;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 50%,transparent)">
+          Era Taishō · Esquadrão Matador de Demônios
+        </p>
+        <p class="intro-cta jp">
+          <span class="key">Pressione qualquer tecla</span>
+          <span class="sep">ou clique</span>
+          <span class="draw">刀を抜け · para desembainhar</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="intro-half bot" aria-hidden="true">
+    <div class="inner">
+      <span class="intro-k">黎明</span>
+      <span class="intro-sun" aria-hidden="true"></span>
+      <span class="intro-fog" aria-hidden="true"></span>
+      <span class="intro-sheath" aria-hidden="true"></span>
+      <svg class="intro-torii" viewBox="0 0 300 200" aria-hidden="true"><g fill="#0a0808">
+        <path d="M18 34h264l-14 16H32z"/><path d="M10 22h280l-8 12H18z"/>
+        <rect x="60" y="50" width="18" height="150"/><rect x="222" y="50" width="18" height="150"/>
+        <rect x="52" y="84" width="196" height="12"/><rect x="140" y="50" width="20" height="46"/>
+      </g></svg>
+      <div class="in">
+        <span class="intro-hana" aria-hidden="true"><i></i><i></i></span>
+        <p class="intro-line kana" style="letter-spacing:.6em">たいしょうじだい</p>
+        <p class="intro-line b intro-title jp">
+          <span class="br">【</span>心を燃やせ<span class="br">】</span>
+          <span class="intro-title-pt">Ponha o coração em chamas</span>
+        </p>
+        <p class="intro-line b jp" style="margin-top:1.4rem;font-size:clamp(1.1rem,3.4vw,2rem);line-height:1.7">
+          「A noite é longa, e os demônios não dormem.<br />
+          Mas o sol sempre volta — e a lâmina desperta com ele.」
+        </p>
+        <p class="intro-line c" style="margin-top:1.4rem;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 50%,transparent)">
+          Era Taishō · Esquadrão Matador de Demônios
+        </p>
+        <p class="intro-cta jp">
+          <span class="key">Pressione qualquer tecla</span>
+          <span class="sep">ou clique</span>
+          <span class="draw">刀を抜け · para desembainhar</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <span class="intro-slash" aria-hidden="true"></span>
+  <span class="intro-flash" aria-hidden="true"></span>
+</div>
+
+<!-- camada das manchas de sangue (gerada por script, desenhada só com CSS) -->
+<div id="blood" aria-hidden="true"></div>
+
+<div id="progress"></div>
+
+<header id="hd">
+  <!-- espaço reservado para a logo, centralizado acima dos botões -->
+  <a href="#hero" class="hd-logo" aria-label="黎明の刃 — Lâmina da Aurora">
+    <img src="/__l5e/assets-v1/4be29c6a-daf0-497d-8d04-90d0b9d11219/kny-logo.png" alt="Logo Lâmina da Aurora"
+         onerror="this.outerHTML='&lt;span class=\'ph\'&gt;LOGO&lt;/span&gt;'" />
+  </a>
+  <nav>
+    <a href="#guia">指南 Guia</a>
+    <a href="#historia">歴史 História</a>
+    <a href="#respiracoes">呼吸 Respirações</a>
+    <a href="#bestiario">鬼譚 Bestiário</a>
+    <a href="#armas">武器 Armas</a>
+    <a href="#galeria">画帖 Galeria</a>
+    <a href="#mundo">世界 Mapa</a>
+  </nav>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section id="hero" class="scene">
+  <div class="layer" data-speed=".05" style="background:radial-gradient(120% 80% at 50% 110%,#1d0407,#0a0808)"></div>
+  <!-- imagens de referência do anime como fundo do hero -->
+  <div class="layer" data-speed=".08" style="background-image:url('/img/kny-hero-sky.jpg');opacity:.5;filter:contrast(1.05) saturate(1.05)"></div>
+  <div class="layer" data-speed=".14" style="background-image:url('/img/kny-crows.jpg');background-position:center 30%;opacity:.16;mix-blend-mode:screen;filter:grayscale(.3)"></div>
+  <div class="layer" data-speed=".2" style="background-image:url('/img/kny-slayer.jpg');background-position:75% 60%;background-size:contain;opacity:.22;mix-blend-mode:lighten"></div>
+  <div class="layer" style="background:linear-gradient(180deg,color-mix(in srgb,var(--void) 72%,transparent),color-mix(in srgb,var(--void) 42%,transparent) 45%,color-mix(in srgb,var(--void) 95%,transparent))"></div>
+  <div class="layer" data-speed=".1" style="opacity:.4;background-image:radial-gradient(60% 22% at 20% 30%,color-mix(in srgb,var(--bone) 5%,transparent),transparent 70%),radial-gradient(50% 18% at 78% 22%,color-mix(in srgb,var(--bone) 4%,transparent),transparent 70%)"></div>
+  <!-- esfera de sangue 3D -->
+  <div id="sky" aria-hidden="true"></div>
+  <div class="orb-halo" aria-hidden="true"></div>
+  <div class="blood-orb" aria-hidden="true"></div>
+  <div style="position:relative;z-index:10;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 3rem">
+    <p class="kana" style="letter-spacing:.6em">れいめいのやいば</p>
+    <h1 class="jp glow" style="margin-top:1rem;font-size:clamp(2.4rem,7vw,5.5rem);line-height:1.05;font-weight:800">
+      黎明の刃
+      <span style="display:block;margin-top:.5rem;font-size:clamp(1.1rem,3vw,2rem);letter-spacing:.2em;color:color-mix(in srgb,var(--bone) 85%,transparent)">Lâmina da Aurora</span>
+    </h1>
+    <p style="margin-top:1.2rem;font-size:clamp(.65rem,1.8vw,.9rem);letter-spacing:.5em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 60%,transparent)">
+      Guia do RPG de mesa da era Taishō
+    </p>
+    <p class="lead" style="margin-top:1.2rem">
+      Um compêndio da história, das respirações, dos pilares e do território que sustentam o Esquadrão
+      nas montanhas enevoadas de um Japão em brasa.
+    </p>
+    <a href="#historia" class="btn-ink" style="margin-top:2rem;font-size:.85rem">入門 · Entrar no compêndio</a>
+    <div class="vline" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- faixa das respirações — mesma fita vermelha da faixa de guerra -->
+<div class="war-band">
+  <div class="marquee jp" style="font-size:1.05rem;letter-spacing:.35em;color:color-mix(in srgb,var(--bone) 80%,transparent)">
+    <span>水の呼吸 · Água ・ 炎の呼吸 · Chamas ・ 雷の呼吸 · Trovão ・ 風の呼吸 · Vento ・ 岩の呼吸 · Pedra ・ 霞の呼吸 · Névoa ・</span>
+    <span>水の呼吸 · Água ・ 炎の呼吸 · Chamas ・ 雷の呼吸 · Trovão ・ 風の呼吸 · Vento ・ 岩の呼吸 · Pedra ・ 霞の呼吸 · Névoa ・</span>
+  </div>
+</div>
+
+
+<!-- ============ GUIA DOS SISTEMAS — códex em livro ============ -->
+<section id="guia" class="slab" style="background:var(--void);z-index:10">
+  <div class="abs" style="background:url('/img/kny-wisteria.jpg') center/cover;opacity:.12;filter:grayscale(.55)" aria-hidden="true"></div>
+  <div class="abs asanoha" style="opacity:.35" aria-hidden="true"></div>
+  <div class="abs" aria-hidden="true" style="background:linear-gradient(180deg,rgba(8,6,6,.96),rgba(8,6,6,.74),rgba(8,6,6,.98))"></div>
+
+  <div class="wrap">
+    <div class="rv" style="text-align:center">
+      <p class="kana">きほん · Manual do jogador</p>
+      <h2 class="jp glow" style="margin-top:.6rem;font-size:clamp(2.2rem,6vw,4rem)">指南書</h2>
+      <div class="ink-rule" style="width:10rem;margin:1.2rem auto"></div>
+      <p class="lead" style="margin:1rem auto 0">
+        O compêndio aberto sobre a mesa: quatro cadernos, cada um com seus capítulos.
+        Toque em um tópico para abrir a explicação, as tabelas e os exemplos de mesa.
+      </p>
+    </div>
+
+    <div class="codex rv d1">
+      <nav class="codex-index" id="codex-index" aria-label="Índice do guia"></nav>
+      <div id="codex-body"></div>
+    </div>
+
+    <div style="display:flex;justify-content:center;margin-top:2.8rem">
+      <a href="#respiracoes" class="btn-ink" style="font-size:.8rem">呼吸 · Escolher uma respiração</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTÓRIA (linha do tempo) ============ -->
+<section id="historia" class="slab" style="background:var(--ink);z-index:10">
+  <div class="abs" style="background:url('/img/kny-forge.jpg') center/cover;opacity:.18;filter:grayscale(.5) contrast(1.1)" aria-hidden="true"></div>
+  <div class="abs seigaiha" style="opacity:.25" aria-hidden="true"></div>
+  <div class="abs" style="background:linear-gradient(180deg,color-mix(in srgb,var(--void) 95%,transparent),color-mix(in srgb,var(--void) 72%,transparent),color-mix(in srgb,var(--void) 98%,transparent))" aria-hidden="true"></div>
+
+  <div class="wrap" style="max-width:70rem">
+    <div class="rv" style="text-align:center">
+      <p class="kana">みち · A estrada do caçador</p>
+      <h2 class="jp glow" style="margin-top:.6rem;font-size:clamp(2.2rem,6vw,4rem)">歴史</h2>
+      <div class="ink-rule" style="width:10rem;margin:1.2rem auto"></div>
+      <p class="lead" style="margin:1rem auto 0">
+        Da prova nas glicínias ao confronto com as Doze Luas — a história sobe em degraus,
+        e cada degrau tem um selo de laca.
+      </p>
+    </div>
+    <div id="tl" style="position:relative;margin-top:4rem">
+      <div class="rope" aria-hidden="true" style="position:absolute;top:0;bottom:0;left:1.25rem;width:1px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESPIRAÇÕES (grimório com painel rolável) ============ -->
+<section id="respiracoes" class="slab" style="background:var(--void);z-index:10">
+  <div class="abs asanoha" style="opacity:.4" aria-hidden="true"></div>
+  <div class="abs" aria-hidden="true" style="background:radial-gradient(60% 50% at 85% 10%,rgba(139,107,192,.14),transparent 70%)"></div>
+
+  <div class="wrap">
+    <div class="rv" style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:flex-end">
+      <h2 class="jp glow" style="font-size:clamp(2.2rem,6vw,4.4rem);line-height:1">六の呼吸</h2>
+      <div style="min-width:0">
+        <p class="kana">こきゅう · As Seis Respirações</p>
+        <p class="lead" style="margin-top:.7rem">
+          O fôlego é a única mágica desta era. Percorra o rolo: cada linha desperta a forma,
+          a divindade que a inspira e o preço que ela cobra do corpo.
+        </p>
+      </div>
+    </div>
+    <div class="ink-rule rv d1" style="margin-top:2.5rem"></div>
+
+    <div class="cols" style="margin-top:2rem">
+      <div class="rv d1 vdiv-wrap">
+        <div id="breath-list" role="tablist" aria-label="Respirações" style="flex:1;min-width:0"></div>
+        <div class="vdiv" aria-hidden="true"></div>
+      </div>
+      <div class="rv d2 pane" id="breath-pane" style="align-self:start"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ DICAS DO ESQUADRÃO (frases rotativas) ============ -->
+<section class="slab" style="background:var(--ink);padding:5rem 0;overflow:hidden">
+  <div class="abs kikko" style="opacity:.3" aria-hidden="true"></div>
+  <div class="torii tips-torii" aria-hidden="true">
+    <svg viewBox="0 0 300 200"><g fill="#050404">
+      <path d="M18 34h264l-14 16H32z"/><path d="M10 22h280l-8 12H18z"/>
+      <rect x="60" y="50" width="18" height="150"/><rect x="222" y="50" width="18" height="150"/>
+      <rect x="52" y="84" width="196" height="12"/><rect x="140" y="50" width="20" height="46"/>
+    </g></svg>
+  </div>
+  <div class="kanji-col l jp" aria-hidden="true"><span>鬼</span><span>滅</span><span>の</span><span>刃</span></div>
+  <div class="kanji-col r jp" aria-hidden="true"><span>心</span><span>を</span><span>燃</span><span>や</span><span>せ</span></div>
+  <div class="wrap rv" style="padding-block:2rem">
+    <div class="tips" id="tips">
+      <p class="tip-tag" id="tip-tag">Corvo mensageiro · dica da noite</p>
+      <p class="tip-k brush" id="tip-jp">「破壊されても、心だけは折るな。」</p>
+      <p class="tip-pt" id="tip-pt">“Mesmo destruído, jamais deixe o coração se quebrar.”</p>
+      <div class="tip-nav">
+        <button type="button" class="tip-btn" data-tip="-1">← anterior</button>
+        <button type="button" class="tip-btn" data-tip="1">próxima →</button>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem;font-family:var(--jp);margin-top:2.5rem">
+      <div><p style="font-size:2rem;color:var(--gold)">九</p><p class="tag" style="border:0;background:none">Pilares</p></div>
+      <div><p style="font-size:2rem;color:var(--gold)">十</p><p class="tag" style="border:0;background:none">Postos</p></div>
+      <div><p style="font-size:2rem;color:var(--gold)">十二</p><p class="tag" style="border:0;background:none">Luas</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILARES ============ -->
+<section id="bestiario" class="slab" style="background:var(--sumi);z-index:10">
+  <div class="abs" style="background:url('/img/kny-demon.jpg') center/cover;opacity:.16;filter:grayscale(.4)" aria-hidden="true"></div>
+  <div class="abs kikko" style="opacity:.35" aria-hidden="true"></div>
+  <div class="abs" aria-hidden="true" style="background:linear-gradient(180deg,color-mix(in srgb,var(--void) 94%,transparent),color-mix(in srgb,var(--void) 70%,transparent),color-mix(in srgb,var(--void) 96%,transparent))"></div>
+
+  <div class="wrap">
+    <div class="rv">
+      <p class="kana">きょういてん · Bestiário Noturno</p>
+      <h2 class="jp glow" style="margin-top:.5rem;font-size:clamp(2.2rem,6vw,4rem)">鬼譚</h2>
+      <p class="lead" style="margin-top:1rem">
+        O que caminha depois do último sino. Oito criaturas catalogadas pelo Esquadrão — do yōkai de estrada
+        às Luas que carregam número no olho. Passe o dedo por um quadro para abrir a ficha.
+      </p>
+    </div>
+
+    <div class="cols rev" style="margin-top:3rem;align-items:start">
+      <div class="rv d1" style="display:flex;gap:1.5rem">
+        <div class="grid-cards" id="beast-list" role="tablist" aria-label="Bestiário" style="flex:1"></div>
+        <div class="divider-shime" style="width:2px;flex:none" aria-hidden="true"></div>
+      </div>
+      <div class="rv d2 pane" id="beast-pane"></div>
+    </div>
+  </div>
+</section>
+
+<!-- faixa de guerra -->
+<div class="war-band">
+  <div class="marquee-rev jp" style="font-size:1.05rem;letter-spacing:.35em;color:color-mix(in srgb,var(--bone) 80%,transparent)">
+    <span>十二鬼月 · As Doze Luas ・ 上弦 · Luas Superiores ・ 下弦 · Luas Inferiores ・ 血鬼術 · Sangue Demoníaco ・</span>
+    <span>十二鬼月 · As Doze Luas ・ 上弦 · Luas Superiores ・ 下弦 · Luas Inferiores ・ 血鬼術 · Sangue Demoníaco ・</span>
+  </div>
+</div>
+
+<!-- ============ GALERIA (álbum de fotos coladas) ============ -->
+<section id="galeria" class="slab" style="background:var(--void);z-index:10">
+  <div class="abs" style="background:url('/img/kny-water.jpg') center/cover;opacity:.1;filter:grayscale(.6)" aria-hidden="true"></div>
+  <div class="abs asanoha" style="opacity:.28" aria-hidden="true"></div>
+  <div class="abs" aria-hidden="true" style="background:linear-gradient(180deg,color-mix(in srgb,var(--void) 96%,transparent),color-mix(in srgb,var(--void) 80%,transparent),color-mix(in srgb,var(--void) 97%,transparent))"></div>
+
+  <div class="wrap">
+    <div class="rv" style="text-align:center">
+      <p class="kana">えあるばむ · Álbum do Esquadrão</p>
+      <h2 class="jp glow" style="margin-top:.6rem;font-size:clamp(2.2rem,6vw,4rem)">画帖</h2>
+      <div class="ink-rule" style="width:10rem;margin:1.2rem auto"></div>
+      <p class="lead" style="margin:1rem auto 0">
+        Retratos colados em papel washi por um escriba do Esquadrão — cada folha dobrada guarda uma noite que
+        alguém sobreviveu para contar.
+      </p>
+    </div>
+    <div class="album rv d1" id="album" style="margin-top:3.5rem"></div>
+  </div>
+</section>
+
+<!-- ============ RANKING ============ -->
+<section id="rank" class="slab" style="background:var(--sumi);z-index:10">
+  <div class="abs kikko" style="opacity:.35" aria-hidden="true"></div>
+  <div class="abs" style="background:url('/img/kny-slayer.jpg') center/cover;opacity:.12;filter:grayscale(.5)" aria-hidden="true"></div>
+  <div class="abs" aria-hidden="true" style="background:linear-gradient(180deg,color-mix(in srgb,var(--void) 95%,transparent),color-mix(in srgb,var(--void) 78%,transparent),color-mix(in srgb,var(--void) 97%,transparent))"></div>
+
+  <div class="wrap">
+    <div class="cols" style="align-items:start">
+      <div class="rv">
+        <p class="kana">ばんづけ · Tabela de Honra</p>
+        <h2 class="jp glow" style="margin-top:.5rem;font-size:clamp(2.2rem,6vw,4rem)">番付</h2>
+        <p class="lead" style="margin-top:1rem">
+          Os dez caçadores com mais demônios abatidos na temporada. O escriba do Corvo atualiza a tabela
+          a cada amanhecer — quem cai da lista, cai em silêncio.
+        </p>
+        <p class="myth" style="margin-top:1.2rem">
+          O banzuke era o cartaz de classificação dos lutadores de sumô na era antiga, pintado em pincel e
+          pregado no portal do templo.
+        </p>
+        <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem">
+          <li class="tag">Temporada 一</li><li class="tag">Atualiza ao amanhecer</li><li class="tag">Top 10</li>
+        </ul>
+      </div>
+      <div class="rank rv d1" id="rank-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MISSÕES DIÁRIAS ============ -->
+<section id="missoes" class="slab" style="background:var(--ink);z-index:10">
+  <div class="abs seigaiha" style="opacity:.25" aria-hidden="true"></div>
+  <div class="abs lanterns" aria-hidden="true"></div>
+  <div class="abs" style="background:url('/img/kny-crows.jpg') center/cover;opacity:.12;filter:grayscale(.5)" aria-hidden="true"></div>
+  <div class="abs" aria-hidden="true" style="background:linear-gradient(180deg,color-mix(in srgb,var(--void) 96%,transparent),color-mix(in srgb,var(--void) 80%,transparent),color-mix(in srgb,var(--void) 97%,transparent))"></div>
+
+  <div class="wrap">
+    <div class="rv" style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:flex-end;justify-content:space-between">
+      <div>
+        <p class="kana">ひごとのれい · Ordens do Corvo</p>
+        <h2 class="jp glow" style="margin-top:.5rem;font-size:clamp(2.2rem,6vw,4rem)">日課</h2>
+      </div>
+      <p class="lead">
+        Cinco ofudas chegam ao amanhecer pelas patas dos corvos kasugai. Toque em um selo para marcá-lo
+        como cumprido — a folha muda de cor como papel queimado.
+      </p>
+    </div>
+    <div class="ink-rule rv d1" style="margin-top:2rem"></div>
+    <div class="missions-grid rv d1" id="missions" style="margin-top:2.5rem"></div>
+  </div>
+</section>
+
+
+<!-- ============ CATÁLOGO DE ARMAS ============ -->
+<section id="armas" class="slab" style="background:var(--sumi);z-index:10">
+  <div class="abs" style="background:url('/img/kny-forge.jpg') center/cover;opacity:.16;filter:grayscale(.5)" aria-hidden="true"></div>
+  <div class="abs asanoha" style="opacity:.3" aria-hidden="true"></div>
+  <div class="abs" aria-hidden="true" style="background:linear-gradient(180deg,color-mix(in srgb,var(--void) 96%,transparent),color-mix(in srgb,var(--void) 70%,transparent),color-mix(in srgb,var(--void) 97%,transparent))"></div>
+
+  <div class="wrap">
+    <div class="rv" style="text-align:center">
+      <p class="kana">ぶき · Catálogo de Armas</p>
+      <h2 class="jp glow" style="margin-top:.6rem;font-size:clamp(2.2rem,6vw,4rem)">武器帖</h2>
+      <div class="ink-rule" style="width:10rem;margin:1.2rem auto"></div>
+      <p class="lead" style="margin:1rem auto 0">
+        Cada lâmina Nichirin muda de cor ao ser empunhada pela primeira vez — e a cor decide o estilo.
+        Abaixo, o arsenal aberto na mesa, com peso, alcance e maneira de matar.
+      </p>
+    </div>
+
+    <div class="weapons rv d1" id="weapons" style="margin-top:3rem"></div>
+  </div>
+</section>
+
+<!-- ============ MAPA DO TERRITÓRIO (final, acessível) ============ -->
+<section id="mundo" class="slab" style="background:var(--ink)">
+  <div class="abs" style="background:url('/img/kny-mountain.jpg') center/cover;opacity:.22;filter:grayscale(.4) contrast(1.1)" aria-hidden="true"></div>
+  <div class="abs seigaiha" style="opacity:.28" aria-hidden="true"></div>
+  <div class="abs lanterns" aria-hidden="true"></div>
+  <div class="abs" aria-hidden="true" style="background:linear-gradient(180deg,color-mix(in srgb,var(--void) 96%,transparent),color-mix(in srgb,var(--void) 66%,transparent) 40%,color-mix(in srgb,var(--void) 97%,transparent))"></div>
+
+  <div class="wrap">
+    <div class="rv" style="text-align:center">
+      <p class="kana">えまき · Mapa do Território</p>
+      <h2 class="jp glow" style="margin-top:.6rem;font-size:clamp(2.2rem,6vw,4rem)">世界</h2>
+      <div class="ink-rule" style="width:10rem;margin:1.2rem auto"></div>
+      <p class="lead" style="margin:1rem auto 0">
+        Gire o compêndio com as setas: vilarejos, trilhas de pedra e montanhas onde o sol chega tarde.
+      </p>
+    </div>
+
+    <div class="rv d1 carousel" style="margin-top:3rem">
+      <div class="car-stage">
+        <button type="button" class="car-arrow prev" id="map-prev" aria-label="Lugar anterior">
+          <span class="jp" aria-hidden="true">◀</span>
+        </button>
+        <div class="car-view">
+          <div class="pane car-pane" id="map-pane" aria-live="polite"></div>
+        </div>
+        <button type="button" class="car-arrow next" id="map-next" aria-label="Próximo lugar">
+          <span class="jp" aria-hidden="true">▶</span>
+        </button>
+      </div>
+      <div class="car-dots" id="map-list" role="tablist" aria-label="Lugares do território"></div>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="jp glow" style="font-size:1.6rem">黎明の刃</p>
+  <p class="kana" style="margin-top:.6rem">れいめいのやいば · Lâmina da Aurora</p>
+  <div class="ink-rule" style="width:12rem;margin:1.5rem auto"></div>
+
+  <div class="ficons">
+    <a class="ficon" href="https://discord.gg/lamina-da-aurora" target="_blank" rel="noopener noreferrer" title="Servidor principal do projeto no Discord" aria-label="Entrar no servidor do Discord">
+      <span class="tip">Servidor do Discord</span>
+      <svg viewBox="0 0 24 24" role="img"><title>Discord</title><path d="M20.32 4.57A19.8 19.8 0 0 0 15.45 3l-.36.74a14.7 14.7 0 0 1 3.02 1.02 12.5 12.5 0 0 0-12.2 0A14.7 14.7 0 0 1 8.9 3.74L8.55 3A19.8 19.8 0 0 0 3.68 4.57C.9 8.72.1 12.84.5 16.9a19.7 19.7 0 0 0 5.99 3.02l.7-1.16a12.6 12.6 0 0 1-2-.96l.5-.4c3.44 1.6 7.2 1.6 10.62 0l.5.4a12.6 12.6 0 0 1-2 .96l.7 1.16a19.7 19.7 0 0 0 6-3.02c.44-4.7-.72-8.78-1.19-12.33ZM8.4 14.63c-1.14 0-2.08-1.05-2.08-2.34 0-1.29.92-2.34 2.08-2.34 1.17 0 2.1 1.06 2.08 2.34 0 1.29-.92 2.34-2.08 2.34Zm7.2 0c-1.14 0-2.08-1.05-2.08-2.34 0-1.29.92-2.34 2.08-2.34 1.17 0 2.1 1.06 2.08 2.34 0 1.29-.91 2.34-2.08 2.34Z"/></svg>
+    </a>
+    <button type="button" class="ficon" title="@cursed7 no Discord" aria-label="Desenvolvedor: @cursed7 no Discord">
+      <span class="tip">@cursed7 no Discord</span>
+      <svg viewBox="0 0 24 24" role="img"><title>@cursed7 no Discord</title><path d="M9.4 16.6 4.8 12l4.6-4.6-1.4-1.4L2 12l6 6 1.4-1.4Zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4Z"/></svg>
+    </button>
+  </div>
+
+  <p style="margin-top:1.6rem;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 40%,transparent)">
+    Guia não oficial · inspirado em Kimetsu no Yaiba
+  </p>
+</footer>
+
+<!-- filtro que dá contorno orgânico às manchas de sangue -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
+    <feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -11" result="g"/>
+    <feBlend in="SourceGraphic" in2="g"/></filter>
+</defs></svg>
+
+<!-- ficha expandida (modal) -->
+<div id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="veil" data-close></div>
+  <article class="sheet">
+    <button type="button" class="sheet-close" data-close aria-label="Fechar">✕</button>
+    <div class="sart"><img id="m-img" alt="" /><div class="abs"></div><span class="sk jp" id="m-kanji"></span></div>
+    <div class="sbody" id="m-body"></div>
+  </article>
+</div>
+
+<!-- acessibilidade: tema e tamanho de fonte -->
+<div class="a11y" role="group" aria-label="Acessibilidade">
+  <button type="button" id="a11y-theme" title="Alternar tema claro/escuro" aria-label="Alternar tema claro ou escuro"><span aria-hidden="true">月</span></button>
+  <button type="button" id="a11y-minus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="a11y-plus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+</div>
+
+
+<script>
+/* ============================================================
+   Dados do compêndio
+   ============================================================ */
+const IMG = {
+  mountain:"/img/kny-mountain.jpg", forge:"/img/kny-forge.jpg",
+  wisteria:"/img/kny-wisteria.jpg", temple:"/img/kny-temple.jpg",
+  sky:"/img/kny-hero-sky.jpg", slayer:"/img/kny-slayer.jpg",
+  demon:"/img/kny-demon.jpg", crows:"/img/kny-crows.jpg", water:"/img/kny-water.jpg"
+};
+
+const historia = [
+  {kanji:"選",jp:"最終選別",pt:"Seleção Final",kana:"さいしゅうせんべつ",image:IMG.wisteria,
+   description:"A prova de entrada: sobreviver sete noites cercado por demônios presos entre as glicínias. Quem volta recebe o uniforme e escolhe o minério da própria lâmina.",
+   myth:"Ritual de passagem semelhante ao genpuku samurai, em que o jovem recebia nome adulto e as primeiras armas.",
+   styles:["Criação de personagem","Prova de 7 noites","Escolha do minério"]},
+  {kanji:"階",jp:"階級",pt:"Os Dez Postos",kana:"かいきゅう",image:IMG.temple,
+   description:"Dez graus gravados no uniforme ditam missões, recursos e quantos corvos respondem ao seu chamado. Subir de posto exige feitos testemunhados por um Pilar.",
+   myth:"Os graus seguem o ciclo sexagenário chinês (jikkan), o mesmo usado nos calendários da era antiga.",
+   styles:["Progressão","Missões desbloqueáveis","Recursos do Esquadrão"]},
+  {kanji:"稽",jp:"柱稽古",pt:"Treino dos Pilares",kana:"はしらげいこ",image:IMG.forge,
+   description:"Ao fim de cada treinamento, o Pilar concede uma forma derivada da própria respiração. Acumular formas é o único caminho para enfrentar as Luas.",
+   myth:"Espelha o musha shugyō, a peregrinação em que o espadachim aprendia com um mestre a cada província.",
+   styles:["Formas derivadas","Vínculos com mestres","Requisito das Luas"]},
+  {kanji:"月",jp:"十二鬼月",pt:"As Doze Luas",kana:"じゅうにきづき",image:IMG.mountain,
+   description:"O clímax da campanha. Cada Lua tem um número gravado no olho e um Sangue Demoníaco próprio; derrotar uma altera o mundo da mesa de forma permanente.",
+   myth:"Doze é o número dos guardiões do calendário (jūni-shi) — os mesmos animais que giram o ano.",
+   styles:["Chefes de campanha","Sangue Demoníaco","Consequências permanentes"]}
+];
+
+const respiracoes = [
+  {kanji:"水",jp:"水の呼吸",pt:"Água",kana:"みずのこきゅう",tagline:"Dez formas que correm sobre a pedra",image:IMG.mountain,
+   description:"A respiração mais ensinada e mais adaptável. O caçador flui entre defesa e ataque sem quebrar o ritmo, encadeando cortes curvos que seguem a corrente do inimigo. Nas mesas longas é a base segura: quem domina a Água raramente fica sem resposta, pois cada forma nasce da anterior como um rio que dobra a montanha.",
+   myth:"Suijin, o deus das águas, era invocado nos rios com oferendas de arroz antes de qualquer travessia noturna.",
+   styles:["Adaptável","Encadeia contra-ataques","+2 ao ritmo de fôlego"]},
+  {kanji:"炎",jp:"炎の呼吸",pt:"Chamas",kana:"ほのおのこきゅう",tagline:"Nove formas que queimam a escuridão",image:IMG.temple,
+   description:"Direta e devastadora. Cada forma é um avanço; recuar custa fôlego. Ideal para quem prefere decidir o combate no primeiro rugido da lâmina, aceitando o desgaste que vem depois.",
+   myth:"Descende da Dança do Deus do Fogo (Hinokami Kagura), ritual de doze movimentos executado do anoitecer ao amanhecer.",
+   styles:["Dano alto","Sem recuo","Queima o fôlego rápido"]},
+  {kanji:"雷",jp:"雷の呼吸",pt:"Trovão",kana:"かみなりのこきゅう",tagline:"Um único passo, e nada mais",image:IMG.forge,
+   description:"Concentra tudo nas pernas: um deslocamento explosivo que atravessa o alvo antes do som chegar. Quem domina apenas a primeira forma já é temido — e quem tenta as outras seis costuma pagar com os tendões.",
+   myth:"Raijin, o deus do trovão, carrega tambores nas costas — dizem que quem o imita golpeia no compasso do próprio coração.",
+   styles:["Iniciativa máxima","Investida perfurante","Frágil na defesa"]},
+  {kanji:"風",jp:"風の呼吸",pt:"Vento",kana:"かぜのこきゅう",tagline:"Rajadas que varrem a clareira",image:IMG.mountain,
+   description:"Cortes largos e ciclônicos que atingem vários inimigos por turno. Excelente contra hordas de demônios menores em terreno aberto, onde a lâmina tem espaço para desenhar o círculo completo.",
+   myth:"Fūjin guarda os ventos num saco de couro; os antigos amarravam fitas nos telhados para ler seu humor.",
+   styles:["Área","Bom contra hordas","Empurra alvos"]},
+  {kanji:"岩",jp:"岩の呼吸",pt:"Pedra",kana:"いわのこきゅう",tagline:"A guarda que não cede",image:IMG.temple,
+   description:"Peso, postura e paciência. Absorve golpes com a lâmina e devolve contra-ataques esmagadores. O muro atrás do qual o esquadrão respira enquanto a noite não acaba.",
+   myth:"Sazare-ishi, as pedrinhas dos santuários, tornam-se rocha com o tempo — imagem da força que cresce sem pressa.",
+   styles:["Defesa suprema","Contra-ataque pesado","Lento"]},
+  {kanji:"霞",jp:"霞の呼吸",pt:"Névoa",kana:"かすみのこきゅう",tagline:"Desaparecer e reaparecer atrás",image:IMG.wisteria,
+   description:"Ilusão e deslocamento. O caçador embaralha a leitura do inimigo, some do campo de visão e ressurge onde a guarda não existe. Exige um mestre paciente: erros de tempo custam a própria pele.",
+   myth:"As raposas kitsune enganavam viajantes com névoa; ver através dela era prova de coração limpo.",
+   styles:["Evasão","Ataque pelas costas","Difícil de dominar"]}
+];
+
+const mundo = [
+  {kanji:"夜",jp:"夜の狩り",pt:"Caçada Noturna",kana:"よるのかり",tagline:"Do crepúsculo ao primeiro galo",image:IMG.mountain,
+   description:"Os demônios só caminham sob a lua. Cada noite é uma missão fechada: o esquadrão parte quando os corvos kasugai grasnam e precisa vencer antes que o sol toque as cumeeiras. Ao amanhecer, contam-se os vivos.",
+   myth:"As velhas aldeias diziam que a hora do boi (ushi-no-koku) abria o portão dos yōkai — daí o costume de pendurar shimenawa nas soleiras.",
+   styles:["Missão de uma noite","Relógio de 9 turnos","Corvos mensageiros"]},
+  {kanji:"山",jp:"山の道",pt:"Trilhas da Montanha",kana:"やまのみち",tagline:"Santuários, passos e neblina",image:IMG.temple,
+   description:"Entre missões, o caçador percorre estradas de pedra, templos abandonados e portais torii tombados. Cada trilha guarda um santuário onde se pode orar por bênçãos, ouvir rumores e treinar posturas.",
+   myth:"Os yamabushi, monges das montanhas, deixaram nichos de pedra com Jizō — protetores dos que morrem longe de casa.",
+   styles:["Exploração livre","Bênçãos de santuário","Rumores de aldeia"]},
+  {kanji:"鍛",jp:"鍛冶の里",pt:"Vila dos Ferreiros",kana:"かじやのさと",tagline:"O aço que escolhe o portador",image:IMG.forge,
+   description:"Escondida atrás de máscaras hyottoko, a vila forja as lâminas Nichirin com minério colhido na montanha mais próxima do sol. A cor que o aço assume ao ser empunhado define a árvore de talentos do caçador.",
+   myth:"Tatara-shi, os antigos fundidores de ferro, veneravam Kanayago-kami — deusa da forja que proibia mulheres e cães no alto-forno.",
+   styles:["Forja de Nichirin","Cor = árvore de talentos","Reparo e reforja"]},
+  {kanji:"藤",jp:"藤の山",pt:"Monte das Glicínias",kana:"ふじのやま",tagline:"Refúgio de flores venenosas",image:IMG.wisteria,
+   description:"As glicínias floridas o ano inteiro repelem demônios: sob elas ficam as casas-refúgio do Esquadrão. É lá que se descansa, se recupera fôlego e se recebe a próxima ordem escrita em papel washi.",
+   myth:"A glicínia (fuji) simboliza longa vida e devoção; templos antigos plantavam-na para “amarrar” espíritos errantes ao chão.",
+   styles:["Descanso seguro","Cura e antídotos","Ordens do Corvo"]}
+];
+
+/* ============================================================
+   Renderização
+   ============================================================ */
+const el = (h) => { const t = document.createElement("template"); t.innerHTML = h.trim(); return t.content.firstElementChild; };
+const tags = (list) => list.map(s => `<li class="tag">${s}</li>`).join("");
+
+/* --- linha do tempo da história --- */
+const tl = document.getElementById("tl");
+historia.forEach((c,i) => {
+  const side = i % 2 ? "r" : "l";
+  tl.appendChild(el(`
+    <article class="rv tl-item ${side}">
+      <span class="stamp" aria-hidden="true" style="position:absolute;top:0;left:0">${c.kanji}</span>
+      <p class="kana">${c.kana}</p>
+      <h3 class="jp emboss" style="margin-top:.2rem;font-size:1.7rem">${c.jp}</h3>
+      <p style="margin-top:.2rem;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 55%,transparent)">${c.pt}</p>
+      <div class="art-frame" style="margin-top:1rem;height:9rem">
+        <img src="${c.image}" alt="${c.pt} — etapa da história" loading="lazy" style="height:100%;width:100%;object-fit:cover" />
+        <div class="abs" aria-hidden="true" style="background:linear-gradient(0deg,color-mix(in srgb,var(--void) 90%,transparent),color-mix(in srgb,var(--void) 15%,transparent))"></div>
+        <span class="jp" aria-hidden="true" style="position:absolute;bottom:0;right:.8rem;font-size:3rem;color:color-mix(in srgb,var(--bone) 10%,transparent)">${c.kanji}</span>
+      </div>
+      <p style="margin-top:1rem;font-size:.85rem;color:color-mix(in srgb,var(--bone) 62%,transparent)">${c.description}</p>
+      <p class="myth" style="margin-top:.8rem;${side==="l"?"border-left:0;border-right:1px solid color-mix(in srgb,var(--gold) 45%,transparent);padding-left:0;padding-right:1rem":""}">${c.myth}</p>
+      <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;${side==="l"?"justify-content:flex-end":""}">${tags(c.styles)}</ul>
+    </article>`));
+});
+if (window.matchMedia("(min-width:860px)").matches) {
+  tl.querySelector(".rope").style.left = "50%";
+  tl.querySelectorAll(".tl-item").forEach((n,i) => {
+    const s = n.querySelector(".stamp");
+    if (i % 2) { s.style.left = "-1.25rem"; } else { s.style.left = "auto"; s.style.right = "-1.25rem"; }
+  });
+}
+
+/* --- painel genérico de conteúdo --- */
+function paneHTML(a, {scroll=false} = {}) {
+  return `
+    <div class="art-frame" style="height:15rem;position:relative">
+      <img src="${a.image}" alt="${a.pt}" loading="lazy" style="height:100%;width:100%;object-fit:cover" />
+      <div class="abs" aria-hidden="true" style="background:linear-gradient(0deg,color-mix(in srgb,var(--void) 95%,transparent),color-mix(in srgb,var(--void) 20%,transparent)),radial-gradient(60% 60% at 70% 20%,color-mix(in srgb,var(--crimson) 26%,transparent),transparent 70%)"></div>
+      <span class="jp" aria-hidden="true" style="position:absolute;bottom:-.6rem;right:.8rem;font-size:5rem;line-height:1;color:color-mix(in srgb,var(--bone) 10%,transparent)">${a.kanji}</span>
+      <div style="position:absolute;bottom:1rem;left:1.2rem">
+        <p class="kana">${a.kana}</p>
+        <p class="jp" style="font-size:1.5rem">${a.jp}</p>
+      </div>
+    </div>
+    <div class="${scroll ? "pane-scroll" : ""}" style="margin-top:1.4rem">
+      <p style="font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 55%,transparent)">${a.pt}</p>
+      <p class="dropcap" style="margin-top:.8rem;font-size:.88rem;color:color-mix(in srgb,var(--bone) 65%,transparent)">${a.description}</p>
+      <p class="myth" style="margin-top:1.2rem">${a.myth}</p>
+      <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem">${tags(a.styles)}</ul>
+    </div>`;
+}
+
+/* --- fábrica de seletores (lista + painel) --- */
+function makeSelector({items, list, pane, row, scroll=false}) {
+  const listEl = document.getElementById(list), paneEl = document.getElementById(pane);
+  const btns = items.map((it,i) => {
+    const b = el(row(it,i));
+    b.setAttribute("role","tab");
+    b.addEventListener("click", () => select(i));
+    b.addEventListener("mouseenter", () => select(i));
+    b.addEventListener("focus", () => select(i));
+    listEl.appendChild(b);
+    return b;
+  });
+  function select(i) {
+    btns.forEach((b,n) => b.setAttribute("aria-selected", String(n === i)));
+    paneEl.innerHTML = paneHTML(items[i], {scroll});
+    paneEl.style.animation = "none"; void paneEl.offsetWidth;
+    paneEl.style.animation = "up .5s ease";
+  }
+  select(0);
+}
+
+/* cor elementar de cada respiração (kanji tingido pelo elemento) */
+const ELEM = {"水":"#3fa9f5","炎":"#ff6a3d","雷":"#f5d33f","風":"#7fe0a8","岩":"#c9a06a","霞":"#cdd6e0"};
+
+makeSelector({
+  items: respiracoes, list:"breath-list", pane:"breath-pane", scroll:true,
+  row: (r,n) => `<button type="button" class="tech-row" style="--el:${ELEM[r.kanji] || "#c0392b"}">
+      <span class="jp" style="font-size:1.7rem;color:var(--el)">${r.kanji}</span>
+      <span style="min-width:0">
+        <span class="jp" style="display:block;font-size:1.05rem">${r.jp}</span>
+        <span style="display:block;margin-top:.15rem;font-size:.65rem;letter-spacing:.26em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 50%,transparent)">${r.pt} · ${r.tagline}</span>
+      </span>
+      <span class="jp" style="font-size:.62rem;letter-spacing:.3em;color:color-mix(in srgb,var(--gold) 60%,transparent)">${String(n+1).padStart(2,"0")}</span>
+    </button>`
+});
+
+/* ============================================================
+   Guia dos sistemas — códex dividido em cadernos e capítulos
+   ============================================================ */
+const codex = [
+  {kanji:"基", jp:"基本の巻", pt:"Caderno I · Fundamentos", el:"#c0392b", topicos:[
+    {kanji:"呼",jp:"呼吸",pt:"Fôlego",el:"#3fa9f5",dice:"d10 + Fôlego",image:IMG.water,
+     text:"Todo golpe consome fôlego. Você começa a cena com 10 e recupera 2 por turno em que apenas se move ou se defende. Zerar significa desmaiar em campo — e demônio não espera o amanhecer.",
+     rules:[["Reserva","10 pontos no início de cada cena de caçada."],
+            ["Recuperação","+2 por turno defensivo, +5 ao respirar sob glicínia."],
+            ["Exaustão","Abaixo de 3, todo teste sofre −2 até você respirar."]],
+     table:{head:["Ação","Custo"],rows:[["Forma básica","1"],["Forma avançada","3"],["Respiração Constante","2 por turno"],["Marca do Demônio","5 na ativação"]]}},
+    {kanji:"賽",jp:"判定",pt:"Testes e Dados",el:"#f5d33f",dice:"2d10, pegue o maior",image:IMG.forge,
+     text:"Role dois dados de dez faces, guarde o maior e some o atributo pedido pelo mestre. A dificuldade padrão é 12; noite de lua nova sobe para 14.",
+     rules:[["Crítico","10 natural corta limpo e ignora regeneração menor."],
+            ["Falha grave","Dois 1 abrem uma Marca de Sangue para o mestre usar."],
+            ["Ajuda","Um aliado adjacente concede vantagem uma vez por cena."]],
+     table:{head:["Situação","Dificuldade"],rows:[["Rotina sob luz","10"],["Combate comum","12"],["Lua nova / névoa","14"],["Diante de uma Lua","17"]]}},
+    {kanji:"傷",jp:"負傷",pt:"Ferimentos",el:"#a51a12",dice:"3 estágios",image:IMG.demon,
+     text:"Não existe barra de vida: existe corpo. Arranhão, Corte e Fratura acumulam penalidades e mudam a forma como o personagem luta pelo resto da campanha.",
+     rules:[["Arranhão","−1 em um atributo até o fim da cena."],
+            ["Corte","−2 e sangramento: 1 fôlego por turno."],
+            ["Fratura","Membro inutilizado; exige glicínia e uma noite de repouso."]]}
+  ]},
+  {kanji:"技", jp:"技の巻", pt:"Caderno II · Técnicas", el:"#ff6a3d", topicos:[
+    {kanji:"型",jp:"型",pt:"Formas e Respirações",el:"#ff6a3d",dice:"1 forma por turno",image:IMG.mountain,
+     text:"Cada respiração tem formas numeradas. Formas altas pedem fôlego alto e um teste de disciplina; falhar deixa a guarda aberta até o próximo turno.",
+     rules:[["Aprendizado","Uma forma nova a cada dois postos, ou com um Pilar."],
+            ["Derivadas","Treino dos Pilares concede formas fora da sua respiração."],
+            ["Assinatura","Aos 5 postos, crie uma forma própria com o mestre."]]},
+    {kanji:"集",jp:"全集中",pt:"Concentração Total",el:"#cdd6e0",dice:"Teste 14",image:IMG.temple,
+     text:"Manter a Concentração Total Constante dobra a eficiência de cada forma, mas queima 2 de fôlego por turno e exige um teste ao acordar no dia seguinte.",
+     rules:[["Ativação","Ação livre no início do turno, teste de disciplina 14."],
+            ["Constante","Após 30 dias de treino, dorme-se mantendo a técnica."],
+            ["Colapso","Falhar duas vezes na mesma noite impõe Corte automático."]]},
+    {kanji:"痣",jp:"痣",pt:"Marca do Demônio",el:"#a56bd6",dice:"Risco 1 em 6",image:IMG.crows,
+     text:"À beira da morte, o corpo pode acender a Marca: +2 em tudo pelo resto da noite, ao preço de rolar contra o colapso quando o sol nascer.",
+     rules:[["Gatilho","Estar em Corte grave com pulso acima de 200."],
+            ["Bônus","+2 em todos os testes e uma forma extra por turno."],
+            ["Preço","Ao amanhecer, role 1d6: em 1, o corpo cobra a conta."]]}
+  ]},
+  {kanji:"育", jp:"育ちの巻", pt:"Caderno III · Progressão", el:"#e7c778", topicos:[
+    {kanji:"階",jp:"階級",pt:"Postos e Nivelamento",el:"#e7c778",dice:"10 graus",image:IMG.temple,
+     text:"Dez graus gravados no uniforme ditam missões, recursos e quantos corvos respondem ao seu chamado. Subir exige feitos testemunhados por um Pilar.",
+     rules:[["Feitos","Cada abate registrado vale pontos de mérito."],
+            ["Testemunha","Só um Pilar ou veterano pode assinar a promoção."],
+            ["Recursos","Postos altos liberam antídotos, corvos e reforja gratuita."]],
+     table:{head:["Posto","Requisito"],rows:[["癸 Mizunoto","Sobreviver à Seleção Final"],["丙 Hinoe","Dez abates confirmados"],["甲 Kinoe","Derrotar uma Lua Inferior"],["柱 Pilar","Cinquenta abates ou uma Lua Superior"]]}},
+    {kanji:"創",jp:"創作",pt:"Criação de Personagem",el:"#7fe0a8",dice:"4 passos",image:IMG.slayer,
+     text:"Distribua 12 pontos entre os seis atributos, escolha uma respiração, forje a Nichirin e escreva o motivo que faz esse personagem sair de casa à noite.",
+     rules:[["Atributos","Força, Agilidade, Fôlego, Percepção, Espírito e Vínculo."],
+            ["Respiração","Define formas iniciais e a cor provável da lâmina."],
+            ["Motivo","Uma perda concreta; o mestre a usará contra você."]],
+     table:{head:["Atributo","Uso principal"],rows:[["力 Força","Cortes pesados e agarrões"],["速 Agilidade","Iniciativa e esquiva"],["息 Fôlego","Reserva e duração das formas"],["心 Espírito","Resistir ao medo e à Marca"]]}},
+    {kanji:"鍛",jp:"鍛冶",pt:"Forja e Equipamento",el:"#c9a06a",dice:"Cor da lâmina",image:IMG.forge,
+     text:"O minério colhido perto do sol muda de cor ao ser empunhado. A cor não é enfeite: ela abre a árvore de talentos da sua lâmina.",
+     rules:[["Cor","Sorteada na primeira empunhadura, ligada à respiração."],
+            ["Quebra","Uma lâmina partida custa uma sessão inteira de reforja."],
+            ["Acessórios","Glicínia destilada, corda de escalada, máscara hyottoko."]]}
+  ]},
+  {kanji:"座", jp:"卓の巻", pt:"Caderno IV · Mesa", el:"#3fa9f5", topicos:[
+    {kanji:"絆",jp:"絆",pt:"Vínculos",el:"#7fe0a8",dice:"1 relance por sessão",image:IMG.wisteria,
+     text:"Vínculos com aliados e mestres permitem repetir um teste por sessão. Perder um vínculo em campo bloqueia esse relance até o luto ser encenado na mesa.",
+     rules:[["Criação","Descreva uma cena curta com o outro personagem."],
+            ["Uso","Cite o vínculo em voz alta para relançar um teste."],
+            ["Luto","Uma cena de despedida devolve o relance perdido."]]},
+    {kanji:"夜",jp:"夜の構成",pt:"Estrutura da Noite",el:"#8b6bc0",dice:"9 turnos",image:IMG.mountain,
+     text:"Uma caçada tem nove turnos de relógio. Cada cena consome um; ao nono, o sol nasce e o que ficou por resolver vira consequência permanente.",
+     rules:[["Partida","Corvo entrega a ordem e o relógio começa."],
+            ["Investigação","Cada pista custa um turno de relógio."],
+            ["Amanhecer","Sobreviventes distribuem mérito e ferimentos."]]},
+    {kanji:"暁",jp:"暁",pt:"Entre Caçadas",el:"#ffb08a",dice:"Fase livre",image:IMG.temple,
+     text:"Entre missões há treino, oração, reforja e conversa. É aqui que os personagens crescem como gente — e onde o mestre planta a próxima tragédia.",
+     rules:[["Treino","Um teste para avançar em uma forma nova."],
+            ["Santuário","Uma bênção por período de descanso."],
+            ["Rumor","Cada aldeia guarda um boato verdadeiro por vez."]]}
+  ]}
+];
+
+const cxIndex = document.getElementById("codex-index");
+const cxBody  = document.getElementById("codex-body");
+codex.forEach((cap, ci) => {
+  cxIndex.appendChild(el(
+    `<button type="button" class="cx-link" data-cx="${ci}" style="--el:${cap.el}">
+       <span class="k jp">${cap.kanji}</span>${cap.pt.replace(/^Caderno\s/,"")}
+     </button>`));
+
+  const sec = el(`<section class="gchapter" id="cx-${ci}" style="--el:${cap.el}">
+      <header class="gchapter-h">
+        <span class="n jp">${cap.jp}</span>
+        <h3 class="jp emboss" style="font-size:1.5rem">${cap.pt}</h3>
+      </header>
+    </section>`);
+
+  cap.topicos.forEach((t) => {
+    const item = el(`<div class="gtopic" style="--el:${t.el}" role="button" tabindex="0" aria-expanded="false">
+        <span class="hint-open">abrir ficha</span>
+        <div class="gtopic-row">
+          <span class="gk jp">${t.kanji}</span>
+          <span style="min-width:0">
+            <span class="jp" style="display:block;font-size:1.1rem">${t.jp}</span>
+            <span style="display:block;font-size:.63rem;letter-spacing:.26em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 55%,transparent)">${t.pt} · ${t.dice}</span>
+          </span>
+          <span class="chev jp" aria-hidden="true">▶</span>
+        </div>
+        <div class="gtopic-body"><div><div class="gtopic-inner">
+          <div>
+            <p style="font-size:.86rem;line-height:1.8;color:color-mix(in srgb,var(--bone) 68%,transparent)">${t.text}</p>
+            ${t.rules.map(([d,x]) => `<p class="grule"><span class="d jp">${d}</span><span>${x}</span></p>`).join("")}
+            ${t.table ? `<table class="gtable"><thead><tr>${t.table.head.map(h=>`<th>${h}</th>`).join("")}</tr></thead>
+              <tbody>${t.table.rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table>` : ""}
+          </div>
+          <div class="art-frame" style="height:9rem">
+            <img src="${t.image}" alt="${t.pt}" loading="lazy" />
+            <div class="abs" aria-hidden="true" style="background:linear-gradient(0deg,color-mix(in srgb,var(--void) 85%,transparent),color-mix(in srgb,var(--void) 10%,transparent))"></div>
+          </div>
+        </div></div></div>
+      </div>`);
+    const toggle = () => item.setAttribute("aria-expanded", item.getAttribute("aria-expanded") === "true" ? "false" : "true");
+    item.addEventListener("click", toggle);
+    item.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+    sec.appendChild(item);
+  });
+  cxBody.appendChild(sec);
+});
+cxIndex.querySelectorAll(".cx-link").forEach(b => b.addEventListener("click", () => {
+  document.getElementById("cx-" + b.dataset.cx).scrollIntoView({behavior:"smooth", block:"center"});
+  cxIndex.querySelectorAll(".cx-link").forEach(o => o.setAttribute("aria-current", String(o === b)));
+}));
+
+/* ============================================================
+   Bestiário — oito fichas
+   ============================================================ */
+const bestiario = [
+  {kanji:"鬼",jp:"下級の鬼",pt:"Demônio Comum",kana:"かきゅうのおに",tagline:"Fome sem memória",image:IMG.demon,
+   description:"Humano devorado pela fome há pouco tempo. Regenera membros em segundos, mas não suporta o sol nem a lâmina Nichirin no pescoço. É a primeira caçada de todo recruta.",
+   myth:"Nas aldeias, contava-se que quem morria com raiva voltava como oni de chifre único.",
+   styles:["Ameaça 1","Regeneração rápida","Fraco ao sol"]},
+  {kanji:"蜘",jp:"土蜘蛛",pt:"Aranha da Montanha",kana:"つちぐも",tagline:"Fios que movem gente morta",image:IMG.mountain,
+   description:"Tece cordas invisíveis nos galhos e usa cadáveres como marionetes. Combater exige cortar o fio antes do corpo — errar a ordem custa um aliado.",
+   myth:"Tsuchigumo era o nome dado a clãs rebeldes das montanhas, depois transformados em monstros nas crônicas.",
+   styles:["Ameaça 3","Controle de campo","Veneno paralisante"]},
+  {kanji:"首",jp:"轆轤首",pt:"Pescoço Rastejante",kana:"ろくろくび",tagline:"A cabeça viaja sozinha",image:IMG.temple,
+   description:"De dia parece uma estalajadeira gentil. De noite, o pescoço se estica pelos corredores atrás de fôlego quente. Só morre se a cabeça for cortada longe do corpo.",
+   myth:"Rokurokubi aparece em histórias de Edo como esposa que ignorava a própria maldição.",
+   styles:["Ameaça 2","Disfarce humano","Ataque à distância"]},
+  {kanji:"鎌",jp:"鎌鼬",pt:"Foice de Vento",kana:"かまいたち",tagline:"Três cortes num piscar",image:IMG.forge,
+   description:"Trio de demônios ligados pelo mesmo sangue: um derruba, um corta, um fecha a ferida para prolongar a agonia. Vencer significa quebrar a ordem dos três.",
+   myth:"Kamaitachi eram doninhas do vento culpadas por cortes que apareciam sem dor na neve.",
+   styles:["Ameaça 4","Age em trio","Iniciativa altíssima"]},
+  {kanji:"雪",jp:"雪女",pt:"Mulher da Neve",kana:"ゆきおんな",tagline:"O frio que rouba o fôlego",image:IMG.water,
+   description:"Congela o ar dos pulmões: dentro do seu alcance, todo custo de fôlego dobra. Respirações de Chamas são a resposta óbvia — e a única.",
+   myth:"Yuki-onna poupava quem jurasse silêncio; quebrar a promessa era morrer na primeira nevasca.",
+   styles:["Ameaça 4","Dobra custo de fôlego","Fraca ao calor"]},
+  {kanji:"下",jp:"下弦の鬼",pt:"Lua Inferior",kana:"かげんのおに",tagline:"Número gravado no olho",image:IMG.crows,
+   description:"Sangue Demoníaco desenvolvido e inteligência de general. Nunca luta sem cenário preparado — um vagão, um sonho, uma vila inteira sob o seu domínio.",
+   myth:"O ciclo lunar minguante marcava, nos calendários antigos, o tempo de má sorte para viajar.",
+   styles:["Ameaça 6","Sangue Demoníaco","Arena própria"]},
+  {kanji:"上",jp:"上弦の鬼",pt:"Lua Superior",kana:"じょうげんのおに",tagline:"Séculos de prática",image:IMG.demon,
+   description:"Sobreviveu a gerações inteiras de Pilares. Lê respirações como quem lê um livro e responde com técnicas de sangue que reescrevem o campo de batalha.",
+   myth:"Doze guardiões giram o calendário — e cada um deles, dizem, cobra um preço em vidas.",
+   styles:["Ameaça 9","Contra-lê respirações","Exige Marca"]},
+  {kanji:"祖",jp:"始まりの鬼",pt:"O Primeiro",kana:"はじまりのおに",tagline:"Aquele que fugiu do sol",image:IMG.wisteria,
+   description:"A origem de tudo. Muda de rosto, de idade e de voz; vive entre humanos há mil anos procurando a flor que o libertaria da luz. Encontrar o Primeiro encerra a campanha.",
+   myth:"A Flor de Aranha Azul do Espírito só desabrocha três dias por ano, sob o sol pleno do verão.",
+   styles:["Ameaça final","Muda de forma","Encerra a campanha"]}
+];
+
+makeSelector({
+  items: bestiario, list:"beast-list", pane:"beast-pane", scroll:true,
+  row: (b) => `<button type="button" class="pick">
+      <span class="pick-art" style="background-image:url('${b.image}')"></span>
+      <span class="pick-veil"></span>
+      <span class="pick-kanji" aria-hidden="true">${b.kanji}</span>
+      <span style="position:relative;padding:1.1rem;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:.35rem">
+        <span class="jp" style="font-size:1.15rem">${b.jp}</span>
+        <span style="font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 60%,transparent)">${b.pt}</span>
+        <span style="font-size:.72rem;color:color-mix(in srgb,var(--bone) 50%,transparent)">${b.tagline}</span>
+        <span class="tag" style="align-self:flex-start;margin-top:.3rem">${b.styles[0]}</span>
+      </span>
+    </button>`
+});
+
+/* ============================================================
+   Catálogo de armas
+   ============================================================ */
+const armas = [
+  {kanji:"刀",el:"#3fa9f5",jp:"日輪刀",name:"Katana Nichirin",title:"Lâmina padrão do Esquadrão",image:IMG.forge,
+   text:"Curva, de fio único e 70 cm. Forjada com minério de escarlate colhido perto do sol; muda de cor ao ser empunhada e só ela decapita um demônio de forma definitiva.",
+   styles:["Corte curvo","Equilíbrio total","Base de todas as respirações"]},
+  {kanji:"双",el:"#f5d33f",jp:"二刀",name:"Nitō — Par Gêmeo",title:"Duas lâminas curtas",image:IMG.slayer,
+   text:"Duas nichirin curtas usadas em espelho. Sacrifica alcance por número de golpes: cada turno permite dois ataques, mas a defesa depende inteiramente do movimento dos pés.",
+   styles:["Dois ataques por turno","Alcance curto","Exige Trovão ou Vento"]},
+  {kanji:"槍",el:"#c9a06a",jp:"薙刀",name:"Naginata",title:"Lâmina em haste longa",image:IMG.temple,
+   text:"Herança dos monges guerreiros. Mantém o demônio a três passos e transforma qualquer corredor estreito em armadilha. Lenta para iniciar, devastadora quando embalada.",
+   styles:["Alcance longo","Controle de área","Iniciativa baixa"]},
+  {kanji:"鎖",el:"#c0392b",jp:"鎖鉄球",name:"Kusari-Fundō",title:"Corrente com esfera",image:IMG.mountain,
+   text:"Uma bola de ferro presa a uma corrente e um machado nichirin na outra ponta. Quebra ossos antes de cortar; usada pelos caçadores que preferem prender o alvo a duelar.",
+   styles:["Imobiliza o alvo","Dano de impacto","Difícil de dominar"]},
+  {kanji:"扇",el:"#a56bd6",jp:"鉄扇",name:"Tessen — Leque de Ferro",title:"Defesa e engano",image:IMG.wisteria,
+   text:"Leque de varetas de aço nichirin. Apara golpes que uma lâmina não pararia e esconde a intenção do próximo movimento — arma predileta das respirações de Névoa.",
+   styles:["Aparo perfeito","Finta e engano","Dano baixo"]},
+  {kanji:"弓",el:"#7fe0a8",jp:"和弓",name:"Yumi — Arco Longo",title:"Caçada à distância",image:IMG.crows,
+   text:"Arco assimétrico de bambu com pontas de nichirin. Não decapita, mas prende o demônio à parede tempo suficiente para outro caçador terminar o serviço.",
+   styles:["Ataque à distância","Prende o alvo","Não decapita"]},
+  {kanji:"鉈",el:"#ff6a3d",jp:"鉈",name:"Nata — Cutelo",title:"Aço bruto de aldeia",image:IMG.demon,
+   text:"Ferramenta de lenhador reforjada em nichirin. Feio, pesado e sem elegância — corta através da guarda no puro peso e é a arma de quem aprendeu a lutar sozinho.",
+   styles:["Dano alto","Ignora guarda","Sem finesse"]},
+  {kanji:"棒",el:"#cdd6e0",jp:"六尺棒",name:"Bō — Bastão",title:"Treino e contenção",image:IMG.water,
+   text:"Bastão de carvalho de 1,8 m usado no treino dos Pilares e em capturas de humanos possuídos. Nenhum corte, apenas ossos quebrados — o único jeito de trazer alguém vivo.",
+   styles:["Não letal","Captura","Arma de treino"]}
+];
+const wgrid = document.getElementById("weapons");
+armas.forEach(w => {
+  wgrid.appendChild(el(`
+    <article class="wcard" style="--el:${w.el}">
+      <span class="wglint" aria-hidden="true"></span>
+      <div class="wart">
+        <img src="${w.image}" alt="${w.name}" loading="lazy" />
+        <span class="wveil" aria-hidden="true"></span>
+        <span class="wk jp" aria-hidden="true">${w.kanji}</span>
+      </div>
+      <div class="wbody">
+        <p class="wname">${w.jp}</p>
+        <p class="wtitle">${w.name} · ${w.title}</p>
+        <p style="margin-top:.9rem;font-size:.84rem;line-height:1.7;color:color-mix(in srgb,var(--bone) 65%,transparent)">${w.text}</p>
+        <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem">${tags(w.styles)}</ul>
+      </div>
+    </article>`));
+});
+
+/* --- carrossel infinito do território (setas + botõezinhos abaixo) --- */
+(function mapCarousel() {
+  const paneEl = document.getElementById("map-pane");
+  const dotsEl = document.getElementById("map-list");
+  const n = mundo.length;
+  let cur = 0;
+
+  const dots = mundo.map((m, i) => {
+    const b = el(`<button type="button" class="car-dot" role="tab" aria-label="${m.pt}">
+        <span class="jp k" aria-hidden="true">${m.kanji}</span>
+        <span class="lb">${m.pt}</span>
+      </button>`);
+    b.addEventListener("click", () => go(i));
+    dotsEl.appendChild(b);
+    return b;
+  });
+
+  function render(i, dir) {
+    paneEl.innerHTML = paneHTML(mundo[i], {scroll:true});
+    paneEl.classList.remove("in-l", "in-r");
+    void paneEl.offsetWidth;
+    paneEl.classList.add(dir < 0 ? "in-l" : "in-r");
+  }
+  function go(i, dir) {
+    const next = ((i % n) + n) % n;            /* roda infinita nos dois sentidos */
+    const d = dir !== undefined ? dir : (next === cur ? 1 : 1);
+    cur = next;
+    dots.forEach((b, k) => b.setAttribute("aria-selected", String(k === cur)));
+    render(cur, d);
+  }
+  document.getElementById("map-prev").addEventListener("click", () => go(cur - 1, -1));
+  document.getElementById("map-next").addEventListener("click", () => go(cur + 1, 1));
+  dotsEl.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); go(cur - 1, -1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); go(cur + 1, 1); }
+  });
+  go(0, 1);
+})();
+
+
+/* --- galeria (álbum) --- */
+const galeria = [
+  {image:IMG.sky,     jp:"血の月",   pt:"A Lua de Sangue",       cap:"A noite em que o céu ficou vermelho sobre o monte."},
+  {image:IMG.slayer,  jp:"抜刀",     pt:"Desembainhar",          cap:"O primeiro corte da lâmina Nichirin acesa."},
+  {image:IMG.demon,   jp:"鬼",       pt:"O Oni das Espirais",    cap:"Sangue Demoníaco desenhado na própria pele."},
+  {image:IMG.water,   jp:"水の型",   pt:"Forma da Água",         cap:"O dragão de água nascendo do punho."},
+  {image:IMG.crows,   jp:"鴉",       pt:"Corvos Kasugai",        cap:"As ordens chegam antes do sol tocar o telhado."},
+  {image:IMG.wisteria,jp:"藤",       pt:"Glicínias",             cap:"Sob as flores, nenhum demônio ousa entrar."},
+  {image:IMG.forge,   jp:"鍛冶",     pt:"A Forja",               cap:"O aço escolhe a cor de quem o empunha."},
+  {image:IMG.temple,  jp:"社",       pt:"Santuário Esquecido",   cap:"Um Jizō de pedra guarda os que morrem longe."}
+];
+const album = document.getElementById("album");
+galeria.forEach(g => album.appendChild(el(`
+  <figure class="photo">
+    <img src="${g.image}" alt="${g.pt}" loading="lazy" />
+    <figcaption class="cap">
+      <p class="jp" style="font-size:1rem">${g.jp}</p>
+      <p style="font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:color-mix(in srgb,var(--gold) 80%,transparent)">${g.pt}</p>
+      <p style="margin-top:.3rem;font-size:.72rem;color:color-mix(in srgb,var(--bone) 55%,transparent)">${g.cap}</p>
+    </figcaption>
+    <span class="fold" aria-hidden="true"></span>
+  </figure>`)));
+
+/* --- ranking --- */
+const ranking = [
+  {jp:"炎",nome:"Kagenobu “Brasa”",resp:"Chamas",posto:"Kinoe 甲",abates:142},
+  {jp:"水",nome:"Rin do Lago Frio",resp:"Água",posto:"Kinoe 甲",abates:131},
+  {jp:"雷",nome:"Haruto Passo-Único",resp:"Trovão",posto:"Kinoto 乙",abates:127},
+  {jp:"霞",nome:"Yuki sem Sombra",resp:"Névoa",posto:"Kinoto 乙",abates:113},
+  {jp:"岩",nome:"Genzō Muro-de-Pedra",resp:"Pedra",posto:"Hinoe 丙",abates:98},
+  {jp:"風",nome:"Saya Ciclone",resp:"Vento",posto:"Hinoe 丙",abates:91},
+  {jp:"蟲",nome:"Mika de Glicínia",resp:"Inseto",posto:"Hinoto 丁",abates:84},
+  {jp:"水",nome:"Tarō Correnteza",resp:"Água",posto:"Hinoto 丁",abates:72},
+  {jp:"炎",nome:"Ayame Lanterna",resp:"Chamas",posto:"Tsuchinoe 戊",abates:64},
+  {jp:"雷",nome:"Kenji Tambor",resp:"Trovão",posto:"Tsuchinoto 己",abates:57}
+];
+const rankEl = document.getElementById("rank-list");
+const maxAb = ranking[0].abates;
+ranking.forEach((r,i) => rankEl.appendChild(el(`
+  <div class="rank-row ${i<3?"top"+(i+1):""}">
+    <span class="pos jp" aria-hidden="true">${i+1}</span>
+    <span style="min-width:0">
+      <span style="display:flex;flex-wrap:wrap;gap:.6rem;align-items:baseline">
+        <span class="jp" style="font-size:1.05rem;color:color-mix(in srgb,var(--crimson) 90%,transparent)">${r.jp}</span>
+        <span style="font-size:.9rem">${r.nome}</span>
+      </span>
+      <span style="display:block;margin-top:.15rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 50%,transparent)">${r.resp} · ${r.posto}</span>
+      <span class="bar" aria-hidden="true"><i style="width:${Math.round(r.abates/maxAb*100)}%"></i></span>
+    </span>
+    <span class="jp" style="text-align:right">
+      <span style="display:block;font-size:1.1rem;color:var(--gold)">${r.abates}</span>
+      <span style="display:block;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 80%,transparent)">abates</span>
+    </span>
+  </div>`)));
+
+/* --- missões diárias --- */
+const missoes = [
+  {kanji:"巡",jp:"夜の巡回",pt:"Patrulha Noturna",desc:"Percorra três trilhas da montanha antes do canto do galo.",prem:"+1 posto de reputação"},
+  {kanji:"血",jp:"鬼狩り",pt:"Caçar um Demônio Menor",desc:"Decapite um demônio sem usar formas derivadas.",prem:"2 doses de glicínia"},
+  {kanji:"呼",jp:"呼吸修行",pt:"Treino de Fôlego",desc:"Mantenha a Respiração Constante por um combate inteiro.",prem:"+2 fôlego máximo"},
+  {kanji:"護",jp:"里の護り",pt:"Proteger a Aldeia",desc:"Leve todos os aldeões ao refúgio de glicínias sem baixas.",prem:"Bênção do santuário"},
+  {kanji:"鴉",jp:"鴉の伝令",pt:"Mensagem do Corvo",desc:"Entregue o relatório da noite ao Pilar de plantão.",prem:"Rumor sobre uma Lua"}
+];
+const misEl = document.getElementById("missions");
+missoes.forEach(m => {
+  const card = el(`
+    <button type="button" class="mission" data-done="false" aria-pressed="false">
+      <span class="m-seal jp" aria-hidden="true">${m.kanji}</span>
+      <span class="kana" style="display:block">日課</span>
+      <span class="jp m-title" style="display:block;margin-top:.3rem;font-size:1.15rem">${m.jp}</span>
+      <span style="display:block;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 55%,transparent)">${m.pt}</span>
+      <span style="display:block;margin-top:.7rem;font-size:.8rem;color:color-mix(in srgb,var(--bone) 60%,transparent)">${m.desc}</span>
+      <span class="tag" style="display:inline-block;margin-top:.9rem">Recompensa · ${m.prem}</span>
+    </button>`);
+  card.addEventListener("click", () => {
+    const done = card.dataset.done === "true";
+    card.dataset.done = String(!done);
+    card.setAttribute("aria-pressed", String(!done));
+  });
+  misEl.appendChild(card);
+});
+
+
+/* ============================================================
+   Abertura: corte da lâmina, manchas de sangue e tela que se parte
+   ============================================================ */
+const intro = document.getElementById("intro");
+const bloodLayer = document.getElementById("blood");
+document.body.style.overflow = "hidden";
+
+const rnd = (a, b) => a + Math.random() * (b - a);
+
+/* manchas de sangue desenhadas apenas com CSS (formas irregulares aleatórias) */
+function blob() {
+  const v = () => Math.round(rnd(8, 92));
+  return `${v()}% ${v()}% ${v()}% ${v()}% / ${v()}% ${v()}% ${v()}% ${v()}%`;
+}
+function spillBlood() {
+  const frag = document.createDocumentFragment();
+  const add = (cls, css) => { const n = document.createElement("div"); n.className = cls; n.style.cssText = css; frag.appendChild(n); };
+
+  /* poeira de gotículas ao redor de uma mancha (respingo real espalha) */
+  const spray = (cx, cy, n, spread, delay) => {
+    for (let i = 0; i < n; i++) {
+      const a = rnd(0, Math.PI * 2), r = Math.pow(Math.random(), .6) * spread;
+      add("speck", `--x:${(cx + Math.cos(a) * r).toFixed(1)}%;--y:${(cy + Math.sin(a) * r * 1.5).toFixed(1)}%;` +
+        `--s:${rnd(2, 9).toFixed(1)}px;--ar:${rnd(.6, 2.4).toFixed(2)};--r:${rnd(0, 360)}deg;` +
+        `--br:${blob()};--d:${(delay + rnd(.02, .2)).toFixed(2)}s`);
+    }
+  };
+
+  /* rasgo central: arrasto de sangue que acompanha o corte da lâmina */
+  for (let i = 0; i < 4; i++) {
+    add("splat smear", `--x:${rnd(12, 88)}%;--y:${rnd(45, 55)}%;--s:${rnd(180, 420)}px;` +
+      `--r:${rnd(-10, 2)}deg;--br:${blob()};--d:${(i * 0.04).toFixed(2)}s`);
+  }
+  /* arcos de sangue lançados pelo corte */
+  for (let i = 0; i < 3; i++) {
+    add("splat arc", `--x:${rnd(20, 80)}%;--y:${rnd(35, 65)}%;--s:${rnd(220, 460)}px;` +
+      `--r:${rnd(-30, 20)}deg;--d:${rnd(.05, .3).toFixed(2)}s`);
+  }
+  /* manchas grandes irregulares, cada uma com sua nuvem de gotículas */
+  for (let i = 0; i < 7; i++) {
+    const x = rnd(6, 94), y = rnd(10, 88), d = rnd(.02, .5);
+    add("splat", `--x:${x}%;--y:${y}%;--s:${rnd(46, 118)}px;--ar:${rnd(.7, 1.25).toFixed(2)};` +
+      `--r:${rnd(0, 360)}deg;--br:${blob()};--d:${d.toFixed(2)}s`);
+    spray(x, y, 10, rnd(6, 13), d);
+  }
+  /* gotas alongadas com cauda (sangue arremessado) */
+  for (let i = 0; i < 12; i++) {
+    add("splat drop", `--x:${rnd(4, 96)}%;--y:${rnd(6, 94)}%;--s:${rnd(16, 44)}px;--ar:${rnd(.55, .9).toFixed(2)};` +
+      `--r:${rnd(0, 360)}deg;--d:${rnd(.03, .55).toFixed(2)}s`);
+  }
+  /* névoa fina de sangue pulverizado */
+  for (let i = 0; i < 5; i++) {
+    add("splat mist", `--x:${rnd(10, 90)}%;--y:${rnd(15, 85)}%;--s:${rnd(140, 300)}px;` +
+      `--r:0deg;--br:50%;--d:${rnd(.02, .3).toFixed(2)}s`);
+  }
+  /* respingos médios e pequenos avulsos */
+  for (let i = 0; i < 22; i++) {
+    add("splat", `--x:${rnd(2, 98)}%;--y:${rnd(4, 96)}%;--s:${rnd(7, 34)}px;--ar:${rnd(.6, 1.6).toFixed(2)};` +
+      `--r:${rnd(0, 360)}deg;--br:${blob()};--d:${rnd(.02, .6).toFixed(2)}s`);
+  }
+  /* pingos escorrendo com a gota pesada na ponta */
+  for (let i = 0; i < 6; i++) {
+    add("drip", `--x:${rnd(6, 94)}%;--y:${rnd(28, 62)}%;--w:${rnd(3, 9)}px;` +
+      `--h:${rnd(70, 280)}px;--d:${rnd(.1, .45).toFixed(2)}s`);
+  }
+  bloodLayer.appendChild(frag);
+  setTimeout(() => { bloodLayer.innerHTML = ""; }, 2800);
+}
+
+
+let entered = false;
+function enter() {
+  if (entered) return;
+  entered = true;
+  spillBlood();                       /* sangue jorra no corte */
+  intro.classList.add("cut");         /* a tela se parte a partir da marca */
+  document.body.style.overflow = "";
+  document.getElementById("hero").classList.add("opened");
+  setTimeout(() => intro.classList.add("gone"), 1000);
+  setTimeout(() => intro.remove(), 1600);
+}
+intro.addEventListener("click", enter);
+intro.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); enter(); } });
+window.addEventListener("keydown", function once(e){ if (document.body.contains(intro) && e.key !== "Tab") { enter(); window.removeEventListener("keydown", once); } });
+
+/* reveal ao entrar na viewport */
+const io = new IntersectionObserver((es) => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
+}), {threshold:.15});
+document.querySelectorAll(".rv").forEach(n => io.observe(n));
+
+/* ============================================================
+   Céu do hero: estrelas que sobem e nuvens que se abrem
+   ============================================================ */
+const sky = document.getElementById("sky");
+const stars = [], clouds = [];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const STAR_N = innerWidth < 720 ? 22 : 46;
+
+for (let i = 0; i < STAR_N; i++) {
+  const s = document.createElement("div");
+  const size = rnd(1.2, 3.4);
+  s.className = "star";
+  s.style.cssText = `left:${rnd(0, 100)}%;top:${rnd(0, 78)}%;--s:${size.toFixed(1)}px;` +
+    `--g:${(size * 3).toFixed(1)}px;--tw:${rnd(2.2, 6).toFixed(1)}s;--o1:${rnd(.15, .45).toFixed(2)};--o2:${rnd(.7, 1).toFixed(2)}`;
+  sky.appendChild(s);
+  stars.push({ el: s, sp: rnd(60, 260) });          /* sobem em velocidades diferentes */
+}
+const CLOUD_N = innerWidth < 720 ? 4 : 7;
+for (let i = 0; i < CLOUD_N; i++) {
+  const left = i % 2 === 0;
+  const c = document.createElement("div");
+  c.className = "cloudx" + (i % 3 === 0 ? " dark" : "");
+  const w = rnd(300, 720), h = w * rnd(.26, .38);
+  c.style.cssText = `left:${left ? rnd(-14, 34) : rnd(52, 102)}%;top:${rnd(2, 68)}%;` +
+    `width:${w.toFixed(0)}px;height:${h.toFixed(0)}px;opacity:${rnd(.5, .95).toFixed(2)};` +
+    `animation-delay:-${rnd(0, 14).toFixed(1)}s;animation-duration:${rnd(16, 30).toFixed(1)}s`;
+  /* cada nuvem é feita de vários bulbos de tamanhos e alturas diferentes */
+  const puffs = Math.round(rnd(4, 6));
+  for (let p = 0; p < puffs; p++) {
+    const d = rnd(38, 96);
+    c.appendChild(el(`<i style="left:${rnd(-4, 96 - d / 12).toFixed(1)}%;bottom:${rnd(-6, 42).toFixed(1)}%;` +
+      `width:${d.toFixed(0)}%;height:${rnd(58, 118).toFixed(0)}%;` +
+      `border-radius:${rnd(40,60)}% ${rnd(40,60)}% ${rnd(45,55)}% ${rnd(45,55)}% / ${rnd(55,75)}% ${rnd(55,75)}% ${rnd(30,45)}% ${rnd(30,45)}%;` +
+      `filter:blur(${rnd(4, 12).toFixed(1)}px)"></i>`));
+  }
+  sky.appendChild(c);
+  clouds.push({ el: c, dir: left ? -1 : 1, sp: rnd(280, 720), rise: rnd(-70, 70) });
+}
+
+/* ============================================================
+   Parallax e progresso
+   ============================================================ */
+const layers = [...document.querySelectorAll("[data-speed]")];
+const sections = [...document.querySelectorAll("main > section, main > .band")];
+const hero = document.getElementById("hero");
+const prog = document.getElementById("progress");
+const hd = document.getElementById("hd");
+let ticking = false;
+
+function frame() {
+  const vh = window.innerHeight;
+  const ht = hero.getBoundingClientRect().top;
+  if (ht > -vh) for (const l of layers) l.style.transform = `translate3d(0, ${ht * -parseFloat(l.dataset.speed) * 2}px, 0)`;
+
+  /* céu: estrelas sobem, nuvens se afastam para os lados abrindo o cenário */
+  if (!reduce && ht > -vh) {
+    const k = Math.min(Math.max(-ht / vh, 0), 1);   /* 0 → 1 conforme rola o hero */
+    for (const s of stars) s.el.style.transform = `translate3d(0, ${(-k * s.sp).toFixed(1)}px, 0)`;
+    for (const c of clouds) {
+      c.el.style.transform = `translate3d(${(c.dir * k * c.sp).toFixed(1)}px, ${(k * c.rise).toFixed(1)}px, 0) scale(${1 + k * .25})`;
+      c.el.style.opacity = String(Math.max(0, 1 - k * 1.15));
+    }
+  }
+
+  /* cada seção sobe e clareia conforme entra na tela */
+  for (const s of sections) {
+    const r = s.getBoundingClientRect();
+    if (r.bottom < -200 || r.top > vh + 200) continue;
+    const p = Math.min(Math.max(1 - r.top / vh, 0), 1);      /* 0 → 1 ao subir */
+    const out = Math.min(Math.max(-r.bottom / vh + 1, 0), 1); /* 0 → 1 ao sair  */
+    s.style.setProperty("--p", p.toFixed(3));
+    s.style.transform = `translate3d(0, ${(1 - p) * 26 - out * 18}px, 0) scale(${1 - out * .04})`;
+    s.style.opacity = String(1 - out * .5);
+  }
+
+  const h = document.documentElement;
+  prog.style.width = (h.scrollTop / (h.scrollHeight - vh) * 100) + "%";
+  hd.classList.toggle("solid", h.scrollTop > 40);
+  ticking = false;
+}
+const onScroll = () => { if (!ticking) { requestAnimationFrame(frame); ticking = true; } };
+window.addEventListener("scroll", onScroll, {passive:true});
+window.addEventListener("resize", onScroll);
+frame();
+
+/* ============================================================
+   Brasas e pétalas da tela inicial
+   ============================================================ */
+document.querySelectorAll(".intro-half .inner").forEach(inner => {
+  for (let i = 0; i < 14; i++) inner.appendChild(el(
+    `<span class="ember" style="left:${rnd(2,98).toFixed(1)}%;--s:${rnd(2,6).toFixed(1)}px;` +
+    `--dx:${rnd(-90,90).toFixed(0)}px;--t:${rnd(7,15).toFixed(1)}s;--dl:-${rnd(0,12).toFixed(1)}s"></span>`));
+  for (let i = 0; i < 8; i++) inner.appendChild(el(
+    `<span class="petal" style="left:${rnd(0,100).toFixed(1)}%;--s:${rnd(9,17).toFixed(0)}px;` +
+    `--dx:${rnd(-140,140).toFixed(0)}px;--t:${rnd(10,20).toFixed(1)}s;--dl:-${rnd(0,14).toFixed(1)}s"></span>`));
+});
+
+/* ============================================================
+   Ficha expandida (modal) — usada por todos os quadros do site
+   ============================================================ */
+const modal = document.getElementById("modal");
+const mImg = document.getElementById("m-img");
+const mKanji = document.getElementById("m-kanji");
+const mBody = document.getElementById("m-body");
+let lastFocus = null;
+
+function openSheet(d) {
+  lastFocus = document.activeElement;
+  modal.style.setProperty("--el", d.el || "#c0392b");
+  modal.querySelector(".sheet").style.setProperty("--el", d.el || "#c0392b");
+  mImg.src = d.image || IMG.mountain; mImg.alt = d.pt || "";
+  mKanji.textContent = d.kanji || "";
+  mBody.innerHTML = `
+    ${d.kana ? `<p class="kana">${d.kana}</p>` : ""}
+    <h3 class="jp emboss" style="margin-top:.3rem;font-size:clamp(1.6rem,4vw,2.4rem)">${d.jp || ""}</h3>
+    <p style="margin-top:.3rem;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 55%,transparent)">${d.pt || ""}</p>
+    ${d.quote ? `<p class="brush" style="margin-top:1.2rem;font-size:1.1rem;color:var(--gold)">${d.quote}</p>` : ""}
+    <div class="ink-rule" style="margin:1.4rem 0"></div>
+    ${d.body || ""}
+    ${d.myth ? `<p class="myth" style="margin-top:1.2rem">${d.myth}</p>` : ""}
+    ${d.tags && d.tags.length ? `<ul style="list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem">${tags(d.tags)}</ul>` : ""}`;
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+  requestAnimationFrame(() => modal.querySelector(".sheet-close").focus());
+  sfx("open");
+}
+function closeSheet() {
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+  if (lastFocus) lastFocus.focus();
+}
+modal.addEventListener("click", e => { if (e.target.hasAttribute("data-close")) closeSheet(); });
+window.addEventListener("keydown", e => { if (e.key === "Escape" && modal.classList.contains("open")) closeSheet(); });
+
+/* torna clicáveis os quadros já renderizados */
+function bindOpen(node, data) {
+  node.classList.add("clickable");
+  if (!node.querySelector(".hint-open")) node.prepend(el(`<span class="hint-open">ver detalhes</span>`));
+  if (!node.hasAttribute("tabindex")) { node.setAttribute("role","button"); node.setAttribute("tabindex","0"); }
+  const go = () => openSheet(data);
+  node.addEventListener("click", go);
+  node.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+}
+const listBody = (a) => `<p class="dropcap" style="font-size:.9rem;line-height:1.9;color:color-mix(in srgb,var(--bone) 70%,transparent)">${a.description || a.text}</p>`;
+
+document.querySelectorAll("#album .photo").forEach((n,i) => {
+  const g = galeria[i];
+  bindOpen(n, {kanji:g.jp, image:g.image, jp:g.jp, pt:g.pt, kana:"画帖 · álbum do esquadrão",
+    body:`<p style="font-size:.9rem;line-height:1.9;color:color-mix(in srgb,var(--bone) 70%,transparent)">${g.cap}</p>`});
+});
+document.querySelectorAll("#weapons .wcard").forEach((n,i) => {
+  const w = armas[i];
+  bindOpen(n, {kanji:w.kanji, el:w.el, image:w.image, jp:w.jp, pt:`${w.name} · ${w.title}`, kana:"武器帖 · catálogo",
+    body:listBody(w), tags:w.styles});
+});
+document.querySelectorAll("#tl .tl-item").forEach((n,i) => {
+  const h = historia[i];
+  bindOpen(n, {kanji:h.kanji, image:h.image, jp:h.jp, pt:h.pt, kana:h.kana, body:listBody(h), myth:h.myth, tags:h.styles});
+});
+document.querySelectorAll("#beast-list .pick, #beast-list > *").forEach((n,i) => {
+  const b = bestiario[i]; if (!b) return;
+  bindOpen(n, {kanji:b.kanji, image:b.image, jp:b.jp, pt:b.pt, kana:b.kana, body:listBody(b), myth:b.myth, tags:b.styles});
+});
+document.querySelectorAll("#breath-list .tech-row").forEach((n,i) => {
+  const r = respiracoes[i];
+  bindOpen(n, {kanji:r.kanji, el:ELEM[r.kanji], image:r.image, jp:r.jp, pt:`${r.pt} · ${r.tagline}`, kana:r.kana,
+    body:listBody(r), myth:r.myth, tags:r.styles});
+});
+
+/* ============================================================
+   Corvo mensageiro — dicas e curiosidades rotativas
+   ============================================================ */
+const dicas = [
+  {jp:"「破壊されても、心だけは折るな。」", pt:"Mesmo destruído, jamais deixe o coração se quebrar.", tag:"Juramento do Esquadrão"},
+  {jp:"「呼吸を止めるな、恐れても。」", pt:"Dica: manter a Respiração Constante custa 2 de fôlego por turno — mas dobra o dano de toda forma.", tag:"Dica de mesa"},
+  {jp:"「日輪刀は太陽の色を憶える。」", pt:"Curiosidade: a lâmina Nichirin muda de cor na primeira empunhadura. A cor é sorteada, nunca escolhida.", tag:"Curiosidade"},
+  {jp:"「藤の花の下に鬼は来ない。」", pt:"Dica: sob glicínias floridas nenhum demônio entra. Toda casa-refúgio recupera 5 de fôlego por descanso.", tag:"Dica de mesa"},
+  {jp:"「鴉は嘘をつかない。」", pt:"Curiosidade: os corvos kasugai são treinados por três anos antes de carregar uma ordem — e nunca erram o destinatário.", tag:"Curiosidade"},
+  {jp:"「一の型を極めよ。」", pt:"Dica: domine a Primeira Forma antes de subir. Ela nunca falha e custa apenas 1 de fôlego.", tag:"Dica de mesa"},
+  {jp:"「痣は寿命を食う。」", pt:"Aviso: acender a Marca dá +2 em tudo — e obriga a rolar 1d6 contra o colapso ao amanhecer.", tag:"Aviso do Mestre"},
+  {jp:"「鬼は首を斬られねば死なぬ。」", pt:"Regra: demônio só morre decapitado por nichirin ou queimado pelo sol. Qualquer outro dano se regenera.", tag:"Regra essencial"},
+  {jp:"「霞に迷えば、耳を澄ませ。」", pt:"Dica: na névoa, troque testes de Percepção por audição — a dificuldade cai de 14 para 12.", tag:"Dica de mesa"},
+  {jp:"「十二の月、十二の傷。」", pt:"Curiosidade: cada Lua carrega um número gravado no olho. Derrotar uma muda o mundo da campanha para sempre.", tag:"Curiosidade"},
+  {jp:"「刀を折る者は、心を折らぬ。」", pt:"Curiosidade: quebrar a lâmina não é vergonha — reforjá-la custa uma sessão inteira na Vila dos Ferreiros.", tag:"Curiosidade"},
+  {jp:"「夜は九つ、朝は一つ。」", pt:"Regra: uma caçada tem nove turnos de relógio. No nono, o sol nasce e o que ficou aberto vira consequência.", tag:"Regra essencial"},
+  {jp:"「絆は刃より鋭い。」", pt:"Dica: citar um vínculo em voz alta relança um teste, uma vez por sessão.", tag:"Dica de mesa"},
+  {jp:"「鬼だって、昔は人だった。」", pt:"Lembrete: todo demônio já foi humano. O mestre pode dar a cada um a última lembrança antes de morrer.", tag:"Para o Mestre"}
+];
+let tipI = Math.floor(Math.random() * dicas.length);
+const tipJP = document.getElementById("tip-jp"), tipPT = document.getElementById("tip-pt"), tipTag = document.getElementById("tip-tag");
+function showTip(step) {
+  tipI = (tipI + step + dicas.length) % dicas.length;
+  const d = dicas[tipI];
+  [tipJP, tipPT, tipTag].forEach(n => n.classList.remove("tip-fade"));
+  void tipJP.offsetWidth;
+  tipJP.textContent = d.jp; tipPT.textContent = "“" + d.pt + "”"; tipTag.textContent = d.tag;
+  [tipJP, tipPT, tipTag].forEach(n => n.classList.add("tip-fade"));
+}
+showTip(0);
+let tipTimer = setInterval(() => showTip(1), 12000);
+document.querySelectorAll("[data-tip]").forEach(b => b.addEventListener("click", () => {
+  clearInterval(tipTimer); showTip(Number(b.dataset.tip)); tipTimer = setInterval(() => showTip(1), 12000);
+}));
+
+/* ============================================================
+   Efeitos sonoros sintetizados (sem arquivos externos)
+   ============================================================ */
+let AC = null;
+/* o som acompanha o corte/sangue do clique — não há mais interruptor */
+const sndOn = true;
+function ctx() { if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === "suspended") AC.resume(); return AC; }
+function tone({f=440, f2=f, type="sine", dur=.2, gain=.06, delay=0}) {
+  const a = ctx(), t = a.currentTime + delay;
+  const o = a.createOscillator(), g = a.createGain();
+  o.type = type; o.frequency.setValueAtTime(f, t); o.frequency.exponentialRampToValueAtTime(Math.max(f2,1), t + dur);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(gain, t + .01);
+  g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+  o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+}
+function noise({dur=.25, gain=.05, hp=1200}) {
+  const a = ctx(), t = a.currentTime;
+  const buf = a.createBuffer(1, a.sampleRate * dur, a.sampleRate), ch = buf.getChannelData(0);
+  for (let i = 0; i < ch.length; i++) ch[i] = (Math.random() * 2 - 1) * (1 - i / ch.length);
+  const src = a.createBufferSource(); src.buffer = buf;
+  const f = a.createBiquadFilter(); f.type = "highpass"; f.frequency.value = hp;
+  const g = a.createGain(); g.gain.setValueAtTime(gain, t); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+  src.connect(f).connect(g).connect(a.destination); src.start(t);
+}
+function sfx(kind) {
+  if (!sndOn) return;
+  try {
+    if (kind === "hover") tone({f:1400, f2:2100, type:"triangle", dur:.07, gain:.02});
+    else if (kind === "click") { noise({dur:.22, gain:.05, hp:1800}); tone({f:900, f2:180, type:"sawtooth", dur:.22, gain:.03}); }
+    else if (kind === "open") tone({f:520, f2:820, type:"sine", dur:.28, gain:.04});
+    else if (kind === "gong") { tone({f:150, f2:70, type:"sine", dur:1.6, gain:.09}); tone({f:301, f2:145, type:"sine", dur:1.2, gain:.04, delay:.02}); }
+    else if (kind === "slash") { noise({dur:.32, gain:.07, hp:900}); tone({f:1600, f2:120, type:"sawtooth", dur:.3, gain:.04}); }
+  } catch (_) {}
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("a,button,[role='button']")) sfx("click");
+}, {passive:true});
+
+/* ============================================================
+   Interações lúdicas: corte na tela, sangue no clique, chuva de pétalas
+   ============================================================ */
+function slashAt(x, y) {
+  const len = rnd(160, 320), a = rnd(-40, -12);
+  const n = el(`<span class="slash-fx" style="left:${x - len/2}px;top:${y}px;width:${len}px;--a:${a}deg"></span>`);
+  document.body.appendChild(n);
+  setTimeout(() => n.remove(), 520);
+}
+function bloodAt(x, y) {
+  const layer = document.getElementById("blood");
+  const frag = document.createDocumentFragment();
+  const px = (v) => (v / innerWidth * 100).toFixed(2) + "%";
+  const py = (v) => (v / innerHeight * 100).toFixed(2) + "%";
+  const add = (cls, css) => { const n = document.createElement("div"); n.className = cls; n.style.cssText = css; frag.appendChild(n); };
+  add("splat", `--x:${px(x)};--y:${py(y)};--s:${rnd(28,54).toFixed(0)}px;--ar:${rnd(.7,1.3).toFixed(2)};--r:${rnd(0,360)}deg;--br:${blob()};--d:0s`);
+  for (let i = 0; i < 6; i++) {
+    const ang = rnd(0, Math.PI * 2), r = Math.pow(Math.random(), .6) * rnd(30, 120);
+    add("speck", `--x:${px(x + Math.cos(ang) * r)};--y:${py(y + Math.sin(ang) * r)};--s:${rnd(2,8).toFixed(1)}px;` +
+      `--ar:${rnd(.6,2.2).toFixed(2)};--r:${rnd(0,360)}deg;--br:${blob()};--d:${rnd(.02,.14).toFixed(2)}s`);
+  }
+  for (let i = 0; i < 3; i++)
+    add("splat drop", `--x:${px(x + rnd(-70,70))};--y:${py(y + rnd(-50,50))};--s:${rnd(14,30).toFixed(0)}px;` +
+      `--ar:${rnd(.55,.9).toFixed(2)};--r:${rnd(0,360)}deg;--d:${rnd(.02,.2).toFixed(2)}s`);
+  layer.appendChild(frag);
+  setTimeout(() => { [...layer.children].slice(0, 14).forEach(n => n.remove()); }, 2200);
+}
+document.addEventListener("pointerdown", e => {
+  if (document.getElementById("intro")) return;
+  if (e.target.closest("a,button,input,[role='button']")) return;
+  slashAt(e.clientX, e.clientY); bloodAt(e.clientX, e.clientY); sfx("slash");
+});
+
+function petalRain(n = 60) {
+  for (let i = 0; i < n; i++) document.body.appendChild((() => {
+    const p = el(`<span class="rain-petal" style="left:${rnd(0,100).toFixed(1)}%;--s:${rnd(9,20).toFixed(0)}px;` +
+      `--dx:${rnd(-200,200).toFixed(0)}px;--t:${rnd(5,11).toFixed(1)}s;animation-delay:${rnd(0,2.5).toFixed(2)}s"></span>`);
+    setTimeout(() => p.remove(), 14000);
+    return p;
+  })());
+}
+/* segredo: sete toques na logo acendem a Dança do Deus do Fogo */
+let logoHits = 0;
+const hdLogo = document.querySelector(".hd-logo");
+if (hdLogo) hdLogo.addEventListener("click", () => {
+  sfx("gong");
+  if (++logoHits >= 7) {
+    logoHits = 0; petalRain(70); document.documentElement.style.transition = "filter 1.2s";
+    document.documentElement.style.filter = "saturate(1.35) contrast(1.06)";
+    setTimeout(() => { document.documentElement.style.filter = ""; }, 6000);
+  }
+});
+
+/* ============================================================
+   Acessibilidade: tema claro/escuro e escala de fonte
+   ============================================================ */
+(() => {
+  const root = document.documentElement;
+  const tBtn = document.getElementById("a11y-theme");
+  const applyTheme = (t) => {
+    root.dataset.theme = t;
+    localStorage.setItem("kny-theme", t);
+    tBtn.querySelector("span").textContent = t === "light" ? "日" : "月";
+    tBtn.setAttribute("aria-label", t === "light" ? "Ativar tema escuro" : "Ativar tema claro");
+  };
+  applyTheme(localStorage.getItem("kny-theme") === "light" ? "light" : "dark");
+  tBtn.addEventListener("click", () => applyTheme(root.dataset.theme === "light" ? "dark" : "light"));
+
+  let fs = parseFloat(localStorage.getItem("kny-fs") || "1");
+  const applyFs = () => { root.style.setProperty("--fs", fs.toFixed(2)); localStorage.setItem("kny-fs", String(fs)); };
+  applyFs();
+  const step = (d) => { fs = Math.min(1.4, Math.max(.85, +(fs + d).toFixed(2))); applyFs(); };
+  document.getElementById("a11y-plus").addEventListener("click", () => step(.08));
+  document.getElementById("a11y-minus").addEventListener("click", () => step(-.08));
+})();
+
+/* ============================================================
+   Desempenho: pausa animações fora da tela e em abas inativas
+   ============================================================ */
+(() => {
+  const heavy = [...document.querySelectorAll("#sky,.war-band,.lanterns,.marquee,.marquee-rev,.cloudx")];
+  const pauser = new IntersectionObserver((es) => es.forEach(e => {
+    e.target.style.animationPlayState = e.isIntersecting ? "" : "paused";
+    e.target.querySelectorAll?.("*").forEach?.(n => { n.style.animationPlayState = e.isIntersecting ? "" : "paused"; });
+  }), {rootMargin:"200px"});
+  heavy.forEach(n => pauser.observe(n));
+})();
+
+</script>
+</body>
+</html>
