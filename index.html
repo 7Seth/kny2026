@@ -13,10 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Yuji+Syuku&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap" rel="stylesheet" />
 <style>
-/* ============================================================
-   黎明の刃 — Lâmina da Aurora · arquivo único
-   Design: sumi-e, laca negra, sangue e ouro velho (Japão antigo)
-   ============================================================ */
+
 :root{
   --void:#0a0808; --ink:#120f0f; --sumi:#1b1717;
   --blood:#7d1c1c; --crimson:#c0392b; --bone:#f2ece1;
@@ -31,7 +28,7 @@ body{
   background:var(--void);color:var(--bone);font-family:var(--sans);
   overflow-x:hidden;line-height:1.6;
 }
-/* barra de rolagem temática (webkit) */
+
 ::-webkit-scrollbar{width:12px;height:12px}
 ::-webkit-scrollbar-track{background:var(--ink);box-shadow:inset 0 0 0 1px var(--border)}
 ::-webkit-scrollbar-thumb{
@@ -49,13 +46,13 @@ a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
-/* grão washi */
+
 body::before{
   content:"";position:fixed;inset:0;pointer-events:none;z-index:70;opacity:.09;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.5'/></svg>");
 }
 
-/* ---------- padrões tradicionais ---------- */
+
 .seigaiha{background-image:radial-gradient(circle at 50% 100%,transparent 8px,color-mix(in srgb,var(--bone) 9%,transparent) 9px,transparent 10px,transparent 14px,color-mix(in srgb,var(--bone) 7%,transparent) 15px,transparent 16px);background-size:44px 22px}
 .asanoha{background-image:linear-gradient(60deg,color-mix(in srgb,var(--crimson) 13%,transparent) 1px,transparent 1px),linear-gradient(-60deg,color-mix(in srgb,var(--crimson) 13%,transparent) 1px,transparent 1px),linear-gradient(0deg,color-mix(in srgb,var(--crimson) 10%,transparent) 1px,transparent 1px);background-size:38px 66px}
 .kikko{background-image:linear-gradient(30deg,color-mix(in srgb,var(--gold) 10%,transparent) 1px,transparent 1px),linear-gradient(150deg,color-mix(in srgb,var(--gold) 10%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--gold) 8%,transparent) 1px,transparent 1px);background-size:34px 58px}
@@ -69,7 +66,7 @@ body::before{
 }
 @keyframes lanternFloat{to{background-position:0 -22px,0 14px,0 -16px,0 10px}}
 
-/* ---------- utilidades ---------- */
+
 .wrap{position:relative;margin:0 auto;max-width:80rem;padding:7rem 1.5rem}
 .slab{position:relative;overflow:hidden;isolation:isolate}
 .abs{position:absolute;inset:0}
@@ -88,12 +85,11 @@ body::before{
 .clip-blade{clip-path:polygon(0 0,100% 0,100% calc(100% - 5vw),55% 100%,0 calc(100% - 1.5vw))}
 .clip-torn{clip-path:polygon(0 2.2vw,12% .4vw,26% 2.6vw,41% .2vw,58% 2.4vw,74% .5vw,88% 2.8vw,100% .6vw,100% calc(100% - 1.4vw),86% 100%,70% calc(100% - 1.8vw),52% calc(100% - .3vw),34% calc(100% - 2vw),16% calc(100% - .4vw),0 calc(100% - 2.2vw))}
 
-/* reveal */
+
 .rv{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.9,.2,1)}
 .rv.on{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 
-/* ---------- introdução (cortina que a lâmina parte ao meio) ---------- */
 #intro{position:fixed;inset:0;z-index:90;cursor:pointer}
 .intro-half{position:absolute;left:-4%;right:-4%;height:52%;overflow:hidden;
   background:radial-gradient(120% 180% at 50% 60%,#1d0407,var(--void) 70%);
@@ -143,29 +139,28 @@ body::before{
 #intro.cut .intro-flash{animation:flashCut .5s cubic-bezier(.15,.9,.2,1) forwards}
 @keyframes flashCut{0%{opacity:0;transform:rotate(-5deg) scaleX(.2)}25%{opacity:1}60%{opacity:1;transform:rotate(-5deg) scaleX(1)}100%{opacity:0;transform:rotate(-5deg) scaleX(1) scaleY(3)}}
 
-/* ---------- sangue (manchas puramente em CSS) ---------- */
+
 #blood{position:fixed;inset:0;z-index:96;pointer-events:none;overflow:hidden}
-/* mancha base: massa irregular + satélites; o filtro "gooey" funde tudo
-   num contorno orgânico com bordas viscosas, como sangue de verdade */
+
 .splat{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:calc(var(--s)*var(--ar,1));
   transform:translate(-50%,-50%) rotate(var(--r)) scale(.12);opacity:0;
   /* pigmento chapado, sem brilho plástico: sangue absorve luz */
   background:radial-gradient(120% 120% at 42% 38%,#8b0e0b,#6d0806 62%,#3d0403);
   border-radius:var(--br);filter:drop-shadow(0 1px 2px rgba(0,0,0,.55));
   animation:splatIn .24s var(--d) cubic-bezier(.2,1.4,.35,1) forwards,splatOut .85s calc(var(--d) + .95s) ease forwards}
-/* lóbulos irregulares que invadem o corpo da mancha e quebram o círculo */
+
 .splat::before,.splat::after{content:"";position:absolute;background:inherit;border-radius:var(--br)}
 .splat::before{width:62%;height:54%;left:-22%;top:10%;
   border-radius:78% 22% 62% 38%/64% 48% 52% 36%;transform:rotate(-18deg)}
 .splat::after{width:44%;height:70%;right:-16%;bottom:-14%;
   border-radius:34% 66% 28% 72%/72% 24% 76% 28%;transform:rotate(14deg)}
-/* gota alongada com cauda fina (sangue arremessado pela lâmina) */
+
 .splat.drop{border-radius:56% 44% 42% 58%/74% 70% 30% 26%}
 .splat.drop::before{width:130%;height:14%;left:60%;top:42%;
   border-radius:0 100% 100% 0/0 60% 40% 0;transform:rotate(-4deg);
   background:linear-gradient(90deg,#6d0806,rgba(109,8,6,0))}
 .splat.drop::after{width:16%;height:16%;left:auto;right:-58%;bottom:34%;border-radius:50%;transform:none}
-/* arco de sangue: fio curvo, fino nas pontas, que acompanha o corte */
+
 .splat.arc{background:none;filter:none;border-radius:0;
   height:calc(var(--s)*.5);overflow:visible}
 .splat.arc::before{width:100%;height:100%;left:0;top:0;background:none;transform:none;
@@ -174,16 +169,16 @@ body::before{
   border-right:calc(var(--s)*.008) solid rgba(122,10,8,.2);border-top:0}
 .splat.arc::after{width:6%;height:15%;right:4%;bottom:-4%;border-radius:60% 40% 44% 56%/74% 66% 34% 26%;
   background:#7a0a08;transform:rotate(18deg)}
-/* borrão/arrasto na tela, mais seco nas bordas */
+
 .splat.smear{height:calc(var(--s)*.09);border-radius:60% 40% 50% 50%/50% 60% 40% 50%;
   background:linear-gradient(100deg,transparent,rgba(90,6,5,.75) 12%,#7a0a08 44%,rgba(60,4,3,.85) 80%,transparent)}
 .splat.smear::before{width:5%;height:220%;left:26%;top:-60%;border-radius:50%;opacity:.55;transform:none}
 .splat.smear::after{width:3%;height:170%;right:18%;bottom:-40%;border-radius:50%;opacity:.45;transform:none}
-/* névoa fina de sangue pulverizado */
+
 .splat.mist{background:radial-gradient(circle,rgba(109,8,6,.34),rgba(50,3,3,.16) 55%,transparent 72%);
   filter:blur(10px);border-radius:50%}
 .splat.mist::before,.splat.mist::after{display:none}
-/* poeira de gotículas minúsculas em volta das manchas grandes */
+
 .speck{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:calc(var(--s)*var(--ar,1));
   background:#6d0806;border-radius:var(--br);opacity:0;
   transform:translate(-50%,-50%) rotate(var(--r)) scale(.2);
@@ -201,7 +196,6 @@ body::before{
 @keyframes dripDown{to{height:var(--h)}}
 
 
-/* ---------- cabeçalho ---------- */
 header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;flex-direction:column;align-items:center;
   gap:.45rem;padding:.55rem 1.4rem .7rem;backdrop-filter:blur(8px);
   background:linear-gradient(180deg,color-mix(in srgb,var(--void) 90%,transparent),color-mix(in srgb,var(--void) 0%,transparent));border-bottom:1px solid transparent;transition:.4s}
@@ -217,14 +211,14 @@ header nav{display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem;font-si
 header nav a:hover{color:var(--bone)}
 @media(max-width:820px){header nav{display:none}.hd-logo{height:52px}}
 
-/* barra de progresso da leitura */
+
 #progress{position:fixed;top:0;left:0;height:2px;z-index:80;width:0;
   background:linear-gradient(90deg,var(--gold),var(--crimson));box-shadow:0 0 18px var(--crimson)}
 
-/* ---------- hero ---------- */
+
 .scene{position:relative;overflow:hidden;min-height:100svh}
 .layer{position:absolute;inset:-10%;will-change:transform;background-repeat:no-repeat;background-size:cover}
-/* ---------- céu: estrelas e nuvens com parallax ---------- */
+
 #sky{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
 .star{position:absolute;width:var(--s);height:var(--s);border-radius:50%;will-change:transform;
   background:radial-gradient(circle,#fff 0%,rgba(255,226,214,.75) 35%,color-mix(in srgb,var(--crimson) 25%,transparent) 60%,transparent 72%);
@@ -248,19 +242,19 @@ header nav a:hover{color:var(--bone)}
 .btn-ink:hover{border-color:var(--crimson);box-shadow:0 0 44px -14px var(--crimson)}
 .btn-ink:hover::before{transform:translateY(0)}
 
-/* faixa marquee (sem clip-path) */
+
 .band{position:relative;z-index:10;border-block:1px solid var(--border);background:var(--ink);padding:.85rem 0;overflow:hidden}
 .marquee{display:flex;gap:3rem;white-space:nowrap;animation:mv 38s linear infinite}
 .marquee-rev{display:flex;gap:3rem;white-space:nowrap;animation:mv 46s linear infinite reverse}
 @keyframes mv{to{transform:translateX(-50%)}}
-/* fita inclinada — sem clip-path, sem corte: só rotação e largura extra */
+
 .war-band{position:relative;z-index:60;width:108%;left:-4%;overflow:hidden;padding:1.05rem 0;margin:2.5rem 0;isolation:isolate;
   transform:rotate(-1.4deg);
   border-top:1px solid color-mix(in srgb,var(--gold) 45%,transparent);border-bottom:1px solid color-mix(in srgb,var(--crimson) 60%,transparent);
   background:linear-gradient(90deg,color-mix(in srgb,var(--void) 96%,transparent),rgba(140,30,30,.5),color-mix(in srgb,var(--void) 96%,transparent));
   box-shadow:0 0 70px -18px var(--crimson)}
 
-/* ---------- linha do tempo (história) ---------- */
+
 .rope{background-image:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 40%,transparent) 8%,color-mix(in srgb,var(--crimson) 45%,transparent) 92%,transparent)}
 .stamp{display:grid;place-items:center;width:2.5rem;height:2.5rem;font-family:var(--jp);font-size:1.1rem;color:color-mix(in srgb,var(--gold) 85%,transparent);
   border:1px solid color-mix(in srgb,var(--crimson) 70%,transparent);background:rgba(30,8,8,.9);box-shadow:0 0 34px -12px var(--crimson);
@@ -272,7 +266,7 @@ header nav a:hover{color:var(--bone)}
   .tl-item.r{margin-left:auto;padding-left:4rem}
 }
 
-/* ---------- grimório das respirações ---------- */
+
 .tech-row{position:relative;display:grid;grid-template-columns:3.2rem minmax(0,1fr) auto;align-items:center;gap:1rem;
   width:100%;padding:.9rem 1.2rem;text-align:left;border-top:1px solid color-mix(in srgb,var(--bone) 10%,transparent);
   clip-path:polygon(0 0,100% 0,calc(100% - 18px) 100%,0 100%);transition:background .45s,padding-left .45s}
@@ -281,7 +275,7 @@ header nav a:hover{color:var(--bone)}
 .tech-row:hover{background:color-mix(in srgb,var(--blood) 14%,transparent);padding-left:1.7rem}
 .tech-row:hover::before,.tech-row[aria-selected="true"]::before{transform:scaleY(1)}
 .tech-row[aria-selected="true"]{background:color-mix(in srgb,var(--blood) 22%,transparent);padding-left:1.7rem}
-/* painel com rolagem vertical automática */
+
 .pane-scroll{max-height:26rem;overflow-y:auto;padding-right:.9rem;
   scrollbar-color:var(--blood) transparent;scrollbar-width:thin;
   -webkit-mask-image:linear-gradient(180deg,transparent,#000 14px,#000 calc(100% - 14px),transparent);
@@ -290,14 +284,14 @@ header nav a:hover{color:var(--bone)}
 .pane-scroll::-webkit-scrollbar-track{background:color-mix(in srgb,var(--bone) 5%,transparent)}
 .pane-scroll::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gold),var(--crimson));border:0}
 
-/* ---------- kakejiku / juramento ---------- */
+
 .kake{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015)),color-mix(in srgb,var(--sumi) 70%,transparent);
   clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 22px),0 100%)}
 .kake::before,.kake::after{content:"";position:absolute;left:-6px;right:-6px;height:10px;
   background:linear-gradient(180deg,var(--blood),#2a0c0c);box-shadow:0 0 24px -6px var(--crimson)}
 .kake::before{top:0}.kake::after{bottom:22px}
 
-/* ---------- seletor de cards (pilares) ---------- */
+
 .pick{position:relative;width:100%;min-height:13rem;text-align:left;overflow:hidden;background:color-mix(in srgb,var(--sumi) 85%,transparent);
   clip-path:polygon(0 14px,14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%);
   transition:transform .4s cubic-bezier(.2,.9,.2,1),background .4s}
@@ -314,7 +308,6 @@ header nav a:hover{color:var(--bone)}
 .pick[aria-selected="true"] .pick-kanji{color:color-mix(in srgb,var(--crimson) 35%,transparent)}
 .divider-shime{background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 45%,transparent),color-mix(in srgb,var(--crimson) 55%,transparent),transparent)}
 
-/* ---------- mapa do território (lista acessível) ---------- */
 .map-tab{display:grid;grid-template-columns:2.6rem minmax(0,1fr);gap:.9rem;align-items:center;width:100%;
   padding:.9rem 1rem;text-align:left;border:1px solid var(--border);background:color-mix(in srgb,var(--sumi) 60%,transparent);transition:.35s}
 .map-tab:hover{border-color:color-mix(in srgb,var(--gold) 50%,transparent);background:color-mix(in srgb,var(--blood) 16%,transparent)}
@@ -323,13 +316,13 @@ header nav a:hover{color:var(--bone)}
 
 footer{position:relative;z-index:10;border-top:1px solid var(--border);background:var(--void);text-align:center;padding:3.5rem 1.5rem}
 
-/* grades */
+
 .grid2{display:grid;gap:1rem;grid-template-columns:repeat(2,minmax(0,1fr))}
 .cols{display:grid;gap:2.5rem}
 @media(min-width:1024px){.cols{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
   .cols.rev>.pane{order:-1}}
 
-/* ---------- esfera de sangue (lua/sol 3D) ---------- */
+
 .blood-orb{position:absolute;left:50%;top:30%;width:min(52vmin,430px);aspect-ratio:1;transform:translate(-50%,-50%);
   border-radius:50%;isolation:isolate;
   background:
@@ -356,14 +349,14 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 @keyframes orbHalo{to{opacity:.55;transform:translate(-50%,-50%) scale(1.08)}}
 @keyframes orbTurn{to{transform:rotate(360deg)}}
 
-/* ---------- divisória vertical (respirações) ---------- */
+
 .vdiv{width:2px;flex:none;align-self:stretch;
   background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 50%,transparent),color-mix(in srgb,var(--crimson) 60%,transparent),transparent);
   box-shadow:0 0 22px -6px var(--crimson)}
 .vdiv-wrap{display:flex;gap:1.5rem;align-items:stretch}
 @media(max-width:1023px){.vdiv{display:none}.vdiv-wrap{gap:0}}
 
-/* ---------- galeria (álbum de fotos coladas) ---------- */
+
 .album{display:grid;gap:2rem 1.6rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
 .photo{position:relative;display:block;background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 9%,transparent),color-mix(in srgb,var(--sumi) 90%,transparent));
   padding:.7rem .7rem 2.2rem;box-shadow:0 22px 46px -20px #000;
@@ -378,7 +371,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
   background:linear-gradient(135deg,color-mix(in srgb,var(--bone) 18%,transparent),color-mix(in srgb,var(--void) 90%,transparent));
   clip-path:polygon(100% 0,100% 100%,0 100%)}
 
-/* ---------- ranking ---------- */
+
 .rank{display:grid;gap:.5rem}
 .rank-row{display:grid;grid-template-columns:3rem minmax(0,1fr) auto;align-items:center;gap:1rem;
   padding:.75rem 1rem;background:color-mix(in srgb,var(--sumi) 70%,transparent);border:1px solid var(--border);
@@ -395,7 +388,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 .bar{height:3px;background:color-mix(in srgb,var(--bone) 10%,transparent);margin-top:.4rem;overflow:hidden}
 .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--crimson))}
 
-/* ---------- missões diárias (ofuda) ---------- */
+
 .mission{position:relative;text-align:left;padding:1.6rem 1.2rem 1.6rem;background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 7%,transparent),color-mix(in srgb,var(--sumi) 90%,transparent));
   clip-path:polygon(0 16px,50% 0,100% 16px,100% 100%,50% calc(100% - 12px),0 100%);
   border-top:1px solid color-mix(in srgb,var(--gold) 25%,transparent);transition:.45s}
@@ -408,7 +401,6 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 .mission[data-done="true"] .m-seal{background:var(--crimson);color:var(--bone)}
 .missions-grid{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
 
-/* ---------- ícones do rodapé ---------- */
 .ficons{display:flex;justify-content:center;gap:1rem;margin-top:1.8rem}
 .ficon{position:relative;display:grid;place-items:center;width:3rem;height:3rem;
   border:1px solid var(--border);background:color-mix(in srgb,var(--sumi) 80%,transparent);color:color-mix(in srgb,var(--bone) 70%,transparent);
@@ -424,7 +416,6 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
-/* ---------- carrossel do território (roda infinita) ---------- */
 .carousel{max-width:60rem;margin-inline:auto}
 .car-stage{display:flex;align-items:center;gap:.8rem}
 .car-view{flex:1;min-width:0;overflow:hidden}
@@ -464,7 +455,6 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
   .car-dot{padding:.45rem .7rem}
 }
 
-/* ============ botões: sangue preenchendo dos dois lados ============ */
 .btn-ink::before,.btn-ink::after{content:"";position:absolute;top:0;bottom:0;width:52%;z-index:-1;
   background:linear-gradient(115deg,#2b0202,#5d0605 22%,#8d0f0c 48%,#c0392b 76%,#ff6a3d 100%);
   box-shadow:inset 0 0 30px rgba(0,0,0,.55);
@@ -482,7 +472,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 .car-arrow::after{right:0;transform-origin:bottom;transition-delay:.08s}
 .car-arrow:hover::before,.car-arrow:hover::after{transform:scaleY(1)}
 
-/* ============ linha do tempo: trilho vertical visível ============ */
+
 #tl .rope{width:3px!important;border-radius:3px;
   background-image:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 75%,transparent) 6%,color-mix(in srgb,var(--crimson) 90%,transparent) 55%,color-mix(in srgb,var(--gold) 70%,transparent) 94%,transparent);
   box-shadow:0 0 22px color-mix(in srgb,var(--crimson) 55%,transparent),0 0 60px color-mix(in srgb,var(--crimson) 25%,transparent)}
@@ -494,13 +484,13 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 .tl-item .stamp{transition:transform .45s,box-shadow .45s,color .45s}
 .tl-item:hover .stamp{transform:scale(1.12) rotate(-4deg);color:#ffd9a8;box-shadow:0 0 40px -6px var(--crimson)}
 
-/* ============ nuvens do hero (mais densas e visíveis) ============ */
+
 #sky{z-index:3}
 .cloud{filter:blur(26px);mix-blend-mode:screen;animation:cloudBreath 14s ease-in-out infinite alternate}
 .cloud.dark{mix-blend-mode:normal;filter:blur(34px)}
 @keyframes cloudBreath{from{opacity:.55}to{opacity:1}}
 
-/* ============ guia dos sistemas ============ */
+
 .guide-grid{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))}
 .gcard{position:relative;overflow:hidden;padding:1.6rem 1.4rem 1.7rem;text-align:left;
   background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 6%,transparent),color-mix(in srgb,var(--sumi) 92%,transparent));
@@ -516,10 +506,10 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
   letter-spacing:.24em;text-transform:uppercase;color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);
   background:color-mix(in srgb,var(--gold) 7%,transparent)}
 
-/* ============ grade ampla de cards (bestiário) ============ */
+
 .grid-cards{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}
 
-/* ============ catálogo de armas ============ */
+
 .weapons{display:grid;gap:1.6rem;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr))}
 .wcard{position:relative;overflow:hidden;background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 5%,transparent),color-mix(in srgb,var(--ink) 95%,transparent));
   clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));
@@ -541,10 +531,10 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
   background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg)}
 .wcard:hover .wglint{animation:glint .9s ease forwards}
 @keyframes glint{0%{opacity:.9;left:-60%}100%{opacity:0;left:120%}}
-/* ============ contorno orgânico do sangue (gooey) ============ */
+
 #blood{filter:url(#goo) drop-shadow(0 2px 3px rgba(0,0,0,.6))}
 
-/* ============ tela inicial: mais Kimetsu ============ */
+
 .intro-torii{position:absolute;left:50%;bottom:-2%;width:min(78vmin,660px);translate:-50% 0;opacity:.5;
   filter:drop-shadow(0 0 40px color-mix(in srgb,var(--crimson) 50%,transparent))}
 .intro-sun{position:absolute;left:50%;top:44%;width:min(64vmin,520px);aspect-ratio:1;translate:-50% -50%;border-radius:50%;
@@ -577,7 +567,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 
 @keyframes hanaSway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
 
-/* ============ hero: montanhas e torii feitos em código ============ */
+
 .torii{position:absolute;bottom:var(--tb,20%);width:var(--tw,320px);aspect-ratio:1.25;opacity:var(--to,.55);
   filter:drop-shadow(0 0 26px color-mix(in srgb,var(--crimson) 45%,transparent))}
 .torii svg{width:100%;height:100%}
@@ -588,7 +578,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
   background:var(--void);
   clip-path:polygon(50% 0,64% 22%,56% 22%,72% 46%,60% 46%,80% 74%,54% 74%,54% 100%,46% 100%,46% 74%,20% 74%,40% 46%,28% 46%,44% 22%,36% 22%)}
 
-/* ============ modal / ficha expandida ============ */
+
 #modal{position:fixed;inset:0;z-index:95;display:none;place-items:center;padding:1.2rem}
 #modal.open{display:grid;animation:up .35s ease}
 #modal .veil{position:absolute;inset:0;background:rgba(4,3,3,.86);backdrop-filter:blur(7px)}
@@ -621,7 +611,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
   opacity:0;transform:translateY(-6px);transition:.35s;pointer-events:none}
 .photo:hover .hint-open,.wcard:hover .hint-open,.gtopic:hover .hint-open{opacity:1;transform:none}
 
-/* ============ guia: códex em livro ============ */
+
 .codex{display:grid;gap:2rem;margin-top:3rem}
 @media(min-width:960px){.codex{grid-template-columns:15rem minmax(0,1fr)}}
 .codex-index{align-self:start;position:sticky;top:8.5rem;display:grid;gap:.3rem;
@@ -662,7 +652,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 .gtable th{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:color-mix(in srgb,var(--gold) 80%,transparent)}
 .gtable td:first-child{font-family:var(--jp);color:var(--bone)}
 
-/* ============ caixa de dicas rotativas ============ */
+
 .tips{position:relative;max-width:52rem;margin-inline:auto;padding:2.4rem 2rem 2rem;text-align:center;
   background:linear-gradient(180deg,color-mix(in srgb,var(--bone) 5%,transparent),color-mix(in srgb,var(--ink) 90%,transparent));
   clip-path:polygon(0 22px,22px 0,calc(100% - 22px) 0,100% 22px,100% calc(100% - 22px),calc(100% - 22px) 100%,22px 100%,0 calc(100% - 22px));
@@ -680,7 +670,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
   border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);color:color-mix(in srgb,var(--bone) 65%,transparent);transition:.35s}
 .tip-btn:hover{background:color-mix(in srgb,var(--blood) 30%,transparent);border-color:var(--crimson);color:var(--bone)}
 
-/* ============ som / interações ============ */
+
 .snd{position:fixed;right:1rem;bottom:1rem;z-index:75;display:flex;align-items:center;gap:.5rem;padding:.5rem .8rem;
   font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;background:color-mix(in srgb,var(--void) 85%,transparent);
   border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);color:color-mix(in srgb,var(--bone) 70%,transparent);transition:.35s;
@@ -696,7 +686,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 .rain-petal{position:fixed;top:-5vh;z-index:73;pointer-events:none;width:var(--s);height:calc(var(--s)*.7);
   background:linear-gradient(140deg,#ffd9e3,#e8788f 55%,#a33f56);border-radius:100% 0 100% 0;
   animation:petalFall var(--t) linear forwards}
-/* ============ nuvens volumétricas em código ============ */
+
 .cloudx{position:absolute;pointer-events:none;animation:cloudBreathe 22s ease-in-out infinite alternate;
   filter:drop-shadow(0 10px 26px rgba(0,0,0,.5))}
 .cloudx i{position:absolute;display:block;
@@ -705,23 +695,23 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 .cloudx::after{content:"";position:absolute;left:2%;right:2%;bottom:-6%;height:44%;
   background:radial-gradient(50% 100% at 50% 100%,color-mix(in srgb,var(--crimson) 22%,transparent),transparent 72%);filter:blur(14px)}
 @keyframes cloudBreathe{from{transform:scale(1)}to{transform:scale(1.06) translateY(-8px)}}
-/* ============ ajustes finais ============ */
 
-/* setas do carrossel: ícone sempre acima do feixe de sangue */
+
+
 .car-arrow{isolation:isolate}
 .car-arrow::before,.car-arrow::after{z-index:-1}
 .car-arrow span{position:relative;z-index:3;color:currentColor;mix-blend-mode:normal}
 .car-arrow:hover span,.car-arrow:focus-visible span{color:#fff6f2;text-shadow:0 1px 3px rgba(0,0,0,.55)}
 
-/* títulos do códex sem borrão */
+
 .gchapter-h h3,.cx-link,.cx-link .k{text-shadow:none;filter:none}
 
-/* portão da section de dicas: laca preta com contorno esbranquiçado */
+
 .tips-torii{filter:drop-shadow(0 12px 30px color-mix(in srgb,var(--void) 70%,transparent))}
 .tips-torii svg g{fill:color-mix(in srgb,var(--void) 92%,transparent);
   stroke:color-mix(in srgb,var(--bone) 55%,transparent);stroke-width:1.2}
 
-/* colunas verticais de kanji decorativo */
+
 .kanji-col{position:absolute;top:8%;display:block;
   font-family:var(--jp);writing-mode:vertical-rl;text-orientation:upright;
   font-size:clamp(1.1rem,2.4vw,1.9rem);letter-spacing:.35em;line-height:1;pointer-events:none;
@@ -731,7 +721,6 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
 .kanji-col.r{right:2.2vw;color:color-mix(in srgb,var(--crimson) 38%,transparent)}
 @media(max-width:900px){.kanji-col{display:none}}
 
-/* ============ acessibilidade: barra de tema e fonte ============ */
 .a11y{position:fixed;right:1rem;bottom:1rem;z-index:75;display:flex;align-items:center;gap:.4rem;
   padding:.4rem .5rem;background:color-mix(in srgb,var(--void) 88%,transparent);
   border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);
@@ -743,7 +732,6 @@ footer{position:relative;z-index:10;border-top:1px solid var(--border);backgroun
   background:color-mix(in srgb,var(--blood) 30%,transparent)}
 @media(max-width:520px){.a11y{gap:.3rem;padding:.3rem}.a11y button{min-width:2.4rem;min-height:2.4rem;font-size:.7rem}}
 
-/* tema claro (washi ao sol) */
 html[data-theme="light"]{
   --void:#efe6d6; --ink:#e4d9c5; --sumi:#d9ccb5;
   --bone:#1d1616; --blood:#8c2020; --crimson:#af3025; --gold:#7d5c16; --fuji:#5b3f93;
@@ -754,10 +742,8 @@ html[data-theme="light"] .abs img,html[data-theme="light"] .sart img{filter:cont
 html[data-theme="light"] #blood{opacity:.85}
 html[data-theme="light"] .star{background:radial-gradient(circle,color-mix(in srgb,var(--gold) 90%,transparent),transparent 72%)}
 
-/* escala de fonte acessível */
 html{font-size:calc(100% * var(--fs,1))}
 
-/* ============ desempenho ============ */
 .cloudx i{filter:blur(8px)!important}
 .cloudx{filter:none}
 .cloudx::after{filter:blur(10px)}
@@ -767,12 +753,57 @@ img{content-visibility:auto}
 #blood:empty{display:none}
 .war-band,.band,.tips,.photo,.mission{contain:paint}
 .layer{will-change:auto}
+
+:root{--side-w:min(36rem,40vw)}
+#modal{position:fixed;inset:0 auto 0 0;width:var(--side-w);z-index:95;display:block;padding:0;
+  transform:translateX(-104%);transition:transform .55s cubic-bezier(.2,.9,.2,1);pointer-events:none}
+#modal.open{display:block;transform:none;pointer-events:auto;animation:none}
+#modal .veil{display:none}
+#modal .sheet{width:100%;height:100%;max-height:none;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 26px),calc(100% - 26px) 100%,0 100%);
+  box-shadow:30px 0 80px -30px #000,1px 0 0 0 color-mix(in srgb,var(--gold) 40%,transparent)}
+#modal .sheet.swap{animation:sheetIn .45s cubic-bezier(.2,.9,.2,1)}
+body{transition:padding-left .55s cubic-bezier(.2,.9,.2,1)}
+header{transition:left .55s cubic-bezier(.2,.9,.2,1),background .35s,border-color .35s}
+@media(min-width:900px){
+  body.side-open{padding-left:var(--side-w)}
+  body.side-open header{left:var(--side-w)}
+}
+@media(max-width:899px){#modal{width:100%}}
+
+body{transition:none}
+header{transition:background .35s,border-color .35s}
+#modal .sheet .sart{height:clamp(11rem,28vh,16rem)}
+#modal .sheet .sbody{padding:clamp(1.2rem,2.4vw,2rem) clamp(1.2rem,2.6vw,2.2rem) 3rem}
+#modal .sheet .sbody img{max-width:100%;height:auto}
+#modal .sheet .sbody p{overflow-wrap:anywhere}
+@media(min-width:900px){
+  body.side-open .wrap{padding-left:clamp(1rem,2.5vw,2.5rem);padding-right:clamp(1rem,2.5vw,2.5rem)}
+  body.side-open header nav{gap:.9rem;font-size:.64rem;letter-spacing:.2em}
+  body.side-open .codex{grid-template-columns:minmax(0,1fr)}
+  body.side-open .codex-index{position:static;grid-auto-flow:column;grid-auto-columns:max-content;overflow-x:auto;
+    border-left:0;border-top:1px solid color-mix(in srgb,var(--gold) 28%,transparent);padding:1rem 0 0}
+}
+
+header{backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
+header.solid{background:color-mix(in srgb,var(--void) 96%,transparent)}
+.cloud,.cloudx,.orb-halo,.blood-orb,.layer{will-change:transform}
+.slab{content-visibility:auto;contain-intrinsic-size:auto 1200px}
+.fx-off,.fx-off *{animation-play-state:paused !important}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;animation-iteration-count:1 !important}}
+
+
+.dev-btn{width:auto;min-width:3rem;padding:0 .8rem;transition:.45s cubic-bezier(.2,.9,.2,1)}
+.dev-btn .dev-name{display:none;font-size:.9rem;letter-spacing:.14em;color:var(--gold);white-space:nowrap}
+.dev-btn.named svg{display:none}
+.dev-btn.named .dev-name{display:inline;animation:sheetIn .45s cubic-bezier(.2,.9,.2,1)}
+.dev-btn.named{border-color:var(--crimson);padding:0 1.2rem}
 </style>
 
 </head>
 <body>
 
-<!-- ============ introdução interativa ============ -->
+
 <div id="intro" role="button" tabindex="0" aria-label="Clique para entrar no compêndio">
   <!-- duas metades idênticas: a lâmina parte a tela ao meio e elas se afastam -->
   <div class="intro-half top" aria-hidden="true">
@@ -846,13 +877,13 @@ img{content-visibility:auto}
   <span class="intro-flash" aria-hidden="true"></span>
 </div>
 
-<!-- camada das manchas de sangue (gerada por script, desenhada só com CSS) -->
+
 <div id="blood" aria-hidden="true"></div>
 
 <div id="progress"></div>
 
 <header id="hd">
-  <!-- espaço reservado para a logo, centralizado acima dos botões -->
+
   <a href="#hero" class="hd-logo" aria-label="黎明の刃 — Lâmina da Aurora">
     <img src="/__l5e/assets-v1/4be29c6a-daf0-497d-8d04-90d0b9d11219/kny-logo.png" alt="Logo Lâmina da Aurora"
          onerror="this.outerHTML='&lt;span class=\'ph\'&gt;LOGO&lt;/span&gt;'" />
@@ -869,7 +900,7 @@ img{content-visibility:auto}
 </header>
 
 <main>
-<!-- ============ HERO ============ -->
+
 <section id="hero" class="scene">
   <div class="layer" data-speed=".05" style="background:radial-gradient(120% 80% at 50% 110%,#1d0407,#0a0808)"></div>
   <!-- imagens de referência do anime como fundo do hero -->
@@ -900,7 +931,6 @@ img{content-visibility:auto}
   </div>
 </section>
 
-<!-- faixa das respirações — mesma fita vermelha da faixa de guerra -->
 <div class="war-band">
   <div class="marquee jp" style="font-size:1.05rem;letter-spacing:.35em;color:color-mix(in srgb,var(--bone) 80%,transparent)">
     <span>水の呼吸 · Água ・ 炎の呼吸 · Chamas ・ 雷の呼吸 · Trovão ・ 風の呼吸 · Vento ・ 岩の呼吸 · Pedra ・ 霞の呼吸 · Névoa ・</span>
@@ -908,8 +938,6 @@ img{content-visibility:auto}
   </div>
 </div>
 
-
-<!-- ============ GUIA DOS SISTEMAS — códex em livro ============ -->
 <section id="guia" class="slab" style="background:var(--void);z-index:10">
   <div class="abs" style="background:url('/img/kny-wisteria.jpg') center/cover;opacity:.12;filter:grayscale(.55)" aria-hidden="true"></div>
   <div class="abs asanoha" style="opacity:.35" aria-hidden="true"></div>
@@ -937,7 +965,6 @@ img{content-visibility:auto}
   </div>
 </section>
 
-<!-- ============ HISTÓRIA (linha do tempo) ============ -->
 <section id="historia" class="slab" style="background:var(--ink);z-index:10">
   <div class="abs" style="background:url('/img/kny-forge.jpg') center/cover;opacity:.18;filter:grayscale(.5) contrast(1.1)" aria-hidden="true"></div>
   <div class="abs seigaiha" style="opacity:.25" aria-hidden="true"></div>
@@ -959,7 +986,6 @@ img{content-visibility:auto}
   </div>
 </section>
 
-<!-- ============ RESPIRAÇÕES (grimório com painel rolável) ============ -->
 <section id="respiracoes" class="slab" style="background:var(--void);z-index:10">
   <div class="abs asanoha" style="opacity:.4" aria-hidden="true"></div>
   <div class="abs" aria-hidden="true" style="background:radial-gradient(60% 50% at 85% 10%,rgba(139,107,192,.14),transparent 70%)"></div>
@@ -988,7 +1014,6 @@ img{content-visibility:auto}
   </div>
 </section>
 
-<!-- ============ DICAS DO ESQUADRÃO (frases rotativas) ============ -->
 <section class="slab" style="background:var(--ink);padding:5rem 0;overflow:hidden">
   <div class="abs kikko" style="opacity:.3" aria-hidden="true"></div>
   <div class="torii tips-torii" aria-hidden="true">
@@ -1018,7 +1043,6 @@ img{content-visibility:auto}
   </div>
 </section>
 
-<!-- ============ PILARES ============ -->
 <section id="bestiario" class="slab" style="background:var(--sumi);z-index:10">
   <div class="abs" style="background:url('/img/kny-demon.jpg') center/cover;opacity:.16;filter:grayscale(.4)" aria-hidden="true"></div>
   <div class="abs kikko" style="opacity:.35" aria-hidden="true"></div>
@@ -1044,7 +1068,6 @@ img{content-visibility:auto}
   </div>
 </section>
 
-<!-- faixa de guerra -->
 <div class="war-band">
   <div class="marquee-rev jp" style="font-size:1.05rem;letter-spacing:.35em;color:color-mix(in srgb,var(--bone) 80%,transparent)">
     <span>十二鬼月 · As Doze Luas ・ 上弦 · Luas Superiores ・ 下弦 · Luas Inferiores ・ 血鬼術 · Sangue Demoníaco ・</span>
@@ -1052,7 +1075,6 @@ img{content-visibility:auto}
   </div>
 </div>
 
-<!-- ============ GALERIA (álbum de fotos coladas) ============ -->
 <section id="galeria" class="slab" style="background:var(--void);z-index:10">
   <div class="abs" style="background:url('/img/kny-water.jpg') center/cover;opacity:.1;filter:grayscale(.6)" aria-hidden="true"></div>
   <div class="abs asanoha" style="opacity:.28" aria-hidden="true"></div>
@@ -1072,7 +1094,6 @@ img{content-visibility:auto}
   </div>
 </section>
 
-<!-- ============ RANKING ============ -->
 <section id="rank" class="slab" style="background:var(--sumi);z-index:10">
   <div class="abs kikko" style="opacity:.35" aria-hidden="true"></div>
   <div class="abs" style="background:url('/img/kny-slayer.jpg') center/cover;opacity:.12;filter:grayscale(.5)" aria-hidden="true"></div>
@@ -1100,7 +1121,6 @@ img{content-visibility:auto}
   </div>
 </section>
 
-<!-- ============ MISSÕES DIÁRIAS ============ -->
 <section id="missoes" class="slab" style="background:var(--ink);z-index:10">
   <div class="abs seigaiha" style="opacity:.25" aria-hidden="true"></div>
   <div class="abs lanterns" aria-hidden="true"></div>
@@ -1123,8 +1143,6 @@ img{content-visibility:auto}
   </div>
 </section>
 
-
-<!-- ============ CATÁLOGO DE ARMAS ============ -->
 <section id="armas" class="slab" style="background:var(--sumi);z-index:10">
   <div class="abs" style="background:url('/img/kny-forge.jpg') center/cover;opacity:.16;filter:grayscale(.5)" aria-hidden="true"></div>
   <div class="abs asanoha" style="opacity:.3" aria-hidden="true"></div>
@@ -1145,7 +1163,6 @@ img{content-visibility:auto}
   </div>
 </section>
 
-<!-- ============ MAPA DO TERRITÓRIO (final, acessível) ============ -->
 <section id="mundo" class="slab" style="background:var(--ink)">
   <div class="abs" style="background:url('/img/kny-mountain.jpg') center/cover;opacity:.22;filter:grayscale(.4) contrast(1.1)" aria-hidden="true"></div>
   <div class="abs seigaiha" style="opacity:.28" aria-hidden="true"></div>
@@ -1187,39 +1204,37 @@ img{content-visibility:auto}
   <div class="ink-rule" style="width:12rem;margin:1.5rem auto"></div>
 
   <div class="ficons">
-    <a class="ficon" href="https://discord.gg/lamina-da-aurora" target="_blank" rel="noopener noreferrer" title="Servidor principal do projeto no Discord" aria-label="Entrar no servidor do Discord">
+    <a class="ficon" href="https://discord.gg/" target="_blank" rel="noopener noreferrer" title="Servidor principal do projeto no Discord" aria-label="Entrar no servidor do Discord">
       <span class="tip">Servidor do Discord</span>
       <svg viewBox="0 0 24 24" role="img"><title>Discord</title><path d="M20.32 4.57A19.8 19.8 0 0 0 15.45 3l-.36.74a14.7 14.7 0 0 1 3.02 1.02 12.5 12.5 0 0 0-12.2 0A14.7 14.7 0 0 1 8.9 3.74L8.55 3A19.8 19.8 0 0 0 3.68 4.57C.9 8.72.1 12.84.5 16.9a19.7 19.7 0 0 0 5.99 3.02l.7-1.16a12.6 12.6 0 0 1-2-.96l.5-.4c3.44 1.6 7.2 1.6 10.62 0l.5.4a12.6 12.6 0 0 1-2 .96l.7 1.16a19.7 19.7 0 0 0 6-3.02c.44-4.7-.72-8.78-1.19-12.33ZM8.4 14.63c-1.14 0-2.08-1.05-2.08-2.34 0-1.29.92-2.34 2.08-2.34 1.17 0 2.1 1.06 2.08 2.34 0 1.29-.92 2.34-2.08 2.34Zm7.2 0c-1.14 0-2.08-1.05-2.08-2.34 0-1.29.92-2.34 2.08-2.34 1.17 0 2.1 1.06 2.08 2.34 0 1.29-.91 2.34-2.08 2.34Z"/></svg>
     </a>
-    <button type="button" class="ficon" title="@cursed7 no Discord" aria-label="Desenvolvedor: @cursed7 no Discord">
+    <button type="button" class="ficon dev-btn" id="dev-btn" aria-pressed="false" title="@cursed7 no Discord" aria-label="Desenvolvedor: @cursed7 no Discord">
       <span class="tip">@cursed7 no Discord</span>
       <svg viewBox="0 0 24 24" role="img"><title>@cursed7 no Discord</title><path d="M9.4 16.6 4.8 12l4.6-4.6-1.4-1.4L2 12l6 6 1.4-1.4Zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4Z"/></svg>
+      <span class="dev-name jp" aria-hidden="true">@cursed7</span>
     </button>
   </div>
 
   <p style="margin-top:1.6rem;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:color-mix(in srgb,var(--bone) 40%,transparent)">
-    Guia não oficial · inspirado em Kimetsu no Yaiba
+    Guia · Kimetsu no Yaiba
   </p>
 </footer>
 
-<!-- filtro que dá contorno orgânico às manchas de sangue -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
     <feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -11" result="g"/>
     <feBlend in="SourceGraphic" in2="g"/></filter>
 </defs></svg>
 
-<!-- ficha expandida (modal) -->
-<div id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+<aside id="modal" role="complementary" aria-label="Conteúdo selecionado" aria-hidden="true">
   <div class="veil" data-close></div>
   <article class="sheet">
     <button type="button" class="sheet-close" data-close aria-label="Fechar">✕</button>
     <div class="sart"><img id="m-img" alt="" /><div class="abs"></div><span class="sk jp" id="m-kanji"></span></div>
     <div class="sbody" id="m-body"></div>
   </article>
-</div>
+</aside>
 
-<!-- acessibilidade: tema e tamanho de fonte -->
 <div class="a11y" role="group" aria-label="Acessibilidade">
   <button type="button" id="a11y-theme" title="Alternar tema claro/escuro" aria-label="Alternar tema claro ou escuro"><span aria-hidden="true">月</span></button>
   <button type="button" id="a11y-minus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
@@ -1228,9 +1243,7 @@ img{content-visibility:auto}
 
 
 <script>
-/* ============================================================
-   Dados do compêndio
-   ============================================================ */
+
 const IMG = {
   mountain:"/img/kny-mountain.jpg", forge:"/img/kny-forge.jpg",
   wisteria:"/img/kny-wisteria.jpg", temple:"/img/kny-temple.jpg",
@@ -1303,9 +1316,7 @@ const mundo = [
    styles:["Descanso seguro","Cura e antídotos","Ordens do Corvo"]}
 ];
 
-/* ============================================================
-   Renderização
-   ============================================================ */
+
 const el = (h) => { const t = document.createElement("template"); t.innerHTML = h.trim(); return t.content.firstElementChild; };
 const tags = (list) => list.map(s => `<li class="tag">${s}</li>`).join("");
 
@@ -1337,7 +1348,6 @@ if (window.matchMedia("(min-width:860px)").matches) {
   });
 }
 
-/* --- painel genérico de conteúdo --- */
 function paneHTML(a, {scroll=false} = {}) {
   return `
     <div class="art-frame" style="height:15rem;position:relative">
@@ -1357,7 +1367,6 @@ function paneHTML(a, {scroll=false} = {}) {
     </div>`;
 }
 
-/* --- fábrica de seletores (lista + painel) --- */
 function makeSelector({items, list, pane, row, scroll=false}) {
   const listEl = document.getElementById(list), paneEl = document.getElementById(pane);
   const btns = items.map((it,i) => {
@@ -1378,7 +1387,6 @@ function makeSelector({items, list, pane, row, scroll=false}) {
   select(0);
 }
 
-/* cor elementar de cada respiração (kanji tingido pelo elemento) */
 const ELEM = {"水":"#3fa9f5","炎":"#ff6a3d","雷":"#f5d33f","風":"#7fe0a8","岩":"#c9a06a","霞":"#cdd6e0"};
 
 makeSelector({
@@ -1393,9 +1401,7 @@ makeSelector({
     </button>`
 });
 
-/* ============================================================
-   Guia dos sistemas — códex dividido em cadernos e capítulos
-   ============================================================ */
+
 const codex = [
   {kanji:"基", jp:"基本の巻", pt:"Caderno I · Fundamentos", el:"#c0392b", topicos:[
     {kanji:"呼",jp:"呼吸",pt:"Fôlego",el:"#3fa9f5",dice:"d10 + Fôlego",image:IMG.water,
@@ -1522,9 +1528,7 @@ cxIndex.querySelectorAll(".cx-link").forEach(b => b.addEventListener("click", ()
   cxIndex.querySelectorAll(".cx-link").forEach(o => o.setAttribute("aria-current", String(o === b)));
 }));
 
-/* ============================================================
-   Bestiário — oito fichas
-   ============================================================ */
+
 const bestiario = [
   {kanji:"鬼",jp:"下級の鬼",pt:"Demônio Comum",kana:"かきゅうのおに",tagline:"Fome sem memória",image:IMG.demon,
    description:"Humano devorado pela fome há pouco tempo. Regenera membros em segundos, mas não suporta o sol nem a lâmina Nichirin no pescoço. É a primeira caçada de todo recruta.",
@@ -1575,9 +1579,7 @@ makeSelector({
     </button>`
 });
 
-/* ============================================================
-   Catálogo de armas
-   ============================================================ */
+
 const armas = [
   {kanji:"刀",el:"#3fa9f5",jp:"日輪刀",name:"Katana Nichirin",title:"Lâmina padrão do Esquadrão",image:IMG.forge,
    text:"Curva, de fio único e 70 cm. Forjada com minério de escarlate colhido perto do sol; muda de cor ao ser empunhada e só ela decapita um demônio de forma definitiva.",
@@ -1623,7 +1625,6 @@ armas.forEach(w => {
     </article>`));
 });
 
-/* --- carrossel infinito do território (setas + botõezinhos abaixo) --- */
 (function mapCarousel() {
   const paneEl = document.getElementById("map-pane");
   const dotsEl = document.getElementById("map-list");
@@ -1663,7 +1664,6 @@ armas.forEach(w => {
 })();
 
 
-/* --- galeria (álbum) --- */
 const galeria = [
   {image:IMG.sky,     jp:"血の月",   pt:"A Lua de Sangue",       cap:"A noite em que o céu ficou vermelho sobre o monte."},
   {image:IMG.slayer,  jp:"抜刀",     pt:"Desembainhar",          cap:"O primeiro corte da lâmina Nichirin acesa."},
@@ -1686,7 +1686,6 @@ galeria.forEach(g => album.appendChild(el(`
     <span class="fold" aria-hidden="true"></span>
   </figure>`)));
 
-/* --- ranking --- */
 const ranking = [
   {jp:"炎",nome:"Kagenobu “Brasa”",resp:"Chamas",posto:"Kinoe 甲",abates:142},
   {jp:"水",nome:"Rin do Lago Frio",resp:"Água",posto:"Kinoe 甲",abates:131},
@@ -1718,7 +1717,7 @@ ranking.forEach((r,i) => rankEl.appendChild(el(`
     </span>
   </div>`)));
 
-/* --- missões diárias --- */
+
 const missoes = [
   {kanji:"巡",jp:"夜の巡回",pt:"Patrulha Noturna",desc:"Percorra três trilhas da montanha antes do canto do galo.",prem:"+1 posto de reputação"},
   {kanji:"血",jp:"鬼狩り",pt:"Caçar um Demônio Menor",desc:"Decapite um demônio sem usar formas derivadas.",prem:"2 doses de glicínia"},
@@ -1746,16 +1745,12 @@ missoes.forEach(m => {
 });
 
 
-/* ============================================================
-   Abertura: corte da lâmina, manchas de sangue e tela que se parte
-   ============================================================ */
 const intro = document.getElementById("intro");
 const bloodLayer = document.getElementById("blood");
 document.body.style.overflow = "hidden";
 
 const rnd = (a, b) => a + Math.random() * (b - a);
 
-/* manchas de sangue desenhadas apenas com CSS (formas irregulares aleatórias) */
 function blob() {
   const v = () => Math.round(rnd(8, 92));
   return `${v()}% ${v()}% ${v()}% ${v()}% / ${v()}% ${v()}% ${v()}% ${v()}%`;
@@ -1774,39 +1769,38 @@ function spillBlood() {
     }
   };
 
-  /* rasgo central: arrasto de sangue que acompanha o corte da lâmina */
   for (let i = 0; i < 4; i++) {
     add("splat smear", `--x:${rnd(12, 88)}%;--y:${rnd(45, 55)}%;--s:${rnd(180, 420)}px;` +
       `--r:${rnd(-10, 2)}deg;--br:${blob()};--d:${(i * 0.04).toFixed(2)}s`);
   }
-  /* arcos de sangue lançados pelo corte */
+ 
   for (let i = 0; i < 3; i++) {
     add("splat arc", `--x:${rnd(20, 80)}%;--y:${rnd(35, 65)}%;--s:${rnd(220, 460)}px;` +
       `--r:${rnd(-30, 20)}deg;--d:${rnd(.05, .3).toFixed(2)}s`);
   }
-  /* manchas grandes irregulares, cada uma com sua nuvem de gotículas */
+
   for (let i = 0; i < 7; i++) {
     const x = rnd(6, 94), y = rnd(10, 88), d = rnd(.02, .5);
     add("splat", `--x:${x}%;--y:${y}%;--s:${rnd(46, 118)}px;--ar:${rnd(.7, 1.25).toFixed(2)};` +
       `--r:${rnd(0, 360)}deg;--br:${blob()};--d:${d.toFixed(2)}s`);
     spray(x, y, 10, rnd(6, 13), d);
   }
-  /* gotas alongadas com cauda (sangue arremessado) */
+
   for (let i = 0; i < 12; i++) {
     add("splat drop", `--x:${rnd(4, 96)}%;--y:${rnd(6, 94)}%;--s:${rnd(16, 44)}px;--ar:${rnd(.55, .9).toFixed(2)};` +
       `--r:${rnd(0, 360)}deg;--d:${rnd(.03, .55).toFixed(2)}s`);
   }
-  /* névoa fina de sangue pulverizado */
+
   for (let i = 0; i < 5; i++) {
     add("splat mist", `--x:${rnd(10, 90)}%;--y:${rnd(15, 85)}%;--s:${rnd(140, 300)}px;` +
       `--r:0deg;--br:50%;--d:${rnd(.02, .3).toFixed(2)}s`);
   }
-  /* respingos médios e pequenos avulsos */
+ 
   for (let i = 0; i < 22; i++) {
     add("splat", `--x:${rnd(2, 98)}%;--y:${rnd(4, 96)}%;--s:${rnd(7, 34)}px;--ar:${rnd(.6, 1.6).toFixed(2)};` +
       `--r:${rnd(0, 360)}deg;--br:${blob()};--d:${rnd(.02, .6).toFixed(2)}s`);
   }
-  /* pingos escorrendo com a gota pesada na ponta */
+ 
   for (let i = 0; i < 6; i++) {
     add("drip", `--x:${rnd(6, 94)}%;--y:${rnd(28, 62)}%;--w:${rnd(3, 9)}px;` +
       `--h:${rnd(70, 280)}px;--d:${rnd(.1, .45).toFixed(2)}s`);
@@ -1820,8 +1814,8 @@ let entered = false;
 function enter() {
   if (entered) return;
   entered = true;
-  spillBlood();                       /* sangue jorra no corte */
-  intro.classList.add("cut");         /* a tela se parte a partir da marca */
+  spillBlood();                       
+  intro.classList.add("cut");         
   document.body.style.overflow = "";
   document.getElementById("hero").classList.add("opened");
   setTimeout(() => intro.classList.add("gone"), 1000);
@@ -1831,15 +1825,12 @@ intro.addEventListener("click", enter);
 intro.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); enter(); } });
 window.addEventListener("keydown", function once(e){ if (document.body.contains(intro) && e.key !== "Tab") { enter(); window.removeEventListener("keydown", once); } });
 
-/* reveal ao entrar na viewport */
+
 const io = new IntersectionObserver((es) => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
 }), {threshold:.15});
 document.querySelectorAll(".rv").forEach(n => io.observe(n));
 
-/* ============================================================
-   Céu do hero: estrelas que sobem e nuvens que se abrem
-   ============================================================ */
 const sky = document.getElementById("sky");
 const stars = [], clouds = [];
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1876,9 +1867,7 @@ for (let i = 0; i < CLOUD_N; i++) {
   clouds.push({ el: c, dir: left ? -1 : 1, sp: rnd(280, 720), rise: rnd(-70, 70) });
 }
 
-/* ============================================================
-   Parallax e progresso
-   ============================================================ */
+
 const layers = [...document.querySelectorAll("[data-speed]")];
 const sections = [...document.querySelectorAll("main > section, main > .band")];
 const hero = document.getElementById("hero");
@@ -1891,9 +1880,8 @@ function frame() {
   const ht = hero.getBoundingClientRect().top;
   if (ht > -vh) for (const l of layers) l.style.transform = `translate3d(0, ${ht * -parseFloat(l.dataset.speed) * 2}px, 0)`;
 
-  /* céu: estrelas sobem, nuvens se afastam para os lados abrindo o cenário */
   if (!reduce && ht > -vh) {
-    const k = Math.min(Math.max(-ht / vh, 0), 1);   /* 0 → 1 conforme rola o hero */
+    const k = Math.min(Math.max(-ht / vh, 0), 1);   
     for (const s of stars) s.el.style.transform = `translate3d(0, ${(-k * s.sp).toFixed(1)}px, 0)`;
     for (const c of clouds) {
       c.el.style.transform = `translate3d(${(c.dir * k * c.sp).toFixed(1)}px, ${(k * c.rise).toFixed(1)}px, 0) scale(${1 + k * .25})`;
@@ -1901,12 +1889,12 @@ function frame() {
     }
   }
 
-  /* cada seção sobe e clareia conforme entra na tela */
+
   for (const s of sections) {
     const r = s.getBoundingClientRect();
     if (r.bottom < -200 || r.top > vh + 200) continue;
-    const p = Math.min(Math.max(1 - r.top / vh, 0), 1);      /* 0 → 1 ao subir */
-    const out = Math.min(Math.max(-r.bottom / vh + 1, 0), 1); /* 0 → 1 ao sair  */
+    const p = Math.min(Math.max(1 - r.top / vh, 0), 1);      
+    const out = Math.min(Math.max(-r.bottom / vh + 1, 0), 1); 
     s.style.setProperty("--p", p.toFixed(3));
     s.style.transform = `translate3d(0, ${(1 - p) * 26 - out * 18}px, 0) scale(${1 - out * .04})`;
     s.style.opacity = String(1 - out * .5);
@@ -1922,9 +1910,7 @@ window.addEventListener("scroll", onScroll, {passive:true});
 window.addEventListener("resize", onScroll);
 frame();
 
-/* ============================================================
-   Brasas e pétalas da tela inicial
-   ============================================================ */
+
 document.querySelectorAll(".intro-half .inner").forEach(inner => {
   for (let i = 0; i < 14; i++) inner.appendChild(el(
     `<span class="ember" style="left:${rnd(2,98).toFixed(1)}%;--s:${rnd(2,6).toFixed(1)}px;` +
@@ -1934,9 +1920,19 @@ document.querySelectorAll(".intro-half .inner").forEach(inner => {
     `--dx:${rnd(-140,140).toFixed(0)}px;--t:${rnd(10,20).toFixed(1)}s;--dl:-${rnd(0,14).toFixed(1)}s"></span>`));
 });
 
-/* ============================================================
-   Ficha expandida (modal) — usada por todos os quadros do site
-   ============================================================ */
+
+
+(() => {
+  const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("fx-off", !e.isIntersecting)), {rootMargin:"200px"});
+  document.querySelectorAll("section, .war-band").forEach(n => io.observe(n));
+  document.addEventListener("visibilitychange", () => document.body.classList.toggle("fx-off", document.hidden));
+})();
+
+/* botão do desenvolvedor */
+(() => { const b = document.getElementById("dev-btn"); if (!b) return;
+  b.addEventListener("click", () => { const on = b.classList.toggle("named"); b.setAttribute("aria-pressed", String(on)); });
+})();
+
 const modal = document.getElementById("modal");
 const mImg = document.getElementById("m-img");
 const mKanji = document.getElementById("m-kanji");
@@ -1958,22 +1954,29 @@ function openSheet(d) {
     ${d.body || ""}
     ${d.myth ? `<p class="myth" style="margin-top:1.2rem">${d.myth}</p>` : ""}
     ${d.tags && d.tags.length ? `<ul style="list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem">${tags(d.tags)}</ul>` : ""}`;
+  const sh = modal.querySelector(".sheet");
+  sh.classList.remove("swap"); void sh.offsetWidth; sh.classList.add("swap");
+  sh.scrollTop = 0;
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
-  document.body.style.overflow = "hidden";
+  document.body.classList.add("side-open");
+  window.dispatchEvent(new Event("resize"));
+  if (window.innerWidth < 900) document.body.style.overflow = "hidden";
   requestAnimationFrame(() => modal.querySelector(".sheet-close").focus());
-  sfx("open");
+  sfx("blade");
 }
 function closeSheet() {
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden","true");
   document.body.style.overflow = "";
+  document.body.classList.remove("side-open");
+  sfx("blade"); window.dispatchEvent(new Event("resize"));
   if (lastFocus) lastFocus.focus();
 }
 modal.addEventListener("click", e => { if (e.target.hasAttribute("data-close")) closeSheet(); });
 window.addEventListener("keydown", e => { if (e.key === "Escape" && modal.classList.contains("open")) closeSheet(); });
 
-/* torna clicáveis os quadros já renderizados */
+
 function bindOpen(node, data) {
   node.classList.add("clickable");
   if (!node.querySelector(".hint-open")) node.prepend(el(`<span class="hint-open">ver detalhes</span>`));
@@ -2008,9 +2011,7 @@ document.querySelectorAll("#breath-list .tech-row").forEach((n,i) => {
     body:listBody(r), myth:r.myth, tags:r.styles});
 });
 
-/* ============================================================
-   Corvo mensageiro — dicas e curiosidades rotativas
-   ============================================================ */
+
 const dicas = [
   {jp:"「破壊されても、心だけは折るな。」", pt:"Mesmo destruído, jamais deixe o coração se quebrar.", tag:"Juramento do Esquadrão"},
   {jp:"「呼吸を止めるな、恐れても。」", pt:"Dica: manter a Respiração Constante custa 2 de fôlego por turno — mas dobra o dano de toda forma.", tag:"Dica de mesa"},
@@ -2043,11 +2044,9 @@ document.querySelectorAll("[data-tip]").forEach(b => b.addEventListener("click",
   clearInterval(tipTimer); showTip(Number(b.dataset.tip)); tipTimer = setInterval(() => showTip(1), 12000);
 }));
 
-/* ============================================================
-   Efeitos sonoros sintetizados (sem arquivos externos)
-   ============================================================ */
+
 let AC = null;
-/* o som acompanha o corte/sangue do clique — não há mais interruptor */
+
 const sndOn = true;
 function ctx() { if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === "suspended") AC.resume(); return AC; }
 function tone({f=440, f2=f, type="sine", dur=.2, gain=.06, delay=0}) {
@@ -2071,19 +2070,22 @@ function sfx(kind) {
   if (!sndOn) return;
   try {
     if (kind === "hover") tone({f:1400, f2:2100, type:"triangle", dur:.07, gain:.02});
-    else if (kind === "click") { noise({dur:.22, gain:.05, hp:1800}); tone({f:900, f2:180, type:"sawtooth", dur:.22, gain:.03}); }
+    else if (kind === "click" || kind === "blade") {
+      noise({dur:.18, gain:.06, hp:3200});
+      tone({f:2400, f2:3300, type:"triangle", dur:.12, gain:.025});
+      tone({f:3150, f2:3000, type:"sine", dur:.9, gain:.028, delay:.06});
+      tone({f:4720, f2:4600, type:"sine", dur:.6, gain:.012, delay:.06});
+    }
     else if (kind === "open") tone({f:520, f2:820, type:"sine", dur:.28, gain:.04});
     else if (kind === "gong") { tone({f:150, f2:70, type:"sine", dur:1.6, gain:.09}); tone({f:301, f2:145, type:"sine", dur:1.2, gain:.04, delay:.02}); }
     else if (kind === "slash") { noise({dur:.32, gain:.07, hp:900}); tone({f:1600, f2:120, type:"sawtooth", dur:.3, gain:.04}); }
   } catch (_) {}
 }
 document.addEventListener("click", e => {
-  if (e.target.closest("a,button,[role='button']")) sfx("click");
+  if (e.target.closest("a,button,[role='button'],.clickable") && !e.target.closest(".clickable")) sfx("blade");
 }, {passive:true});
 
-/* ============================================================
-   Interações lúdicas: corte na tela, sangue no clique, chuva de pétalas
-   ============================================================ */
+
 function slashAt(x, y) {
   const len = rnd(160, 320), a = rnd(-40, -12);
   const n = el(`<span class="slash-fx" style="left:${x - len/2}px;top:${y}px;width:${len}px;--a:${a}deg"></span>`);
@@ -2122,7 +2124,7 @@ function petalRain(n = 60) {
     return p;
   })());
 }
-/* segredo: sete toques na logo acendem a Dança do Deus do Fogo */
+
 let logoHits = 0;
 const hdLogo = document.querySelector(".hd-logo");
 if (hdLogo) hdLogo.addEventListener("click", () => {
@@ -2134,9 +2136,7 @@ if (hdLogo) hdLogo.addEventListener("click", () => {
   }
 });
 
-/* ============================================================
-   Acessibilidade: tema claro/escuro e escala de fonte
-   ============================================================ */
+
 (() => {
   const root = document.documentElement;
   const tBtn = document.getElementById("a11y-theme");
@@ -2157,9 +2157,7 @@ if (hdLogo) hdLogo.addEventListener("click", () => {
   document.getElementById("a11y-minus").addEventListener("click", () => step(-.08));
 })();
 
-/* ============================================================
-   Desempenho: pausa animações fora da tela e em abas inativas
-   ============================================================ */
+
 (() => {
   const heavy = [...document.querySelectorAll("#sky,.war-band,.lanterns,.marquee,.marquee-rev,.cloudx")];
   const pauser = new IntersectionObserver((es) => es.forEach(e => {
